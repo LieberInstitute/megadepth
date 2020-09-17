@@ -13,7 +13,7 @@ usethis::use_git() ## Choose the option to make the commit, then to restart RStu
 ## After the restart, continue by connecting your local git repository to
 ## GitHub. You might want to use the `organisation` and `private` arguments
 args(usethis::use_github)
-usethis::use_github()
+usethis::use_github(organisation = "LieberInstitute")
 ## Follow any prompts, such as running: git push --set-upstream origin master
 
 ## Move to the next step: setting up your package core files

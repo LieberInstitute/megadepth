@@ -1,0 +1,32 @@
+pkgVer <- function(pkg) {
+    if (!exists("meta") || is.null(meta)) meta <- packageDescription(pkg)
+    ver <- meta$Version
+    paste0('https://github.com/LieberInstitute/', pkg, ' - R package version ', ver)
+}
+
+c(
+
+    bibentry(bibtype="manual",
+        title = "megadepth: BigWig and BAM related utilities",
+        author = personList(
+            as.person("LieberInstitute")
+        ),
+        year = format(Sys.Date(), "%Y"),
+        url = "http://www.bioconductor.org/packages/megadepth",
+        note = pkgVer('megadepth'),
+        doi = '10.18129/B9.bioc.megadepth'
+    ),
+    bibentry(bibtype="article",
+        title = "megadepth: BigWig and BAM related utilities",
+        author = personList(
+            as.person("David Zhang"),
+            as.person("Christopher Wilks"),
+            as.person("Ben Langmead"),
+            as.person("Leonardo Collado-Torres")
+        ),
+        year = 2020,
+        journal = "bioRxiv",
+        doi = "10.1101/TODO",
+        url = "https://www.biorxiv.org/content/10.1101/TODO"
+    )
+)
