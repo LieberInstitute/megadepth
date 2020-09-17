@@ -4,15 +4,34 @@
 #' and try to copy it to a system directory so \pkg{megadepth} can run the
 #' \command{megadepth} command.
 #'
+#' This function tries to install Megadepth to \code{Sys.getenv('APPDATA')} on
+#' Windows, \file{~/Library/Application Support} on macOS, and \file{~/bin/} on
+#' other platforms (such as Linux). If these directories are not writable, the
+#' package directory \file{Megadepth} of \pkg{megadepth} will be used. If it
+#' still fails, you have to install Megadepth by yourself and make sure it can
+#' be found via the environment variable \code{PATH}.
+#'
+#' If you want to install Megadepth to a custom path, you can set the global
+#' option \code{megadepth.dir} to a directory to store the Megadepth executable
+#' before you call \code{install_megadepth()}, e.g.,
+#' \code{options(megadepth.hugo.dir = ~/Downloads/Megadepth_1.0.4/')}.
+#' This may be useful for you to use a specific
+#' version of Megadepth for a specific project. You can set this option per
+#' project, similar to how \code{blogdown.hugo.dir} is used for specifying
+#' the directory for Hugo in the \pkg{blogdown} package..
+#' See \href{https://bookdown.org/yihui/blogdown/global-options.html}{Section
+#' 1.4 Global options} for details, or store a copy of Megadepth on a USB Flash
+#' drive along with your project code.
+#'
 #' @param version A `character(`)` specifying the Megadepth version number,
 #' e.g., \code{1.0.4}; the special value \code{latest} means the latest version
 #' (fetched from Github releases).
 #' @param force A `logical(1)` specifying whether to install megadepth even if
 #' it has already been installed.
 #'
-#' @return
 #' @importFrom xfun is_windows is_macos same_path
 #' @importFrom utils download.file file_test
+#' @importFrom fs dir_exists
 #' @export
 #' @references
 #' This function is based on blogdown::install_hugo() which is available from
@@ -94,17 +113,17 @@ bin_paths <- function(dir = "Megadepth",
     extra_path = getOption("megadepth.dir")) {
     if (xfun::is_windows()) {
         path <- Sys.getenv("APPDATA", "")
-        path <- if (dir_exists(path)) {
-              file.path(path, dir)
-          }
+        path <- if (fs::dir_exists(path)) {
+            file.path(path, dir)
+        }
     } else if (xfun::is_macos()) {
-        # path = '~/Library/Application Support'
-        # path = if (dir_exists(path)) file.path(path, dir)
-        path <- c("/usr/local/bin") # , path)
+        path <- "~/Library/Application Support"
+        path <- if (fs::dir_exists(path)) file.path(path, dir)
+        path <- c("/usr/local/bin", path)
     } else {
         path <- c("~/bin", "/snap/bin", "/var/lib/snapd/snap/bin")
     }
-    path <- c(extra_path, path)
+    path <- c(extra_path, path, pkg_file(dir, mustWork = FALSE))
     path
 }
 

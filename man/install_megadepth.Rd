@@ -14,13 +14,30 @@ e.g., \code{1.0.4}; the special value \code{latest} means the latest version
 \item{force}{A \code{logical(1)} specifying whether to install megadepth even if
 it has already been installed.}
 }
-\value{
-
-}
 \description{
 Download the appropriate Megadepth executable for your platform from Github
 and try to copy it to a system directory so \pkg{megadepth} can run the
 \command{megadepth} command.
+}
+\details{
+This function tries to install Megadepth to \code{Sys.getenv('APPDATA')} on
+Windows, \file{~/Library/Application Support} on macOS, and \file{~/bin/} on
+other platforms (such as Linux). If these directories are not writable, the
+package directory \file{Megadepth} of \pkg{megadepth} will be used. If it
+still fails, you have to install Megadepth by yourself and make sure it can
+be found via the environment variable \code{PATH}.
+
+If you want to install Megadepth to a custom path, you can set the global
+option \code{megadepth.dir} to a directory to store the Megadepth executable
+before you call \code{install_megadepth()}, e.g.,
+\code{options(megadepth.hugo.dir = ~/Downloads/Megadepth_1.0.4/')}.
+This may be useful for you to use a specific
+version of Megadepth for a specific project. You can set this option per
+project, similar to how \code{blogdown.hugo.dir} is used for specifying
+the directory for Hugo in the \pkg{blogdown} package..
+See \href{https://bookdown.org/yihui/blogdown/global-options.html}{Section
+1.4 Global options} for details, or store a copy of Megadepth on a USB Flash
+drive along with your project code.
 }
 \examples{
 
