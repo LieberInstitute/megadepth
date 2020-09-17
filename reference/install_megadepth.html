@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • megadepth</title>
+<title>Install Megadepth — install_megadepth • megadepth</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,10 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Install Megadepth — install_megadepth" />
+<meta property="og:description" content="Download the appropriate Megadepth executable for your platform from Github
+and try to copy it to a system directory so megadepth can run the
+megadepth command." />
 
 
 
@@ -58,7 +61,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -113,27 +116,71 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='NA/NA/NA/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Install Megadepth</h1>
+    <small class="dont-index">Source: <a href='NA/NA/NA/blob/master/R/install.R'><code>R/install.R</code></a></small>
+    <div class="hidden name"><code>install_megadepth.Rd</code></div>
     </div>
 
-    <div id="megadepth-0990" class="section level1">
-<h1 class="page-header" data-toc-text="0.99.0">
-<a href="#megadepth-0990" class="anchor"></a>megadepth 0.99.0</h1>
-<p>NEW FEATURES</p>
-<ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-<li>Created a first version of the package that focuses on the bigWig commands for <code>megadepth</code>.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>Download the appropriate Megadepth executable for your platform from Github
+and try to copy it to a system directory so <span class="pkg">megadepth</span> can run the
+<code class='command'>megadepth</code> command.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>install_megadepth</span>(version = <span class='st'>"latest"</span>, force = <span class='fl'>FALSE</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>version</th>
+      <td><p>A <code>character(</code>)` specifying the Megadepth version number,
+e.g., <code>1.0.4</code>; the special value <code>latest</code> means the latest version
+(fetched from Github releases).</p></td>
+    </tr>
+    <tr>
+      <th>force</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> specifying whether to install megadepth even if
+it has already been installed.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function tries to install Megadepth to <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv('APPDATA')</a></code> on
+Windows, <code class="file">~/Library/Application Support</code> on macOS, and <code class="file">~/bin/</code> on
+other platforms (such as Linux). If these directories are not writable, the
+package directory <code class="file">Megadepth</code> of <span class="pkg">megadepth</span> will be used. If it
+still fails, you have to install Megadepth by yourself and make sure it can
+be found via the environment variable <code>PATH</code>.</p>
+<p>If you want to install Megadepth to a custom path, you can set the global
+option <code>megadepth.dir</code> to a directory to store the Megadepth executable
+before you call <code>install_megadepth()</code>, e.g.,
+<code><a href='https://rdrr.io/r/base/options.html'>options(megadepth.hugo.dir = '~/Downloads/Megadepth_1.0.4/')</a></code>.
+This may be useful for you to use a specific
+version of Megadepth for a specific project. You can set this option per
+project, similar to how <code>blogdown.hugo.dir</code> is used for specifying
+the directory for Hugo in the <span class="pkg">blogdown</span> package..
+See <a href='https://bookdown.org/yihui/blogdown/global-options.html'>Section
+1.4 Global options</a> for details, or store a copy of Megadepth on a USB Flash
+drive along with your project code.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>This function is based on blogdown::install_hugo() which is available from
+<a href='https://github.com/rstudio/blogdown/blob/master/R/install.R'>https://github.com/rstudio/blogdown/blob/master/R/install.R</a>.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>install_megadepth</span>()
+}
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
