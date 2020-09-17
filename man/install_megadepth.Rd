@@ -30,7 +30,7 @@ be found via the environment variable \code{PATH}.
 If you want to install Megadepth to a custom path, you can set the global
 option \code{megadepth.dir} to a directory to store the Megadepth executable
 before you call \code{install_megadepth()}, e.g.,
-\code{options(megadepth.hugo.dir = ~/Downloads/Megadepth_1.0.4/')}.
+\code{options(megadepth.hugo.dir = '~/Downloads/Megadepth_1.0.4/')}.
 This may be useful for you to use a specific
 version of Megadepth for a specific project. You can set this option per
 project, similar to how \code{blogdown.hugo.dir} is used for specifying
