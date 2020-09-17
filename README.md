@@ -16,7 +16,7 @@ coverage](https://codecov.io/gh/LieberInstitute/megadepth/branch/master/graph/ba
 <!-- badges: end -->
 
 The goal of `megadepth` is to provide an R interface to the command line
-tool [megadepth](https://github.com/ChristopherWilks/megadepth) for
+tool [Megadepth](https://github.com/ChristopherWilks/megadepth) for
 BigWig and BAM related utilities created by [Christopher
 Wilks](https://twitter.com/chrisnwilks). This R package enables fast
 processing of bigWig files on downstream packages such as
@@ -59,7 +59,7 @@ Please run this yourself to check for any updates on how to cite
 **megadepth**.
 
 ``` r
-print(citation('megadepth'), bibtex = TRUE)
+print(citation("megadepth"), bibtex = TRUE)
 #> 
 #> LieberInstitute (2020). _megadepth: BigWig and BAM related utilities_.
 #> doi: 10.18129/B9.bioc.megadepth (URL:

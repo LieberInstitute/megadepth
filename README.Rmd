@@ -56,7 +56,7 @@ Below is the citation output from using `citation('megadepth')` in R. Please
 run this yourself to check for any updates on how to cite __megadepth__.
 
 ```{r 'citation', eval = requireNamespace('megadepth')}
-print(citation('megadepth'), bibtex = TRUE)
+print(citation("megadepth"), bibtex = TRUE)
 ```
 
 Please note that the `megadepth` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.
