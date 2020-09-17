@@ -2,33 +2,11 @@
 This R package depends on (<https://github.com/ChristopherWilks/megadepth>) by
 Christopher Wilks. Christopher distributes pre-compiled binaries for macOS,
 Windows, and linux. Thus, the easiest way to install this software is to
-acces the "releases" section on GitHub at
+access the "releases" section on GitHub at
 (<https://github.com/ChristopherWilks/megadepth/releases>) and download the
-version for your operating system. You then need to make megadepth available on
-the `PATH` environment variable. Below are the steps for installing megadepth
-on a macOS computer. However, if you need to build megadepth from scratch,
-check the instructions at
+version for your operating system to a directory already on your PATH. To
+facilitate this, we have provided the function megadepth::install_megadepth().
+However, if you need to build Megadepth from scratch, check the instructions at
 (<https://github.com/ChristopherWilks/megadepth#building>).
 
-## Where you want to install megadepth
-cd ~/software
 
-## Create a directory for it
-mkdir megadepth
-cd megadepth
-
-## Download the binary (here, it's version 1.0.4 for macOS)
-wget https://github.com/ChristopherWilks/megadepth/releases/download/1.0.4/megadepth_macos
-
-## Rename the megadepth_macos executable to megadepth
-mv megadepth* megadepth
-
-## Provide execute permissions
-chmod u+x megadepth*
-
-## Add it to your PATH
-## You might want to add this to your ~/.bashrc file
-export PATH=~/software/megadepth:$PATH
-
-## Test that you can find the executable on a new terminal window
-which megadepth

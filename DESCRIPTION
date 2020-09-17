@@ -16,7 +16,7 @@ Authors@R:
         email = "david.zhang@ucl.ac.uk",
         comment = c(ORCID = "0000-0003-2382-8460")
     ))
-Description: This package provides an R interface to megadepth by Christopher
+Description: This package provides an R interface to Megadepth by Christopher
     Wilks available at (<https://github.com/ChristopherWilks/megadepth>). It is
     particularly useful for computing the coverage of a set of genomic regions
     across bigWig or BAM files.
@@ -39,3 +39,6 @@ Suggests:
     rmarkdown
 SystemRequirements: megadepth (<https://github.com/ChristopherWilks/megadepth>)
 VignetteBuilder: knitr
+Imports: 
+    xfun,
+    utils

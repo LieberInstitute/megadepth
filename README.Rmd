@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/LieberInstitute/megadepth/branch/master/graph/badge.svg)](https://codecov.io/gh/LieberInstitute/megadepth?branch=master)
 <!-- badges: end -->
 
-The goal of `megadepth` is to provide an R interface to the command line tool [megadepth](https://github.com/ChristopherWilks/megadepth) for BigWig and BAM related utilities created by [Christopher Wilks](https://twitter.com/chrisnwilks). This R package enables fast processing of bigWig files on downstream packages such as [dasper](https://bioconductor.org/packages/dasper) and [recount3](https://bioconductor.org/packages/recount3).
+The goal of `megadepth` is to provide an R interface to the command line tool [Megadepth](https://github.com/ChristopherWilks/megadepth) for BigWig and BAM related utilities created by [Christopher Wilks](https://twitter.com/chrisnwilks). This R package enables fast processing of bigWig files on downstream packages such as [dasper](https://bioconductor.org/packages/dasper) and [recount3](https://bioconductor.org/packages/recount3).
 
 ## Installation instructions
 
