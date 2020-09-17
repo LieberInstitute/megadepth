@@ -202,9 +202,6 @@ jobs:
           deps <- remotes::dev_package_deps(dependencies = TRUE, repos = BiocManager::repositories())
           BiocManager::install(deps$package[deps$diff != 0])
 
-          ## Install megadepth
-          megadepth::install_megadepth()
-
           ## For running the checks
           message(paste('****', Sys.time(), 'installing rcmdcheck and BiocCheck ****'))
           remotes::install_cran("rcmdcheck")
@@ -216,7 +213,6 @@ jobs:
           options(width = 100)
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
-          Sys.which("megadepth")
         shell: Rscript {0}
 
       - name: Check
@@ -405,9 +401,6 @@ jobs:
           deps <- remotes::dev_package_deps(dependencies = TRUE, repos = BiocManager::repositories())
           BiocManager::install(deps$package[deps$diff != 0])
 
-          ## Install megadepth
-          megadepth::install_megadepth()
-
           ## For running the checks
           message(paste('****', Sys.time(), 'installing rcmdcheck and BiocCheck ****'))
           remotes::install_cran("rcmdcheck")
@@ -419,7 +412,6 @@ jobs:
           options(width = 100)
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
-          Sys.which("megadepth")
         shell: Rscript {0}
 
       - name: Check
