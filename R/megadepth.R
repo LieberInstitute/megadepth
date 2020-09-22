@@ -50,3 +50,15 @@ megadepth_shell <- function(input = ".", ...) {
     # system2(find_megadepth(), c(input, flags), stdout = TRUE)
     megadepth_cmd(c(input, flags), stdout = TRUE)
 }
+
+megadepth_shell2 <- function(input, theArgs) {
+    # prepare list for conversion to vector
+    # Convert the list to a flag vector
+    flags <- cmdfun::cmd_list_to_flags(cmdfun::cmd_list_interp(theArgs),
+        prefix = "--"
+    )
+
+    # Run ls shell command
+    # system2(find_megadepth(), c(input, flags), stdout = TRUE)
+    megadepth_cmd(c(input, flags), stdout = TRUE)
+}

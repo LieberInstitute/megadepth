@@ -43,4 +43,6 @@ Imports:
     xfun,
     utils,
     fs,
-    cmdfun
+    cmdfun,
+    GenomicRanges,
+    readr
