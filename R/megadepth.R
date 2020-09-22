@@ -16,6 +16,10 @@
 #'
 #' @examples
 #'
+#' ## Install if necessary
+#' install_megadepth()
+#'
+#' ## Find version
 #' megadepth_cmd("--version")
 megadepth_cmd <- function(...) {
     system2(find_megadepth(), ...)

@@ -23,6 +23,10 @@ Wrapper functions to run Megadepth commands via
 
 \examples{
 
+## Install if necessary
+install_megadepth()
+
+## Find version
 megadepth_cmd("--version")
 }
 \references{
