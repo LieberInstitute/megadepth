@@ -27,7 +27,7 @@ Wrapper functions to run Megadepth commands via
 install_megadepth()
 
 ## Find version
-megadepth_cmd("--version")
+megadepth_cmd("--version", stdout = TRUE)
 }
 \references{
 This function is based on blogdown::hugo_cmd() which is available from
