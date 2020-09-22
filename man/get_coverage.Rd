@@ -40,10 +40,10 @@ return 0 counts.
 \examples{
 
 ## Locate example BigWig and annotation files
-example_bw <- system.file("inst", "tests", "test.bam.all.bw",
+example_bw <- system.file("tests", "test.bam.all.bw",
     package = "megadepth", mustWork = TRUE
 )
-annotation_file <- system.file("inst", "tests", "testbw2.bed",
+annotation_file <- system.file("tests", "testbw2.bed",
     package = "megadepth", mustWork = TRUE
 )
 

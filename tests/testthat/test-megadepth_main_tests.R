@@ -27,14 +27,14 @@ if (FALSE) {
 
 ## Create test files
 megadepth_shell(
-    pkg_file("inst", "tests", "test.bam"),
+    pkg_file("tests", "test.bam"),
     "prefix" = file.path(tempdir(), "test.bam"),
     "threads" = 1,
     "no-head" = TRUE,
     "bigwig" = TRUE,
     "auc" = TRUE,
     "min-unique-qual" = 10,
-    "annotation" = pkg_file("inst", "tests", "test_exons.bed"),
+    "annotation" = pkg_file("tests", "test_exons.bed"),
     "frag-dist" = TRUE,
     "alts" = TRUE,
     "include-softclip" = TRUE,
@@ -64,7 +64,7 @@ test_that("test just total auc", {
 megadepth_shell(
     file.path(tempdir(), "test.bam.all.bw"),
     "op" = "mean",
-    "annotation" = pkg_file("inst", "tests", "testbw2.bed"),
+    "annotation" = pkg_file("tests", "testbw2.bed"),
     "prefix" = file.path(tempdir(), "bw2.mean"),
     "no-annotation-stdout" = TRUE
 )
@@ -81,7 +81,7 @@ test_that("test bigwig2mean", {
         get_coverage(
             file.path(tempdir(), "test.bam.all.bw"),
             op = "mean",
-            annotation = pkg_file("inst", "tests", "testbw2.bed"),
+            annotation = pkg_file("tests", "testbw2.bed"),
             prefix = file.path(tempdir(), "bw2.mean.r")
         )
     )
