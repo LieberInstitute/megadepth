@@ -2,6 +2,10 @@
 
 export(install_megadepth)
 export(megadepth_cmd)
+export(megadepth_shell)
+importFrom(cmdfun,cmd_args_dots)
+importFrom(cmdfun,cmd_list_interp)
+importFrom(cmdfun,cmd_list_to_flags)
 importFrom(fs,dir_exists)
 importFrom(utils,download.file)
 importFrom(utils,file_test)

@@ -42,4 +42,5 @@ VignetteBuilder: knitr
 Imports: 
     xfun,
     utils,
-    fs
+    fs,
+    cmdfun

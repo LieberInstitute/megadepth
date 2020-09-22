@@ -2,15 +2,21 @@
 % Please edit documentation in R/megadepth.R
 \name{megadepth_cmd}
 \alias{megadepth_cmd}
+\alias{megadepth_shell}
 \title{Run Megadepth commands}
 \usage{
 megadepth_cmd(...)
+
+megadepth_shell(input = ".", ...)
 }
 \arguments{
 \item{...}{Arguments to be passed to \code{system2('megadepth', ...)}, e.g.
 \code{annotation(path)} is basically
 \code{megadepth_cmd(c('--annotation', path))}
 (i.e. run the command \command{megadepth --annotation path}).}
+
+\item{input}{A \code{character(1)} with the path to the input BAM, BigWig or
+text file for Megadepth.}
 }
 \description{
 Wrapper functions to run Megadepth commands via
@@ -19,6 +25,8 @@ Wrapper functions to run Megadepth commands via
 \section{Functions}{
 \itemize{
 \item \code{megadepth_cmd}: Run an arbitrary Megadepth command.
+
+\item \code{megadepth_shell}: Run an arbitrary Megadepth command.
 }}
 
 \examples{
@@ -27,9 +35,16 @@ Wrapper functions to run Megadepth commands via
 install_megadepth()
 
 ## Find version
+## megadepth_shell() provides an interface more familiar to R users
+megadepth_shell(version = TRUE)
+## megadepth_cmd requires using directly the command line syntax for
+## Megadepth
 megadepth_cmd("--version", stdout = TRUE)
 }
 \references{
-This function is based on blogdown::hugo_cmd() which is available from
+This function is based on blogdown::hugo_cmd() which is available at
 \url{https://github.com/rstudio/blogdown/blob/master/R/hugo.R}.
+
+This function is based on the shell_ls() example from cmdfun which is
+available at \url{https://snystrom.github.io/cmdfun/index.html}.
 }

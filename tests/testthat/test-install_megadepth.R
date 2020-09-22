@@ -11,4 +11,8 @@ test_that("installation of the latest version works", {
         megadepth_cmd("--version", stdout = TRUE),
         paste("megadepth", megadepth_latest())
     )
+    expect_equal(
+        megadepth_cmd("--version", stdout = TRUE),
+        megadepth_shell(version = TRUE)
+    )
 })
