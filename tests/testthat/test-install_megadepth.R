@@ -1,12 +1,14 @@
-test_that("installation works", {
+test_that("installation of the latest version works", {
     expect_message(
         megadepth::install_megadepth(force = TRUE),
         "megadepth has been installed to"
     )
-    ## This test is currently failing: it re-installs megadepth on GHA
-    ## to /github/home/bin
-    # expect_message(
-    #     megadepth::install_megadepth(force = FALSE),
-    #     "It seems megadepth has been installed. Use force = TRUE to reinstall or upgrade."
-    # )
+    expect_equal(
+        find_exec("megadepth", "Megadepth"),
+        find_megadepth()
+    )
+    expect_equal(
+        megadepth_cmd("--version", stdout = TRUE),
+        paste("megadepth", megadepth_latest())
+    )
 })

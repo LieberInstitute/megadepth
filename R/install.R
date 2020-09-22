@@ -49,11 +49,7 @@ install_megadepth <- function(version = "latest", force = FALSE) {
     }
 
     if (version == "latest") {
-        h <- readLines("https://github.com/ChristopherWilks/megadepth/releases/latest",
-            warn = FALSE
-        )
-        r <- '^.*?releases/tag/([0-9.]+)".*'
-        version <- gsub(r, "\\1", grep(r, h, value = TRUE)[1])
+        version <- megadepth_latest()
         message("The latest megadepth version is ", version)
     }
 
@@ -67,8 +63,8 @@ install_megadepth <- function(version = "latest", force = FALSE) {
     } else if (xfun::is_macos()) {
         "_macos"
     } else {
-          ""
-      }
+        ""
+    }
 
     url <- paste0(base, "megadepth", exec_ext)
     exec_name <-
@@ -86,6 +82,15 @@ install_megadepth <- function(version = "latest", force = FALSE) {
     }
 
     install_megadepth_bin(exec)
+}
+
+megadepth_latest <- function() {
+    h <- readLines("https://github.com/ChristopherWilks/megadepth/releases/latest",
+        warn = FALSE
+    )
+    r <- '^.*?releases/tag/([0-9.]+)".*'
+    version <- gsub(r, "\\1", grep(r, h, value = TRUE)[1])
+    return(version)
 }
 
 
