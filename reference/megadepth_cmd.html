@@ -119,7 +119,9 @@ system2('megadepth', ...)." />
 <code><a href='https://rdrr.io/r/base/system2.html'>system2</a>('megadepth', ...)</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>megadepth_cmd</span>(<span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>megadepth_cmd</span>(<span class='kw'>...</span>)
+
+<span class='fu'>megadepth_shell</span>(input = <span class='st'>"."</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -131,6 +133,11 @@ system2('megadepth', ...)." />
 <code>megadepth_cmd(c('--annotation', path))</code>
 (i.e. run the command <code class='command'>megadepth --annotation path</code>).</p></td>
     </tr>
+    <tr>
+      <th>input</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the input BAM, BigWig or
+text file for Megadepth.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
@@ -138,11 +145,14 @@ system2('megadepth', ...)." />
     
 <ul>
 <li><p><code>megadepth_cmd</code>: Run an arbitrary Megadepth command.</p></li>
+<li><p><code>megadepth_shell</code>: Run an arbitrary Megadepth command.</p></li>
 </ul>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>This function is based on blogdown::hugo_cmd() which is available from
+    <p>This function is based on blogdown::hugo_cmd() which is available at
 <a href='https://github.com/rstudio/blogdown/blob/master/R/hugo.R'>https://github.com/rstudio/blogdown/blob/master/R/hugo.R</a>.</p>
+<p>This function is based on the shell_ls() example from cmdfun which is
+available at <a href='https://snystrom.github.io/cmdfun/index.html'>https://snystrom.github.io/cmdfun/index.html</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -150,6 +160,10 @@ system2('megadepth', ...)." />
 <span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span>()
 </div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.0.4</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
 <span class='co'>## Find version</span>
+<span class='co'>## megadepth_shell() provides an interface more familiar to R users</span>
+<span class='fu'>megadepth_shell</span>(version = <span class='fl'>TRUE</span>)
+</div><div class='output co'>#&gt; [1] "megadepth 1.0.4"</div><div class='input'><span class='co'>## megadepth_cmd requires using directly the command line syntax for</span>
+<span class='co'>## Megadepth</span>
 <span class='fu'>megadepth_cmd</span>(<span class='st'>"--version"</span>, stdout = <span class='fl'>TRUE</span>)
 </div><div class='output co'>#&gt; [1] "megadepth 1.0.4"</div></pre>
   </div>
