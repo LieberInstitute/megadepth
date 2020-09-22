@@ -25,6 +25,9 @@ if (FALSE) {
     )
 }
 
+## Install if necessary
+install_megadepth()
+
 ## Create test files
 megadepth_shell(
     pkg_file("tests", "test.bam"),
