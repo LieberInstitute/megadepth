@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • megadepth</title>
+<title>Read a coverage TSV file created by Megadepth — read_coverage • megadepth</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Read a coverage TSV file created by Megadepth — read_coverage" />
+<meta property="og:description" content="Read an *annotation.tsv file created by get_coverage() or manually by
+the user using Megadepth." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,60 +107,51 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Read a coverage TSV file created by Megadepth</h1>
+    <small class="dont-index">Source: <a href='NA/NA/NA/blob/master/R/read_coverage.R'><code>R/read_coverage.R</code></a></small>
+    <div class="hidden name"><code>read_coverage.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Read an <code>*annotation.tsv</code> file created by <code><a href='get_coverage.html'>get_coverage()</a></code> or manually by
+the user using Megadepth.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>read_coverage</span>(<span class='kw'>tsv_file</span>, verbose = <span class='fl'>TRUE</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_coverage.html">get_coverage()</a></code> </p>
-        </td>
-        <td><p>Compute coverage summarizations across a set of regions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="install_megadepth.html">install_megadepth()</a></code> </p>
-        </td>
-        <td><p>Install Megadepth</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="megadepth_cmd.html">megadepth_cmd()</a></code> <code><a href="megadepth_cmd.html">megadepth_shell()</a></code> </p>
-        </td>
-        <td><p>Run Megadepth commands</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_coverage.html">read_coverage()</a></code> </p>
-        </td>
-        <td><p>Read a coverage TSV file created by Megadepth</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>tsv_file</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> specifying the path to the tab-separated
+(TSV) file created manually using <code><a href='megadepth_cmd.html'>megadepth_shell()</a></code> or on a previous
+<code><a href='get_coverage.html'>get_coverage()</a></code> run.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> controlling whether to suppress messages when
+reading the data.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A <a href='https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html'>GRanges-class</a> object with the
+coverage summarization across the annotation ranges.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other Coverage functions: 
+<code><a href='get_coverage.html'>get_coverage</a>()</code></p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'>## For RleList, equivalent to rtracklayer::import.bw(as = "RleList")</span>
+<span class='co'>## GenomicRanges::coverage(x, weights = "cov")</span>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
