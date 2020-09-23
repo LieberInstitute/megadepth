@@ -36,7 +36,9 @@ Suggests:
     BiocStyle,
     knitcitations,
     sessioninfo,
-    rmarkdown
+    rmarkdown,
+    rtracklayer,
+    derfinder
 SystemRequirements: megadepth (<https://github.com/ChristopherWilks/megadepth>)
 VignetteBuilder: knitr
 Imports: 

@@ -37,14 +37,14 @@ install_megadepth()
 ## Find version
 ## megadepth_shell() provides an interface more familiar to R users
 megadepth_shell(version = TRUE)
-## megadepth_cmd requires using directly the command line syntax for
+## megadepth_cmd() requires using directly the command line syntax for
 ## Megadepth
 megadepth_cmd("--version", stdout = TRUE)
 }
 \references{
-This function is based on blogdown::hugo_cmd() which is available at
+\code{megadepth_cmd()} is based on blogdown::hugo_cmd() which is available at
 \url{https://github.com/rstudio/blogdown/blob/master/R/hugo.R}.
 
-This function is based on the shell_ls() example from cmdfun which is
+\code{megadepth_shell()} is based on the shell_ls() example from cmdfun which is
 available at \url{https://snystrom.github.io/cmdfun/index.html}.
 }

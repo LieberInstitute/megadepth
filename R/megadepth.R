@@ -11,7 +11,7 @@
 #' @describeIn megadepth_cmd Run an arbitrary Megadepth command.
 #'
 #' @references
-#' This function is based on blogdown::hugo_cmd() which is available at
+#' `megadepth_cmd()` is based on blogdown::hugo_cmd() which is available at
 #' <https://github.com/rstudio/blogdown/blob/master/R/hugo.R>.
 megadepth_cmd <- function(...) {
     system2(find_megadepth(), ...)
@@ -23,7 +23,7 @@ megadepth_cmd <- function(...) {
 #' @describeIn megadepth_cmd Run an arbitrary Megadepth command.
 #'
 #' @references
-#' This function is based on the shell_ls() example from cmdfun which is
+#' `megadepth_shell()` is based on the shell_ls() example from cmdfun which is
 #' available at <https://snystrom.github.io/cmdfun/index.html>.
 #'
 #' @importFrom cmdfun cmd_args_dots cmd_list_interp cmd_list_to_flags
@@ -35,7 +35,7 @@ megadepth_cmd <- function(...) {
 #' ## Find version
 #' ## megadepth_shell() provides an interface more familiar to R users
 #' megadepth_shell(version = TRUE)
-#' ## megadepth_cmd requires using directly the command line syntax for
+#' ## megadepth_cmd() requires using directly the command line syntax for
 #' ## Megadepth
 #' megadepth_cmd("--version", stdout = TRUE)
 megadepth_shell <- function(input = ".", ...) {
