@@ -54,13 +54,17 @@ annotation_file <- system.file("tests", "testbw2.bed",
 bw_cov <- get_coverage(example_bw, op = "mean", annotation = annotation_file)
 bw_cov
 
+## If you want to cast this into a RleList object use the following code:
+## (it's equivalent to rtracklayer::import.bw(as = "RleList"))
+GenomicRanges::coverage(bw_cov, weight = "cov")
+
 ## Checking other tools
 bed <- rtracklayer::import(annotation_file)
 bw_cov_rtrack <- rtracklayer::import.bw(rtracklayer::BigWigFile(example_bw), which = bed)
 bw_cov_rtrack
 
 names(example_bw) <- "example"
-fullCov <- derfinder::fullCoverage(rtracklayer::BigWigFileList(example_bw), chrs = seqlevels(bw_cov))
+fullCov <- derfinder::fullCoverage(rtracklayer::BigWigFileList(example_bw), chrs = GenomeInfoDb::seqlevels(bw_cov))
 regionCov <- derfinder::getRegionCoverage(fullCov, regions = bed)
 
 ## We have to round the mean to make them comparable
@@ -74,10 +78,6 @@ testthat::expect_equivalent(
     sapply(regionCov[c(1, 3:4, 2)], function(x) sum(x$value)),
     get_coverage(example_bw, op = "sum", annotation = annotation_file)$cov,
 )
-
-## If you want to cast this into a RleList object use the following code:
-## (it's equivalent to rtracklayer::import.bw(as = "RleList"))
-GenomicRanges::coverage(bw_cov, weight = "cov")
 }
 \seealso{
 Other Coverage functions: 
