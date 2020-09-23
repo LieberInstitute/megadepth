@@ -149,9 +149,9 @@ text file for Megadepth.</p></td>
 </ul>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>This function is based on blogdown::hugo_cmd() which is available at
+    <p><code>megadepth_cmd()</code> is based on blogdown::hugo_cmd() which is available at
 <a href='https://github.com/rstudio/blogdown/blob/master/R/hugo.R'>https://github.com/rstudio/blogdown/blob/master/R/hugo.R</a>.</p>
-<p>This function is based on the shell_ls() example from cmdfun which is
+<p><code>megadepth_shell()</code> is based on the shell_ls() example from cmdfun which is
 available at <a href='https://snystrom.github.io/cmdfun/index.html'>https://snystrom.github.io/cmdfun/index.html</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -162,7 +162,7 @@ available at <a href='https://snystrom.github.io/cmdfun/index.html'>https://snys
 <span class='co'>## Find version</span>
 <span class='co'>## megadepth_shell() provides an interface more familiar to R users</span>
 <span class='fu'>megadepth_shell</span>(version = <span class='fl'>TRUE</span>)
-</div><div class='output co'>#&gt; [1] "megadepth 1.0.4"</div><div class='input'><span class='co'>## megadepth_cmd requires using directly the command line syntax for</span>
+</div><div class='output co'>#&gt; [1] "megadepth 1.0.4"</div><div class='input'><span class='co'>## megadepth_cmd() requires using directly the command line syntax for</span>
 <span class='co'>## Megadepth</span>
 <span class='fu'>megadepth_cmd</span>(<span class='st'>"--version"</span>, stdout = <span class='fl'>TRUE</span>)
 </div><div class='output co'>#&gt; [1] "megadepth 1.0.4"</div></pre>
