@@ -3,3 +3,4 @@
 ^dev$
 ^\.github$
 ^codecov\.yml$
+^analysis$

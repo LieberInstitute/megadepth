@@ -3,3 +3,4 @@
 .Rhistory
 .RData
 inst/doc
+analysis/test_megadepth_pyBigWig_rtracklayer.html

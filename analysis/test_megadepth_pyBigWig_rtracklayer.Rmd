@@ -1,0 +1,196 @@
+---
+title: "Loading coverage using megadepth vs pyBigWig vs rtracklayer"
+author: "Leo Collado-Torres, David Zhang, Chris Wilks"
+output: 
+  github_document
+output: 
+  html_document:
+    code_folding: hide
+    theme: spacelab
+    highlight: kate
+    df_print: paged
+    toc: true
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include = FALSE}
+
+library(magrittr)
+
+knitr::opts_chunk$set(echo = T, message = F, warning = T)
+
+```
+
+> Aim: Check the speed of different tools for loading coverage.
+
+# Background
+
+There are multiple tools that are able to obtain coverage from BigWig/BAM files. Specifically, here we test the tools [megadepth](https://github.com/ChristopherWilks/megadepth), [rtracklayer](https://bioconductor.org/packages/release/bioc/html/rtracklayer.html) and [pyBigWig](https://github.com/deeptools/pyBigWig). Some operations requiring coverage can be very computationally intensive - for example, the [dasper](https://github.com/dzhang32/dasper) R package requires loading coverage across 3 regions per junction per sample. Here, we aim to find the fastest tool for loading coverage from BigWig files by comparing the speed of the `megadepth` vs `rtracklayer` vs `pyBigwig`.
+
+# Input data
+
+First off, we obtain paths to the annotation ranges and BigWig files to load coverage from. For these, we have used the examples hosted on https://github.com/ChristopherWilks/megadepth. 
+
+## Annotation co-ordinates
+
+- We'll work with the example set of ranges found [here](https://github.com/ChristopherWilks/megadepth/blob/master/tests/testbw2.bed). 
+
+```{r}
+
+annotation_file <- system.file("tests", "testbw2.bed", package = "megadepth", mustWork = TRUE)
+
+# convert to a GRanges for rtracklayer
+annotation <- annotation_file %>% 
+  rtracklayer::import(format = "BED")
+
+annotation
+
+# check ranges are identical
+annotation_check <- annotation_file %>% 
+  readr::read_delim("\t", col_names = c("chr", "start", "end")) %>% 
+  GenomicRanges::GRanges()
+
+GenomicRanges::start(annotation_check) <- GenomicRanges::start(annotation_check) + 1 
+
+testthat::expect_identical(annotation_check, annotation)
+
+```
+
+## BigWig files
+
+- We will obtain the paths to the small example BigWig as part of the `megadepth` R package. 
+
+```{r}
+
+bw_local <- system.file("tests", "test.bam.all.bw", package = "megadepth", mustWork = TRUE)
+bw_remote <- "https://github.com/LieberInstitute/megadepth/raw/master/inst/tests/test.bam.all.bw"
+
+```
+
+# Are coverage values obtained through the different methods consistent?
+
+- First, I will check whether the coverage values obtained through `rtracklayer` match those obtained through `megadepth`.  
+
+```{r}
+
+# get base-wise coverage as numeric list for summarisation after
+rt_cov <- rtracklayer::import.bw(con = bw_local, 
+                                 which = annotation, 
+                                 as = "NumericList")
+
+# rtracklayer::import.bw seems to muddle the output order
+# reorder - CHECK WHY 
+rt_cov <- rt_cov[c(2, 3, 4, 1)] %>% BiocGenerics::mean()
+
+md_cov <- megadepth::get_coverage(bigwig_file = bw_local, 
+                                  annotation = annotation_file, 
+                                  op = "mean")
+
+try(testthat::expect_equivalent(rt_cov %>% round(3), 
+                                md_cov$cov))
+
+```
+
+# Test speed 
+
+- Here, we will test the speed of `rtracklayer`, `megadepth` and `pyBigwig` when obtaining coverage from a BigWig file. To make sure the results are comparable, we will use the identical set of ranges and BigWigs initialised above. 
+
+## rtracklayer & megadepth
+
+- `rtracklayer` and `megadepth` can be easily called in R therefore for testing the runtime of these tools I will use the R package [microbenchmark](https://cran.r-project.org/web/packages/microbenchmark/index.html).
+
+```{r, message = FALSE}
+
+n_iters <- 10
+
+benchmark_rt_md <- function(bw, times = 10){
+  
+  runtime <- microbenchmark::microbenchmark(
+    "rt"= { 
+      rtracklayer::import.bw(con = bw, 
+                             which = annotation, 
+                             as = "NumericList")
+      }, 
+    "md" = {
+      megadepth::get_coverage(bigwig_file = bw, 
+                              annotation = annotation_file, 
+                              op = "mean")
+    }, 
+    times = times)
+  
+  runtime <- runtime %>% 
+    dplyr::mutate(time = time / 1e9) %>% # convert time to secs
+    dplyr::rename(tool = expr, run_time = time)
+  
+  return(runtime)
+  
+}
+
+runtime_rt_md <- rbind(benchmark_rt_md(bw = bw_local, times = n_iters) %>% 
+                         dplyr::mutate(local_remote = "local"), 
+                       benchmark_rt_md(bw = bw_remote, times = n_iters) %>% 
+                         dplyr::mutate(local_remote = "remote"))
+
+```
+
+## pyBigWig {.tabset}
+
+- As `pyBigWig` is a python package, here I will use `reticulate` to run a 
+
+### local
+
+```{r}
+
+benchmark_pybw <- function(bw, times = 10){
+  
+  out_path <- paste0(tempdir(), "/pyBigWig_run_time.txt")
+  
+  system2("python3", 
+          args = c(here::here("analysis", "test_pyBigWig.py"),
+                   bw, 
+                   annotation_file, 
+                   out_path, 
+                   times)
+  )
+  
+  runtime <- readr::read_delim(out_path, delim = "\t")
+  
+  return(runtime)
+  
+}
+
+runtime_pybw <- rbind(benchmark_pybw(bw = bw_local, times = n_iters) %>% 
+                         dplyr::mutate(local_remote = "local"), 
+                      benchmark_pybw(bw = bw_remote, times = n_iters) %>% 
+                         dplyr::mutate(local_remote = "remote"))
+
+```
+
+# Compare speeds 
+
+```{r, eval = FALSE}
+
+comp_time <- runtime_rt_md %>% 
+  as.data.frame() %>% 
+  rbind(runtime_pybw)
+
+comp_time_plot <- 
+  ggplot2::ggplot(comp_time, ggplot2::aes(x = tool, y = run_time, colour = local_remote)) + 
+  ggplot2::geom_violin() +  
+  ggplot2::theme_bw() 
+
+comp_time_plot
+  
+```
+
+# Reproducibility
+
+```{r echo=FALSE}
+## Session info
+library("sessioninfo")
+options(width = 120)
+session_info()
+```
+
+
