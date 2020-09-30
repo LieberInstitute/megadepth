@@ -164,14 +164,32 @@ runtime_pybw <- rbind(benchmark_pybw(bw = bw_local, times = n_iters) %>%
 
 comp_time <- runtime_rt_md %>% 
   as.data.frame() %>% 
-  rbind(runtime_pybw)
+  rbind(runtime_pybw) %>% 
+  dplyr::mutate(tool = tool %>% factor(c("md", "rt", "pyBigwig")))
 
 comp_time_plot <- 
-  ggplot2::ggplot(comp_time, ggplot2::aes(x = tool, y = run_time, colour = local_remote)) + 
-  ggplot2::geom_violin() +  
-  ggplot2::theme_bw() 
+  ggplot2::ggplot(comp_time, ggplot2::aes(x = tool, 
+                                          y = run_time, 
+                                          colour = local_remote)) + 
+  ggplot2::geom_boxplot() +  
+  ggplot2::geom_jitter() + 
+  ggplot2::scale_x_discrete(name = "Tool", 
+                            labels = c("megadepth", 
+                                       "rtracklayer", 
+                                       "pyBigWig")) + 
+  ggplot2::scale_y_continuous(name = paste0("Run time for ", length(annotation), " regions (seconds)")) + 
+  ggplot2::scale_colour_manual(values = ggpubr::get_palette("npg", 2), 
+                               guide = "none") + 
+  ggplot2::facet_wrap(~ local_remote, 
+                      scales = "free") + 
+  ggplot2::theme_bw(base_size = 20) 
 
-comp_time_plot
+comp_time_plot %>% 
+  ggplot2::ggsave(filename = "md_rt_pybw_runtime.png", 
+                  plot = ., 
+                  path = here::here("analysis"), 
+                  dpi = 300, 
+                  width = 10, height = 5)
   
 ```
 
