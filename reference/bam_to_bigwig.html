@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • megadepth</title>
+<title>Convert a BAM file to a BigWig — bam_to_bigwig • megadepth</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Convert a BAM file to a BigWig — bam_to_bigwig" />
+<meta property="og:description" content="Given an input BAM file, convert this to the BigWig format which can then be
+used in get_coverage." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,66 +107,72 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Convert a BAM file to a BigWig</h1>
+    <small class="dont-index">Source: <a href='NA/NA/NA/blob/master/R/bam_to_bigwig.R'><code>R/bam_to_bigwig.R</code></a></small>
+    <div class="hidden name"><code>bam_to_bigwig.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Given an input BAM file, convert this to the BigWig format which can then be
+used in <code>get_coverage</code>.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>bam_to_bigwig</span>(
+  <span class='kw'>bam_file</span>,
+  prefix = <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span>(<span class='kw'>bam_file</span>))),
+  min_unique_qual = <span class='fl'>10</span>,
+  double_count = <span class='fl'>FALSE</span>
+)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="bam_to_bigwig.html">bam_to_bigwig()</a></code> </p>
-        </td>
-        <td><p>Convert a BAM file to a BigWig</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_coverage.html">get_coverage()</a></code> </p>
-        </td>
-        <td><p>Compute coverage summarizations across a set of regions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="install_megadepth.html">install_megadepth()</a></code> </p>
-        </td>
-        <td><p>Install Megadepth</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="megadepth_cmd.html">megadepth_cmd()</a></code> <code><a href="megadepth_cmd.html">megadepth_shell()</a></code> </p>
-        </td>
-        <td><p>Run Megadepth commands</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_coverage.html">read_coverage()</a></code> </p>
-        </td>
-        <td><p>Read a coverage TSV file created by Megadepth</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>bam_file</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the input BAM file.</p></td>
+    </tr>
+    <tr>
+      <th>prefix</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> specifying the output file prefix. This
+function creates a file called <code>prefix.all.bw</code> that can be read again later
+with <code><a href='read_coverage.html'>read_coverage()</a></code>. By default, the prefix is the BAM file name and the
+file is created in the <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code> and will be deleted after you close your
+R session.</p></td>
+    </tr>
+    <tr>
+      <th>min_unique_qual</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code> specifying a mapping quality threshold
+and only bases above this will be used to generate the BigWig.</p></td>
+    </tr>
+    <tr>
+      <th>double_count</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> determining whether to count the
+overlapping ends of paired ends reads twice.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the generated BigWig file.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'>## Install if necessary</span>
+<span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span>()
+</div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.0.4</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
+<span class='co'>## Intialise path to the example BAM file</span>
+<span class='kw'>example_bam</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"tests"</span>, <span class='st'>"test.bam"</span>,
+    package = <span class='st'>"megadepth"</span>, mustWork = <span class='fl'>TRUE</span>
+)
+
+<span class='kw'>example_bw</span> <span class='op'>&lt;-</span> <span class='fu'>bam_to_bigwig</span>(<span class='kw'>example_bam</span>)
+
+<span class='co'>## print path to generated BigWig</span>
+<span class='kw'>example_bw</span>
+</div><div class='output co'>#&gt; [1] "/tmp/RtmpOV38oH/test.bam"</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
