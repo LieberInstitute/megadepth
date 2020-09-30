@@ -1,17 +1,8 @@
 ---
-title: "Loading coverage using megadepth vs pyBigWig vs rtracklayer"
+title: "megadepth vs pyBigWig vs rtracklayer"
 author: "Leo Collado-Torres, David Zhang, Chris Wilks"
 output: 
   github_document
-output: 
-  html_document:
-    code_folding: hide
-    theme: spacelab
-    highlight: kate
-    df_print: paged
-    toc: true
-    toc_float: true
-    number_sections: true
 ---
 
 ```{r setup, include = FALSE}
@@ -51,6 +42,7 @@ annotation_check <- annotation_file %>%
   readr::read_delim("\t", col_names = c("chr", "start", "end")) %>% 
   GenomicRanges::GRanges()
 
+# change BED (0-based coords) to match GRanges
 GenomicRanges::start(annotation_check) <- GenomicRanges::start(annotation_check) + 1 
 
 testthat::expect_identical(annotation_check, annotation)
@@ -102,7 +94,7 @@ try(testthat::expect_equivalent(rt_cov %>% round(3),
 
 ```{r, message = FALSE}
 
-n_iters <- 10
+n_iters <- 5
 
 benchmark_rt_md <- function(bw, times = 10){
   
@@ -136,9 +128,8 @@ runtime_rt_md <- rbind(benchmark_rt_md(bw = bw_local, times = n_iters) %>%
 
 ## pyBigWig {.tabset}
 
-- As `pyBigWig` is a python package, here I will use `reticulate` to run a 
-
-### local
+- As `pyBigWig` is a python package, to ensure the paths to the BigWig and annotation ranges remain the same, I will call the script found `r here::here("analysis", "test_pyBigWig.py")`. This creates a function that calls `pyBigWig` for a set number of iterations and saves the runtime for each.
+- To run this, you must have python3.X available on your OS with the modules `pyBigWig`, `pandas` and `numpy` installed. 
 
 ```{r}
 
