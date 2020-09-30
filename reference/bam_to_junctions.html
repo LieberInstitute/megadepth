@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert a BAM file to a BigWig — bam_to_bigwig • megadepth</title>
+<title>Extract junctions from a BAM file — bam_to_junctions • megadepth</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Convert a BAM file to a BigWig — bam_to_bigwig" />
-<meta property="og:description" content="Given an input BAM file, convert this to the BigWig format which can then be
-used in get_coverage." />
+<meta property="og:title" content="Extract junctions from a BAM file — bam_to_junctions" />
+<meta property="og:description" content="Given a BAM file, extract junction information including co-ordinates,
+strand, anchor length for each junction read." />
 
 
 
@@ -109,21 +109,20 @@ used in get_coverage." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert a BAM file to a BigWig</h1>
-    <small class="dont-index">Source: <a href='NA/NA/NA/blob/master/R/bam_to_bigwig.R'><code>R/bam_to_bigwig.R</code></a></small>
-    <div class="hidden name"><code>bam_to_bigwig.Rd</code></div>
+    <h1>Extract junctions from a BAM file</h1>
+    <small class="dont-index">Source: <a href='NA/NA/NA/blob/master/R/bam_to_junctions.R'><code>R/bam_to_junctions.R</code></a></small>
+    <div class="hidden name"><code>bam_to_junctions.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Given an input BAM file, convert this to the BigWig format which can then be
-used in <code>get_coverage</code>.</p>
+    <p>Given a BAM file, extract junction information including co-ordinates,
+strand, anchor length for each junction read.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bam_to_bigwig</span>(
+    <pre class="usage"><span class='fu'>bam_to_junctions</span>(
   <span class='kw'>bam_file</span>,
   prefix = <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span>(<span class='kw'>bam_file</span>))),
-  min_unique_qual = <span class='fl'>10</span>,
-  double_count = <span class='fl'>FALSE</span>
+  long_reads = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -136,25 +135,20 @@ used in <code>get_coverage</code>.</p>
     <tr>
       <th>prefix</th>
       <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> specifying the output file prefix. This
-function creates a BigWig file called <code>prefix.all.bw</code>. By default, the
-prefix is the BAM file name and the file is created in the <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code> and
-will be deleted after you close your R session.</p></td>
+function creates a file called <code>prefix.jxs.tsv</code>. By default, the prefix is
+the BAM file name and the file is created in the <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code> and will be
+deleted after you close your R session.</p></td>
     </tr>
     <tr>
-      <th>min_unique_qual</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code> specifying a mapping quality threshold
-and only bases above this will be used to generate the BigWig.</p></td>
-    </tr>
-    <tr>
-      <th>double_count</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> determining whether to count the
-overlapping ends of paired ends reads twice.</p></td>
+      <th>long_reads</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> indicating whether to increase the buffer
+size to accomodate for long-read RNA-sequencing.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the generated BigWig file.</p>
+    <p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the generated junctions TSV file.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -168,10 +162,10 @@ overlapping ends of paired ends reads twice.</p></td>
     )
 }
 
-<span class='kw'>example_bw</span> <span class='op'>&lt;-</span> <span class='fu'>bam_to_bigwig</span>(<span class='kw'>example_bam</span>)
+<span class='kw'>example_jxs</span> <span class='op'>&lt;-</span> <span class='fu'>bam_to_junctions</span>(<span class='kw'>example_bam</span>)
 
 <span class='co'>## print path to generated BigWig</span>
-<span class='kw'>example_bw</span>
+<span class='kw'>example_jxs</span>
 </div><div class='output co'>#&gt; [1] "/tmp/Rtmp6RSfcS/test.bam"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
