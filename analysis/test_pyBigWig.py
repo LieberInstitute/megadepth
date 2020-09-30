@@ -12,7 +12,7 @@ iterations = int(iterations)
 
 def get_coverage(bw_path, annotation_file, out_path, iterations):
 
-  annotation = pd.read_csv(annotation_file, sep = "\t", names = ["seqnames", "start", "end"])
+  annotation = pd.read_csv(annotation_file, sep = "\t", names = ["seqnames", "start", "end", "dummy1", "dummy2", "strand"])
 
   time_taken = []
 

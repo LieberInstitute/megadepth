@@ -25,42 +25,52 @@ First off, we obtain paths to the annotation ranges and BigWig files to load cov
 
 ## Annotation co-ordinates
 
-- We'll work with the example set of ranges found [here](https://github.com/ChristopherWilks/megadepth/blob/master/tests/testbw2.bed). 
+- For this we'll download use a set of 5000 ranges included in the `dasper` package. These are example junctions that
 
-```{r}
+```{r, message}
 
-annotation_file <- system.file("tests", "testbw2.bed", package = "megadepth", mustWork = TRUE)
+# extract only the required ranges 
+annotation <- dasper::junctions_example %>% 
+  SummarizedExperiment::rowRanges() 
 
-# convert to a GRanges for rtracklayer
-annotation <- annotation_file %>% 
-  rtracklayer::import(format = "BED")
+# keep only ranges on chr 21
+GenomeInfoDb::seqlevels(annotation, pruning.mode = "coarse") <- "21"
 
-annotation
+# add chr to ranges to match bw
+GenomeInfoDb::seqlevels(annotation) <- paste0("chr", GenomeInfoDb::seqlevels(annotation))
+  
+# take the first 1000 ranges for testing
+annotation <- annotation[1:5000]
 
-# check ranges are identical
-annotation_check <- annotation_file %>% 
-  readr::read_delim("\t", col_names = c("chr", "start", "end")) %>% 
-  GenomicRanges::GRanges()
+annotation_path <- file.path(tempdir(), "annotation_example.txt")
 
-# change BED (0-based coords) to match GRanges
-GenomicRanges::start(annotation_check) <- GenomicRanges::start(annotation_check) + 1 
-
-testthat::expect_identical(annotation_check, annotation)
+rtracklayer::export(annotation, 
+                    con = annotation_path, 
+                    format = "BED")
 
 ```
 
 ## BigWig files
 
-- We will obtain the paths to the small example BigWig as part of the `megadepth` R package. 
+- We will obtain the paths to the an example GTEx BigWig using recount2
 
 ```{r}
 
-bw_local <- system.file("tests", "test.bam.all.bw", package = "megadepth", mustWork = TRUE)
-bw_remote <- "https://github.com/LieberInstitute/megadepth/raw/master/inst/tests/test.bam.all.bw"
+url <- recount::download_study(project = "SRP012682", 
+                               type = "samples", 
+                               download = FALSE)
+
+set.seed(32)
+
+# select 1 random sample
+bw_remote <- sample(url, 1)
+
+bw_local <- file.path(tempdir(), "example_gtex_bw.bw")
+download.file(bw_remote, bw_local)
 
 ```
 
-# Are coverage values obtained through the different methods consistent?
+# Are coverage values consistent between methods?
 
 - First, I will check whether the coverage values obtained through `rtracklayer` match those obtained through `megadepth`.  
 
@@ -71,20 +81,17 @@ rt_cov <- rtracklayer::import.bw(con = bw_local,
                                  which = annotation, 
                                  as = "NumericList")
 
-# rtracklayer::import.bw seems to muddle the output order
-# reorder - CHECK WHY 
-rt_cov <- rt_cov[c(2, 3, 4, 1)] %>% BiocGenerics::mean()
-
 md_cov <- megadepth::get_coverage(bigwig_file = bw_local, 
-                                  annotation = annotation_file, 
+                                  annotation = annotation_path, 
                                   op = "mean")
 
-try(testthat::expect_equivalent(rt_cov %>% round(3), 
+# round here to match 3 digits returned by megadepth
+try(testthat::expect_equivalent(rt_cov %>% BiocGenerics::mean() %>% round(3), 
                                 md_cov$cov))
 
 ```
 
-# Test speed 
+# Measure runtime for loading coverage
 
 - Here, we will test the speed of `rtracklayer`, `megadepth` and `pyBigwig` when obtaining coverage from a BigWig file. To make sure the results are comparable, we will use the identical set of ranges and BigWigs initialised above. 
 
@@ -94,7 +101,7 @@ try(testthat::expect_equivalent(rt_cov %>% round(3),
 
 ```{r, message = FALSE}
 
-n_iters <- 5
+n_iters <- 10
 
 benchmark_rt_md <- function(bw, times = 10){
   
@@ -106,7 +113,7 @@ benchmark_rt_md <- function(bw, times = 10){
       }, 
     "md" = {
       megadepth::get_coverage(bigwig_file = bw, 
-                              annotation = annotation_file, 
+                              annotation = annotation_path, 
                               op = "mean")
     }, 
     times = times)
@@ -140,7 +147,7 @@ benchmark_pybw <- function(bw, times = 10){
   system2("python3", 
           args = c(here::here("analysis", "test_pyBigWig.py"),
                    bw, 
-                   annotation_file, 
+                   annotation_path, 
                    out_path, 
                    times)
   )
@@ -155,7 +162,6 @@ runtime_pybw <- rbind(benchmark_pybw(bw = bw_local, times = n_iters) %>%
                          dplyr::mutate(local_remote = "local"), 
                       benchmark_pybw(bw = bw_remote, times = n_iters) %>% 
                          dplyr::mutate(local_remote = "remote"))
-
 ```
 
 # Compare speeds 
