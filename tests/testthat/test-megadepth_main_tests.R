@@ -23,6 +23,16 @@ if (FALSE) {
         destfile = here::here("inst", "tests", "testbw2.bed"),
         mode = "wb"
     )
+    download.file(
+      "https://github.com/ChristopherWilks/megadepth/raw/master/tests/test3.bam",
+      destfile = here::here("inst", "tests", "test3.bam"),
+      mode = "wb"
+    )
+    download.file(
+      "https://github.com/ChristopherWilks/megadepth/raw/master/tests/long_reads.bam",
+      destfile = here::here("inst", "tests", "long_reads.bam"),
+      mode = "wb"
+    )
 }
 
 ## Install if necessary
@@ -62,7 +72,6 @@ test_that("test just total auc", {
     )
 })
 
-
 ## test bigwig2mean
 megadepth_shell(
     file.path(tempdir(), "test.bam.all.bw"),
@@ -88,4 +97,77 @@ test_that("test bigwig2mean", {
             prefix = file.path(tempdir(), "bw2.mean.r")
         )
     )
+})
+
+## test with uniques
+megadepth_shell(
+  here::here("inst", "tests", "test3.bam"),
+  "coverage" = TRUE,
+  "min-unique-qual" = 10,
+  "bigwig" = TRUE,
+  "auc" = TRUE, 
+  "prefix" = file.path(tempdir(), "test3"),
+  "no-auc-stdout" = TRUE
+)
+
+test_that("test with uniques", {
+  expect_equal(
+    readLines(file.path(tempdir(), "test3.auc.tsv")),
+    readLines(
+      "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/test3.auc.out.tsv"
+    )
+  )
+  })
+
+## test long reads support for junctions
+megadepth_shell(
+  here::here("inst", "tests", "long_reads.bam"),
+  "junctions" = TRUE,
+  "prefix" = file.path(tempdir(), "long_reads.bam"),
+  "long-reads" = TRUE
+)
+
+test_that("test long reads support for junctions", {
+  expect_equal(
+    readLines(file.path(tempdir(), "long_reads.bam.jxs.tsv")),
+    readLines(
+      "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/long_reads.bam.jxs.tsv"
+    )
+  )
+})
+
+# test bigwig2mean on remote BW
+megadepth_shell(
+  "http://stingray.cs.jhu.edu/data/temp/megadepth.test.bam.all.bw",
+  "op" = "mean",
+  "annotation" = pkg_file("tests", "testbw2.bed"),
+  "prefix" = file.path(tempdir(), "bw2.remote.mean"),
+  "no-annotation-stdout" = TRUE
+)
+
+test_that("test bigwig2mean on remote bw", {
+  expect_equal(
+    readLines(file.path(tempdir(), "bw2.remote.mean.annotation.tsv")),
+    readLines(
+      "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/testbw2.bed.mean"
+    )
+  )
+})
+
+# only print sums use different order in BED file from what's in BW to test keep_order == true
+megadepth_shell(
+  file.path(tempdir(), "test.bam.all.bw"),
+  "--sums-only" = TRUE,
+  "annotation" = pkg_file("tests", "testbw2.bed"),
+  "prefix" = file.path(tempdir(), "test.bam.bw2"),
+  "no-annotation-stdout" = TRUE
+)
+
+test_that("test bigwig2mean on remote bw", {
+  expect_equal(
+    readLines(file.path(tempdir(), "test.bam.bw2.annotation.tsv")),
+    readLines(
+      "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/testbw2.bed.out.tsv"
+    )
+  )
 })
