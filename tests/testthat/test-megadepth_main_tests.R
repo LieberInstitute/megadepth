@@ -110,7 +110,9 @@ if (!xfun::is_windows()) {
 
     }
 
-}## Run AUC test
+}
+
+## Run AUC test
 total_auc <-
     megadepth_shell(file.path(tempdir(), "test.bam.all.bw"))
 test_that("test just total auc", {
