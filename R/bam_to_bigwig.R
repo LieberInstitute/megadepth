@@ -5,10 +5,9 @@
 #'
 #' @param bam_file A `character(1)` with the path to the input BAM file.
 #' @param prefix A `character(1)` specifying the output file prefix. This
-#'   function creates a file called `prefix.all.bw` that can be read again later
-#'   with `read_coverage()`. By default, the prefix is the BAM file name and the
-#'   file is created in the `tempdir()` and will be deleted after you close your
-#'   R session.
+#'   function creates a BigWig file called `prefix.all.bw`. By default, the
+#'   prefix is the BAM file name and the file is created in the `tempdir()` and
+#'   will be deleted after you close your R session.
 #' @param min_unique_qual A `integer(1)` specifying a mapping quality threshold
 #'   and only bases above this will be used to generate the BigWig.
 #' @param double_count A `logical(1)` determining whether to count the
@@ -22,10 +21,12 @@
 #' ## Install if necessary
 #' install_megadepth()
 #'
-#' ## Intialise path to the example BAM file
-#' example_bam <- system.file("tests", "test.bam",
-#'     package = "megadepth", mustWork = TRUE
-#' )
+#' if (!exists("example_bam")) {
+#'     ## Intialise path to the example BAM file
+#'     example_bam <- system.file("tests", "test.bam",
+#'         package = "megadepth", mustWork = TRUE
+#'     )
+#' }
 #'
 #' example_bw <- bam_to_bigwig(example_bam)
 #'

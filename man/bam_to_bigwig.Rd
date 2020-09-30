@@ -15,10 +15,9 @@ bam_to_bigwig(
 \item{bam_file}{A \code{character(1)} with the path to the input BAM file.}
 
 \item{prefix}{A \code{character(1)} specifying the output file prefix. This
-function creates a file called \code{prefix.all.bw} that can be read again later
-with \code{read_coverage()}. By default, the prefix is the BAM file name and the
-file is created in the \code{tempdir()} and will be deleted after you close your
-R session.}
+function creates a BigWig file called \code{prefix.all.bw}. By default, the
+prefix is the BAM file name and the file is created in the \code{tempdir()} and
+will be deleted after you close your R session.}
 
 \item{min_unique_qual}{A \code{integer(1)} specifying a mapping quality threshold
 and only bases above this will be used to generate the BigWig.}
@@ -38,10 +37,12 @@ used in \code{get_coverage}.
 ## Install if necessary
 install_megadepth()
 
-## Intialise path to the example BAM file
-example_bam <- system.file("tests", "test.bam",
-    package = "megadepth", mustWork = TRUE
-)
+if (!exists("example_bam")) {
+    ## Intialise path to the example BAM file
+    example_bam <- system.file("tests", "test.bam",
+        package = "megadepth", mustWork = TRUE
+    )
+}
 
 example_bw <- bam_to_bigwig(example_bam)
 
