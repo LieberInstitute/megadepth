@@ -39,7 +39,8 @@ Suggests:
     rmarkdown,
     rtracklayer,
     derfinder,
-    GenomeInfoDb
+    GenomeInfoDb,
+    tools
 SystemRequirements: megadepth (<https://github.com/ChristopherWilks/megadepth>)
 VignetteBuilder: knitr
 Imports: 

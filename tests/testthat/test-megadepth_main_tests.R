@@ -62,17 +62,21 @@ if (!xfun::is_windows()) {
         ## Copy test files to the package for the other tests on Windows
         test_files <- dir(tempdir(), "test.bam", full.names = TRUE)
         dir.create(here::here("inst", "tests", "test_output_files"),
-            showWarnings = FALSE)
-        sapply(test_files,
+            showWarnings = FALSE
+        )
+        sapply(
+            test_files,
             file.copy,
-            here::here("inst", "tests", "test_output_files/"))
+            here::here("inst", "tests", "test_output_files/")
+        )
     }
 } else {
     ## Copy the test files
     test_files <-
         dir(pkg_file("tests", "test_output_files"),
             "test.bam",
-            full.names = TRUE)
+            full.names = TRUE
+        )
     sapply(test_files, file.copy, tempdir())
 
     ## For trying to debug on Windows
@@ -107,9 +111,7 @@ if (!xfun::is_windows()) {
         # [bwGetOverlappingIntervalsCore] Got an error
         # [bwClose] There was an error while finishing writing a bigWig file! The output is likely truncated.
         # Read 96 records
-
     }
-
 }
 
 ## Run AUC test
@@ -205,7 +207,7 @@ test_that("test long reads support for junctions", {
     )
 })
 
-# test bigwig2mean on remote BW
+## test bigwig2mean on remote BW
 megadepth_shell(
     "http://stingray.cs.jhu.edu/data/temp/megadepth.test.bam.all.bw",
     "op" = "mean",
@@ -225,7 +227,7 @@ test_that("test bigwig2mean on remote bw", {
     )
 })
 
-# only print sums use different order in BED file from what's in BW to test keep_order == true
+## only print sums use different order in BED file from what's in BW to test keep_order == true
 megadepth_shell(
     file.path(tempdir(), "test.bam.all.bw"),
     "--sums-only" = TRUE,
@@ -242,5 +244,15 @@ test_that("test bigwig2mean on remote bw", {
         readLines(
             "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/testbw2.bed.out.tsv"
         )
+    )
+})
+
+## test conversion of BAM to BigWig
+bam_to_bigwig(pkg_file("tests", "test.bam"))
+
+test_that("test conversion of BAM to bw", {
+    expect_equal(
+        unname(tools::md5sum(file.path(tempdir(), "test.bam.all.bw"))),
+        unname(tools::md5sum(pkg_file("tests", "test.bam.all.bw")))
     )
 })
