@@ -45,7 +45,6 @@ if (!xfun::is_windows()) {
         pkg_file("tests", "test.bam"),
         "prefix" = file.path(tempdir(), "test.bam"),
         "threads" = 1,
-        "no-head" = TRUE,
         "bigwig" = TRUE,
         "auc" = TRUE,
         "min-unique-qual" = 10,
@@ -83,7 +82,6 @@ if (!xfun::is_windows()) {
             "--prefix",
             file.path(tempdir(), "test.bam"),
             "--threads 1",
-            "--no-head",
             "--bigwig",
             "--auc",
             "--min-unique-qual 10",
@@ -99,7 +97,7 @@ if (!xfun::is_windows()) {
         )
         megadepth_cmd(manual_cmd)
         paste(find_megadepth(), manual_cmd)
-        # C:\\Users\\fellg\\AppData\\Roaming\\Megadepth\\megadepth.exe D:/Dropbox/Code/megadepth/inst/tests/test.bam --prefix C:\\Users\\fellg\\AppData\\Local\\Temp\\RtmpKefDQ8/test.bam --threads 1 --no-head --bigwig --auc --min-unique-qual 10 --annotation  D:/Dropbox/Code/megadepth/inst/tests/test_exons.bed --frag-dist --alts --include-softclip --only-polya --read-ends --test-polya --no-annotation-stdout
+        # C:\\Users\\fellg\\AppData\\Roaming\\Megadepth\\megadepth.exe D:/Dropbox/Code/megadepth/inst/tests/test.bam --prefix C:\\Users\\fellg\\AppData\\Local\\Temp\\RtmpKefDQ8/test.bam --threads 1 --bigwig --auc --min-unique-qual 10 --annotation  D:/Dropbox/Code/megadepth/inst/tests/test_exons.bed --frag-dist --alts --include-softclip --only-polya --read-ends --test-polya --no-annotation-stdout
         ## Error
         # building whole annotation region map done
         # 2 chromosomes for annotated regions read
