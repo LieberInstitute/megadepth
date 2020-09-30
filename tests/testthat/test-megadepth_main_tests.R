@@ -33,6 +33,16 @@ if (FALSE) {
         destfile = here::here("inst", "tests", "long_reads.bam"),
         mode = "wb"
     )
+    download.file(
+        "https://github.com/ChristopherWilks/megadepth/raw/master/tests/test2.bam",
+        destfile = here::here("inst", "tests", "test2.bam"),
+        mode = "wb"
+    )
+    download.file(
+        "https://github.com/ChristopherWilks/megadepth/raw/master/tests/test2.bam.bai",
+        destfile = here::here("inst", "tests", "test2.bam.bai"),
+        mode = "wb"
+    )
 }
 
 ## Install if necessary
@@ -114,6 +124,18 @@ if (!xfun::is_windows()) {
     }
 }
 
+## Run test to obtain junctions from a BAM file
+bam_to_junctions(
+    pkg_file("tests", "test2.bam")
+)
+
+test_that("test long reads support for junctions", {
+    expect_equal(
+        readLines(file.path(tempdir(), "test2.bam.jxs.tsv")),
+        readLines("https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/test2.bam.jxs.tsv")
+    )
+})
+
 ## Run AUC test
 total_auc <-
     megadepth_shell(file.path(tempdir(), "test.bam.all.bw"))
@@ -126,8 +148,6 @@ test_that("test just total auc", {
     )
 })
 
-
-
 ## Copy test bigwig file to the package dir
 if (FALSE) {
     file.copy(
@@ -136,8 +156,6 @@ if (FALSE) {
         overwrite = TRUE
     )
 }
-
-
 
 ## test bigwig2mean
 megadepth_shell(
@@ -198,12 +216,23 @@ megadepth_shell(
     "long-reads" = TRUE
 )
 
+bam_to_junctions(
+    pkg_file("tests", "long_reads.bam"),
+    "prefix" = file.path(tempdir(), "long_reads.bam.r"),
+    long_reads = TRUE
+)
+
 test_that("test long reads support for junctions", {
     expect_equal(
         readLines(file.path(tempdir(), "long_reads.bam.jxs.tsv")),
         readLines(
             "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/long_reads.bam.jxs.tsv"
         )
+    )
+
+    expect_equal(
+        readLines(file.path(tempdir(), "long_reads.bam.jxs.tsv")),
+        readLines(file.path(tempdir(), "long_reads.bam.r.jxs.tsv"))
     )
 })
 
@@ -246,7 +275,6 @@ test_that("test bigwig2mean on remote bw", {
         )
     )
 })
-
 
 if (!xfun::is_windows()) {
 
