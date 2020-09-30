@@ -21,7 +21,7 @@ Description: This package provides an R interface to Megadepth by Christopher
     particularly useful for computing the coverage of a set of genomic regions
     across bigWig or BAM files.
 License: Artistic-2.0
-URL: https://github.com//LieberInstitute/megadepth
+URL: https://github.com/LieberInstitute/megadepth
 BugReports: https://support.bioconductor.org/t/megadepth
 biocViews: Software, Coverage, DataImport, Transcriptomics, RNAseq,
     Preprocessing
