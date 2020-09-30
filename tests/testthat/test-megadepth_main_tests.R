@@ -170,7 +170,7 @@ test_that("test bigwig2mean", {
 
 ## test with uniques
 megadepth_shell(
-    here::here("inst", "tests", "test3.bam"),
+    pkg_file("tests", "test3.bam"),
     "coverage" = TRUE,
     "min-unique-qual" = 10,
     "bigwig" = TRUE,
@@ -190,7 +190,7 @@ test_that("test with uniques", {
 
 ## test long reads support for junctions
 megadepth_shell(
-    here::here("inst", "tests", "long_reads.bam"),
+    pkg_file("tests", "long_reads.bam"),
     "junctions" = TRUE,
     "prefix" = file.path(tempdir(), "long_reads.bam"),
     "long-reads" = TRUE
