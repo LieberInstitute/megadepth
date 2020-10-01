@@ -41,9 +41,8 @@ drive along with your project code.
 }
 \examples{
 
-\dontrun{
+## Install megadepth
 install_megadepth()
-}
 }
 \references{
 This function is based on blogdown::install_hugo() which is available from

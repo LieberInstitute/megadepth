@@ -39,9 +39,8 @@
 #'
 #' @examples
 #'
-#' \dontrun{
+#' ## Install megadepth
 #' install_megadepth()
-#' }
 install_megadepth <- function(version = "latest", force = FALSE) {
     if (Sys.which("megadepth") != "" && !force) {
         message("It seems megadepth has been installed. Use force = TRUE to reinstall or upgrade.")

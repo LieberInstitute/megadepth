@@ -19,11 +19,14 @@ Authors@R:
 Description: This package provides an R interface to Megadepth by Christopher
     Wilks available at (<https://github.com/ChristopherWilks/megadepth>). It is
     particularly useful for computing the coverage of a set of genomic regions
-    across bigWig or BAM files.
+    across bigWig or BAM files. With this package, you can build base-pair
+    coverage matrices for regions or annotations of your choice from BigWig
+    files. Megadepth was used to create the raw files provided by
+    <https://bioconductor.org/packages/recount3>.
 License: Artistic-2.0
 URL: https://github.com/LieberInstitute/megadepth
 BugReports: https://support.bioconductor.org/t/megadepth
-biocViews: Software, Coverage, DataImport, Transcriptomics, RNAseq,
+biocViews: Software, Coverage, DataImport, Transcriptomics, RNASeq,
     Preprocessing
 Encoding: UTF-8
 LazyData: true
