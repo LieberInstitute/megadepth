@@ -14,6 +14,9 @@ e.g., \code{1.0.4}; the special value \code{latest} means the latest version
 \item{force}{A \code{logical(1)} specifying whether to install megadepth even if
 it has already been installed.}
 }
+\value{
+Returns \code{NULL}. The main use is to install Megadepth.
+}
 \description{
 Download the appropriate Megadepth executable for your platform from Github
 and try to copy it to a system directory so \pkg{megadepth} can run the

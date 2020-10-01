@@ -33,6 +33,7 @@
 #' @importFrom utils download.file file_test
 #' @importFrom fs dir_exists
 #' @export
+#' @return Returns `NULL`. The main use is to install Megadepth.
 #' @references
 #' This function is based on blogdown::install_hugo() which is available from
 #' <https://github.com/rstudio/blogdown/blob/master/R/install.R>.
