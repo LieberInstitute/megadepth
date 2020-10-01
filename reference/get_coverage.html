@@ -119,12 +119,12 @@ using Megadepth for a given BigWig file." />
 using Megadepth for a given BigWig file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_coverage</span>(
-  <span class='kw'>bigwig_file</span>,
-  op = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sum"</span>, <span class='st'>"mean"</span>, <span class='st'>"max"</span>, <span class='st'>"min"</span>),
-  <span class='kw'>annotation</span>,
-  prefix = <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"bw.mean"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>get_coverage</span><span class='op'>(</span>
+  <span class='va'>bigwig_file</span>,
+  op <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sum"</span>, <span class='st'>"mean"</span>, <span class='st'>"max"</span>, <span class='st'>"min"</span><span class='op'>)</span>,
+  <span class='va'>annotation</span>,
+  prefix <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"bw.mean"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,19 +168,19 @@ return 0 counts.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## Install if necessary</span>
-<span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span>()
+<span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.0.4</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
 <span class='co'>## Locate example BigWig and annotation files</span>
-<span class='kw'>example_bw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"tests"</span>, <span class='st'>"test.bam.all.bw"</span>,
-    package = <span class='st'>"megadepth"</span>, mustWork = <span class='fl'>TRUE</span>
-)
-<span class='kw'>annotation_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"tests"</span>, <span class='st'>"testbw2.bed"</span>,
-    package = <span class='st'>"megadepth"</span>, mustWork = <span class='fl'>TRUE</span>
-)
+<span class='va'>example_bw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"test.bam.all.bw"</span>,
+    package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+<span class='va'>annotation_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"testbw2.bed"</span>,
+    package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
 <span class='co'>## Compute the coverage</span>
-<span class='kw'>bw_cov</span> <span class='op'>&lt;-</span> <span class='fu'>get_coverage</span>(<span class='kw'>example_bw</span>, op = <span class='st'>"mean"</span>, annotation = <span class='kw'>annotation_file</span>)
-<span class='kw'>bw_cov</span>
+<span class='va'>bw_cov</span> <span class='op'>&lt;-</span> <span class='fu'>get_coverage</span><span class='op'>(</span><span class='va'>example_bw</span>, op <span class='op'>=</span> <span class='st'>"mean"</span>, annotation <span class='op'>=</span> <span class='va'>annotation_file</span><span class='op'>)</span>
+<span class='va'>bw_cov</span>
 </div><div class='output co'>#&gt; GRanges object with 4 ranges and 1 metadata column:
 #&gt;         seqnames          ranges strand |       cov
 #&gt;            &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt;
@@ -192,7 +192,7 @@ return 0 counts.</p>
 #&gt;   seqinfo: 2 sequences from an unspecified genome; no seqlengths</div><div class='input'>
 <span class='co'>## If you want to cast this into a RleList object use the following code:</span>
 <span class='co'>## (it's equivalent to rtracklayer::import.bw(as = "RleList"))</span>
-<span class='kw'>GenomicRanges</span>::<span class='fu'><a href='https://rdrr.io/pkg/GenomicRanges/man/coverage-methods.html'>coverage</a></span>(<span class='kw'>bw_cov</span>, weight = <span class='st'>"cov"</span>)
+<span class='fu'>GenomicRanges</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/GenomicRanges/man/coverage-methods.html'>coverage</a></span><span class='op'>(</span><span class='va'>bw_cov</span>, weight <span class='op'>=</span> <span class='st'>"cov"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; RleList of length 2
 #&gt; $chr10
 #&gt; numeric-Rle of length 8756762 with 4 runs
@@ -205,9 +205,9 @@ return 0 counts.</p>
 #&gt;   Values :  0.000  1.258
 #&gt; </div><div class='input'>
 <span class='co'>## Checking other tools</span>
-<span class='kw'>bed</span> <span class='op'>&lt;-</span> <span class='kw'>rtracklayer</span>::<span class='fu'><a href='https://rdrr.io/pkg/rtracklayer/man/export.html'>import</a></span>(<span class='kw'>annotation_file</span>)
-<span class='kw'>bw_cov_rtrack</span> <span class='op'>&lt;-</span> <span class='kw'>rtracklayer</span>::<span class='fu'><a href='https://rdrr.io/pkg/rtracklayer/man/BigWigFile.html'>import.bw</a></span>(<span class='kw'>rtracklayer</span>::<span class='fu'><a href='https://rdrr.io/pkg/rtracklayer/man/BigWigFile.html'>BigWigFile</a></span>(<span class='kw'>example_bw</span>), which = <span class='kw'>bed</span>)
-<span class='kw'>bw_cov_rtrack</span>
+<span class='va'>bed</span> <span class='op'>&lt;-</span> <span class='fu'>rtracklayer</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rtracklayer/man/export.html'>import</a></span><span class='op'>(</span><span class='va'>annotation_file</span><span class='op'>)</span>
+<span class='va'>bw_cov_rtrack</span> <span class='op'>&lt;-</span> <span class='fu'>rtracklayer</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rtracklayer/man/BigWigFile.html'>import.bw</a></span><span class='op'>(</span><span class='fu'>rtracklayer</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rtracklayer/man/BigWigFile.html'>BigWigFile</a></span><span class='op'>(</span><span class='va'>example_bw</span><span class='op'>)</span>, which <span class='op'>=</span> <span class='va'>bed</span><span class='op'>)</span>
+<span class='va'>bw_cov_rtrack</span>
 </div><div class='output co'>#&gt; GRanges object with 11 ranges and 1 metadata column:
 #&gt;          seqnames          ranges strand |     score
 #&gt;             &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt;
@@ -224,21 +224,21 @@ return 0 counts.</p>
 #&gt;   [11] GL000219.1          168620      * |         1
 #&gt;   -------
 #&gt;   seqinfo: 2 sequences from an unspecified genome</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='kw'>example_bw</span>) <span class='op'>&lt;-</span> <span class='st'>"example"</span>
-<span class='kw'>fullCov</span> <span class='op'>&lt;-</span> <span class='kw'>derfinder</span>::<span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/fullCoverage.html'>fullCoverage</a></span>(<span class='kw'>rtracklayer</span>::<span class='fu'><a href='https://rdrr.io/pkg/rtracklayer/man/BigWigFile.html'>BigWigFileList</a></span>(<span class='kw'>example_bw</span>), chrs = <span class='kw'>GenomeInfoDb</span>::<span class='fu'><a href='https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html'>seqlevels</a></span>(<span class='kw'>bw_cov</span>))
-</div><div class='output co'>#&gt; <span class='message'>No methods found in package ‘IRanges’ for request: ‘values&lt;-’ when loading ‘derfinder’</span></div><div class='output co'>#&gt; <span class='message'>No methods found in package ‘IRanges’ for request: ‘values’ when loading ‘derfinder’</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 fullCoverage: processing chromosome chr10</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 loadCoverage: finding chromosome lengths</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 loadCoverage: loading BigWig file /usr/local/lib/R/host-site-library/megadepth/tests/test.bam.all.bw</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 loadCoverage: applying the cutoff to the merged data</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 filterData: originally there were 130694993 rows, now there are 130694993 rows. Meaning that 0 percent was filtered.</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 fullCoverage: processing chromosome GL000219.1</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 loadCoverage: finding chromosome lengths</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 loadCoverage: loading BigWig file /usr/local/lib/R/host-site-library/megadepth/tests/test.bam.all.bw</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 loadCoverage: applying the cutoff to the merged data</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 filterData: originally there were 179198 rows, now there are 179198 rows. Meaning that 0 percent was filtered.</span></div><div class='input'><span class='kw'>regionCov</span> <span class='op'>&lt;-</span> <span class='kw'>derfinder</span>::<span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/getRegionCoverage.html'>getRegionCoverage</a></span>(<span class='kw'>fullCov</span>, regions = <span class='kw'>bed</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 getRegionCoverage: processing chr10</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 getRegionCoverage: done processing chr10</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 getRegionCoverage: processing GL000219.1</span></div><div class='output co'>#&gt; <span class='message'>2020-09-30 17:22:39 getRegionCoverage: done processing GL000219.1</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>example_bw</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"example"</span>
+<span class='va'>fullCov</span> <span class='op'>&lt;-</span> <span class='fu'>derfinder</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/fullCoverage.html'>fullCoverage</a></span><span class='op'>(</span><span class='fu'>rtracklayer</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rtracklayer/man/BigWigFile.html'>BigWigFileList</a></span><span class='op'>(</span><span class='va'>example_bw</span><span class='op'>)</span>, chrs <span class='op'>=</span> <span class='fu'>GenomeInfoDb</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html'>seqlevels</a></span><span class='op'>(</span><span class='va'>bw_cov</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>No methods found in package ‘IRanges’ for request: ‘values&lt;-’ when loading ‘derfinder’</span></div><div class='output co'>#&gt; <span class='message'>No methods found in package ‘IRanges’ for request: ‘values’ when loading ‘derfinder’</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 fullCoverage: processing chromosome chr10</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 loadCoverage: finding chromosome lengths</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 loadCoverage: loading BigWig file /__w/_temp/Library/megadepth/tests/test.bam.all.bw</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 loadCoverage: applying the cutoff to the merged data</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 filterData: originally there were 130694993 rows, now there are 130694993 rows. Meaning that 0 percent was filtered.</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 fullCoverage: processing chromosome GL000219.1</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 loadCoverage: finding chromosome lengths</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 loadCoverage: loading BigWig file /__w/_temp/Library/megadepth/tests/test.bam.all.bw</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 loadCoverage: applying the cutoff to the merged data</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 filterData: originally there were 179198 rows, now there are 179198 rows. Meaning that 0 percent was filtered.</span></div><div class='input'><span class='va'>regionCov</span> <span class='op'>&lt;-</span> <span class='fu'>derfinder</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/getRegionCoverage.html'>getRegionCoverage</a></span><span class='op'>(</span><span class='va'>fullCov</span>, regions <span class='op'>=</span> <span class='va'>bed</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 getRegionCoverage: processing chr10</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 getRegionCoverage: done processing chr10</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 getRegionCoverage: processing GL000219.1</span></div><div class='output co'>#&gt; <span class='message'>2020-10-01 17:02:56 getRegionCoverage: done processing GL000219.1</span></div><div class='input'>
 <span class='co'>## We have to round the mean to make them comparable</span>
-<span class='kw'>testthat</span>::<span class='fu'><a href='https://testthat.r-lib.org/reference/equality-expectations.html'>expect_equivalent</a></span>(
-    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span>(<span class='kw'>regionCov</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>2</span>)], <span class='fu'>function</span>(<span class='kw'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='kw'>x</span><span class='op'>$</span><span class='kw'>value</span>)), <span class='fl'>3</span>),
-    <span class='kw'>bw_cov</span><span class='op'>$</span><span class='kw'>cov</span>,
-)
+<span class='fu'>testthat</span><span class='fu'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/equality-expectations.html'>expect_equivalent</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>regionCov</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>]</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>value</span><span class='op'>)</span><span class='op'>)</span>, <span class='fl'>3</span><span class='op'>)</span>,
+    <span class='va'>bw_cov</span><span class='op'>$</span><span class='va'>cov</span>,
+<span class='op'>)</span>
 
 <span class='co'>## Note that there's no need to round here</span>
-<span class='kw'>testthat</span>::<span class='fu'><a href='https://testthat.r-lib.org/reference/equality-expectations.html'>expect_equivalent</a></span>(
-    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span>(<span class='kw'>regionCov</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>2</span>)], <span class='fu'>function</span>(<span class='kw'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>x</span><span class='op'>$</span><span class='kw'>value</span>)),
-    <span class='fu'>get_coverage</span>(<span class='kw'>example_bw</span>, op = <span class='st'>"sum"</span>, annotation = <span class='kw'>annotation_file</span>)<span class='op'>$</span><span class='kw'>cov</span>,
-)
+<span class='fu'>testthat</span><span class='fu'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/equality-expectations.html'>expect_equivalent</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>regionCov</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>]</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>value</span><span class='op'>)</span><span class='op'>)</span>,
+    <span class='fu'>get_coverage</span><span class='op'>(</span><span class='va'>example_bw</span>, op <span class='op'>=</span> <span class='st'>"sum"</span>, annotation <span class='op'>=</span> <span class='va'>annotation_file</span><span class='op'>)</span><span class='op'>$</span><span class='va'>cov</span>,
+<span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
