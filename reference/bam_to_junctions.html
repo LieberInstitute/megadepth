@@ -41,7 +41,9 @@
 
 <meta property="og:title" content="Extract junctions from a BAM file — bam_to_junctions" />
 <meta property="og:description" content="Given a BAM file, extract junction information including co-ordinates,
-strand, anchor length for each junction read." />
+strand, anchor length for each junction read. For details on the format of
+the output TSV file, check
+https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions." />
 
 
 
@@ -116,13 +118,16 @@ strand, anchor length for each junction read." />
 
     <div class="ref-description">
     <p>Given a BAM file, extract junction information including co-ordinates,
-strand, anchor length for each junction read.</p>
+strand, anchor length for each junction read. For details on the format of
+the output TSV file, check
+<a href='https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions'>https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions</a>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>bam_to_junctions</span><span class='op'>(</span>
   <span class='va'>bam_file</span>,
-  prefix <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>bam_file</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
-  long_reads <span class='op'>=</span> <span class='cn'>FALSE</span>
+  prefix <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>bam_file</span><span class='op'>)</span><span class='op'>)</span>,
+  long_reads <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  overwrite <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -144,29 +149,34 @@ deleted after you close your R session.</p></td>
       <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> indicating whether to increase the buffer
 size to accommodate for long-read RNA-sequencing.</p></td>
     </tr>
+    <tr>
+      <th>overwrite</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> specifying whether to overwrite the output
+file(s), if they exist already.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the generated junctions TSV file.</p>
+    <p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the output junction tsv file.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## Install if necessary</span>
 <span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.0.4</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"example_bam"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-    <span class='co'>## Intialise path to the example BAM file</span>
-    <span class='va'>example_bam</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"test.bam"</span>,
-        package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span>
-    <span class='op'>)</span>
-<span class='op'>}</span>
+<span class='co'>## Find the example BAM file</span>
+<span class='va'>example_bam</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"test.bam"</span>,
+    package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
-<span class='va'>example_jxs</span> <span class='op'>&lt;-</span> <span class='fu'>bam_to_junctions</span><span class='op'>(</span><span class='va'>example_bam</span><span class='op'>)</span>
+<span class='co'>## Run bam_to_junctions()</span>
+<span class='va'>example_jxs</span> <span class='op'>&lt;-</span> <span class='fu'>bam_to_junctions</span><span class='op'>(</span><span class='va'>example_bam</span>, overwrite <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='co'>## print path to generated BigWig</span>
+<span class='co'>## Path to the output file generated by bam_to_junctions()</span>
 <span class='va'>example_jxs</span>
-</div><div class='output co'>#&gt; [1] "/tmp/RtmpBRN4tJ/test.bam"</div></pre>
+</div><div class='output co'>#&gt;                            jxs.tsv 
+#&gt; "/tmp/RtmpVUlzOa/test.bam.jxs.tsv" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
