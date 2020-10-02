@@ -289,7 +289,30 @@ read_junction_table(example_jxs)
 ```
 
 
+## Teams involved
 
+`r Biocpkg('megadepth')` was made possible to [David Zhang](https://twitter.com/dyzhang32), the author of `r Biocpkg("dasper")`, and a member of the [Mina Ryten](https://snca.atica.um.es/)'s lab at UCL.
+
+The `ReCount` family involves the following teams:
+
+* [Ben Langmead's lab](http://www.langmead-lab.org/) at JHU Computer Science
+* [Kasper Daniel Hansen's lab](https://www.hansenlab.org/)  at JHBSPH Biostatistics Department
+* [Leonardo Collado-Torres](http://lcolladotor.github.io/) and [Andrew E. Jaffe](http://aejaffe.com/) from [LIBD](https://www.libd.org/)
+* [Abhinav Nellore's lab](http://nellore.bio/)  at OHSU
+* [Jeff Leek's lab](http://jtleek.com/) at JHBSPH Biostatistics Deparment
+* Data hosted by [SciServer from IDIES at JHU](https://www.sciserver.org/)
+
+
+
+## Other related tools
+
+The `ReCount` team has worked on several software solutions and projects that complement each other and enable you to re-use public RNA-seq data. Another Bioconductor package that you might be highly interested in is `r Biocpkg("snapcount")`, which allows you to use the [Snaptron web services](http://snaptron.cs.jhu.edu/). In particular, `r Biocpkg("snapcount")` is best for queries over a particular subset of genes or intervals across all or most of the samples in `recount2`/`Snaptron`.
+
+We remind you that the **main documentation website** for all the `recount3`-related projects is available at [**recount.bio**](https://LieberInstitute/github.io/recount3-docs). Please check that website for more information about how this R/Bioconductor package and other tools are related to each other.
+
+**Thank you!**
+
+P.S. An [alternative version of this vignette is available](https://LieberInstitute.github.io/megadepth/) that was made using `r CRANpkg("pkgdown")`.
 
 
 

@@ -123,4 +123,23 @@ For more details, check the `dev` directory.
 
 This package was developed using `r BiocStyle::Githubpkg('lcolladotor/biocthis')`.
 
+## `ReCount` project
 
+The **main documentation website** for all the `recount3`-related projects is available at [**recount.bio**](https://LieberInstitute/github.io/recount3-docs). Please check that website for more information about how this R/Bioconductor package and other tools are related to each other.
+
+## Teams involved
+
+`r BiocStyle::Biocpkg('megadepth')` was made possible to [David Zhang](https://twitter.com/dyzhang32), the author of `r BiocStyle::Biocpkg("dasper")`, and a member of the [Mina Ryten](https://snca.atica.um.es/)'s lab at UCL.
+
+The `ReCount` family involves the following teams:
+
+* [Ben Langmead's lab](http://www.langmead-lab.org/) at JHU Computer Science
+* [Kasper Daniel Hansen's lab](https://www.hansenlab.org/)  at JHBSPH Biostatistics Department
+* [Leonardo Collado-Torres](http://lcolladotor.github.io/) and [Andrew E. Jaffe](http://aejaffe.com/) from [LIBD](https://www.libd.org/)
+* [Abhinav Nellore's lab](http://nellore.bio/)  at OHSU
+* [Jeff Leek's lab](http://jtleek.com/) at JHBSPH Biostatistics Deparment
+* Data hosted by [SciServer from IDIES at JHU](https://www.sciserver.org/)
+
+| | | | |
+| --- | --- | --- | --- |
+| <a href="http://www.langmead-lab.org/"><img src="http://www.langmead-lab.org/wp-content/uploads/2014/01/Screen-Shot-2014-02-02-at-5.20.13-PM-1024x199.png" width="250px"></a> | <a href="https://www.libd.org/"><img src="http://lcolladotor.github.io/img/LIBD_logo.jpg" width="250px"></a> | <a href="http://nellore.bio/"><img src="https://seekvectorlogo.net/wp-content/uploads/2018/08/oregon-health-science-university-ohsu-vector-logo.png" width="250px"></a> | <a href="https://www.sciserver.org/"><img src="https://skyserver.sdss.org/dr14/en/images/sciserver_logo_inverted_vertical.png" width="250px"></a> |
