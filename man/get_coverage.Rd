@@ -17,7 +17,8 @@ get_coverage(
 \item{op}{A \code{character(1)} specifying the summarization operation to
 perform.}
 
-\item{annotation}{A \code{character(1)} path to a BED file.}
+\item{annotation}{A \code{character(1)} path to a BED file with the genomic
+coordinates you are interested in.}
 
 \item{prefix}{A \code{character(1)} specifying the output file prefix. This
 function creates a file called \code{prefix.annotation.tsv} that can be read
@@ -56,33 +57,30 @@ bw_cov
 
 ## If you want to cast this into a RleList object use the following code:
 ## (it's equivalent to rtracklayer::import.bw(as = "RleList"))
+## although in the megadepth case the data has been summarized
 GenomicRanges::coverage(bw_cov)
 
-## Checking other tools
+## Checking with derfinder and rtracklayer
 bed <- rtracklayer::import(annotation_file)
-bw_cov_rtrack <- rtracklayer::import.bw(
-    rtracklayer::BigWigFile(example_bw),
-    which = bed
-)
-bw_cov_rtrack
 
+## The file needs a name
 names(example_bw) <- "example"
-fullCov <- derfinder::fullCoverage(
-    rtracklayer::BigWigFileList(example_bw),
-    chrs = GenomeInfoDb::seqlevels(bw_cov)
-)
+
+## Read in the base-pair coverage data
 regionCov <- derfinder::getRegionCoverage(
-    fullCov,
-    regions = bed
+    regions = bed,
+    files = example_bw,
+    verbose = FALSE
 )
 
-## We have to round the mean to make them comparable
+## Summarize the base-pair coverage data.
+## Note that we have to round the mean to make them comparable.
 testthat::expect_equivalent(
     round(sapply(regionCov[c(1, 3:4, 2)], function(x) mean(x$value)), 3),
     bw_cov$score,
 )
 
-## Note that there's no need to round here
+## If we compute the sum, there's no need to round
 testthat::expect_equivalent(
     sapply(regionCov[c(1, 3:4, 2)], function(x) sum(x$value)),
     get_coverage(example_bw, op = "sum", annotation = annotation_file)$score,

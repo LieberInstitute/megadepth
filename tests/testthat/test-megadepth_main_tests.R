@@ -1,5 +1,8 @@
 # Based on tests at https://github.com/ChristopherWilks/megadepth/blob/master/tests/test.sh
 
+## Install if necessary
+install_megadepth()
+
 if (FALSE) {
     ## Code for getting the files
     dir.create(here::here("inst", "tests"), showWarnings = FALSE)
@@ -26,9 +29,6 @@ if (FALSE) {
         )
     })
 }
-
-## Install if necessary
-install_megadepth()
 
 ## Create test files
 if (!xfun::is_windows()) {
@@ -127,49 +127,17 @@ if (FALSE) {
     )
 }
 
-## test bigwig2mean
-megadepth_shell(
-    file.path(tempdir(), "test.bam.all.bw"),
-    "op" = "mean",
-    "annotation" = pkg_file("tests", "testbw2.bed"),
-    "prefix" = file.path(tempdir(), "bw2.mean"),
-    "no-annotation-stdout" = TRUE
-)
-
-test_that("test bigwig2mean", {
-    expect_equal(
-        readLines(file.path(
-            tempdir(), "bw2.mean.annotation.tsv"
-        )),
-        readLines(
-            "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/testbw2.bed.mean"
-        )
-    )
-    expect_equal(
-        read_coverage(file.path(
-            tempdir(), "bw2.mean.annotation.tsv"
-        )),
-        get_coverage(
-            file.path(tempdir(), "test.bam.all.bw"),
-            op = "mean",
-            annotation = pkg_file("tests", "testbw2.bed"),
-            prefix = file.path(tempdir(), "bw2.mean.r")
-        )
-    )
-})
-
 ## test with uniques
-megadepth_shell(
-    pkg_file("tests", "test3.bam"),
-    "coverage" = TRUE,
-    "min-unique-qual" = 10,
-    "bigwig" = TRUE,
-    "auc" = TRUE,
-    "prefix" = file.path(tempdir(), "test3"),
-    "no-auc-stdout" = TRUE
-)
-
 test_that("test with uniques", {
+    megadepth_shell(
+        pkg_file("tests", "test3.bam"),
+        "coverage" = TRUE,
+        "min-unique-qual" = 10,
+        "bigwig" = TRUE,
+        "auc" = TRUE,
+        "prefix" = file.path(tempdir(), "test3"),
+        "no-auc-stdout" = TRUE
+    )
     expect_equal(
         readLines(file.path(tempdir(), "test3.auc.tsv")),
         readLines(
@@ -178,44 +146,17 @@ test_that("test with uniques", {
     )
 })
 
-## test long reads support for junctions
-megadepth_shell(
-    pkg_file("tests", "long_reads.bam"),
-    "junctions" = TRUE,
-    "prefix" = file.path(tempdir(), "long_reads.bam"),
-    "long-reads" = TRUE
-)
-
-bam_to_junctions(
-    pkg_file("tests", "long_reads.bam"),
-    "prefix" = file.path(tempdir(), "long_reads.bam.r"),
-    long_reads = TRUE
-)
-
-test_that("test long reads support for junctions", {
-    expect_equal(
-        readLines(file.path(tempdir(), "long_reads.bam.jxs.tsv")),
-        readLines(
-            "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/long_reads.bam.jxs.tsv"
-        )
-    )
-
-    expect_equal(
-        readLines(file.path(tempdir(), "long_reads.bam.jxs.tsv")),
-        readLines(file.path(tempdir(), "long_reads.bam.r.jxs.tsv"))
-    )
-})
 
 ## test bigwig2mean on remote BW
-megadepth_shell(
-    "http://stingray.cs.jhu.edu/data/temp/megadepth.test.bam.all.bw",
-    "op" = "mean",
-    "annotation" = pkg_file("tests", "testbw2.bed"),
-    "prefix" = file.path(tempdir(), "bw2.remote.mean"),
-    "no-annotation-stdout" = TRUE
-)
-
 test_that("test bigwig2mean on remote bw", {
+    megadepth_shell(
+        "http://stingray.cs.jhu.edu/data/temp/megadepth.test.bam.all.bw",
+        "op" = "mean",
+        "annotation" = pkg_file("tests", "testbw2.bed"),
+        "prefix" = file.path(tempdir(), "bw2.remote.mean"),
+        "no-annotation-stdout" = TRUE
+    )
+
     expect_equal(
         readLines(file.path(
             tempdir(), "bw2.remote.mean.annotation.tsv"
@@ -227,15 +168,16 @@ test_that("test bigwig2mean on remote bw", {
 })
 
 ## only print sums use different order in BED file from what's in BW to test keep_order == true
-megadepth_shell(
-    file.path(tempdir(), "test.bam.all.bw"),
-    "--sums-only" = TRUE,
-    "annotation" = pkg_file("tests", "testbw2.bed"),
-    "prefix" = file.path(tempdir(), "test.bam.bw2"),
-    "no-annotation-stdout" = TRUE
-)
+test_that("test bigwig2mean on local bw", {
+    megadepth_shell(
+        file.path(tempdir(), "test.bam.all.bw"),
+        "--sums-only" = TRUE,
+        "annotation" = pkg_file("tests", "testbw2.bed"),
+        "prefix" = file.path(tempdir(), "test.bam.bw2"),
+        "no-annotation-stdout" = TRUE
+    )
 
-test_that("test bigwig2mean on remote bw", {
+
     expect_equal(
         readLines(file.path(
             tempdir(), "test.bam.bw2.annotation.tsv"
