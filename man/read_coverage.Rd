@@ -2,9 +2,12 @@
 % Please edit documentation in R/read_coverage.R
 \name{read_coverage}
 \alias{read_coverage}
+\alias{read_coverage_table}
 \title{Read a coverage TSV file created by Megadepth}
 \usage{
 read_coverage(tsv_file, verbose = TRUE)
+
+read_coverage_table(tsv_file)
 }
 \arguments{
 \item{tsv_file}{A \code{character(1)} specifying the path to the tab-separated
@@ -17,11 +20,19 @@ reading the data.}
 \value{
 A \link[GenomicRanges:GRanges-class]{GRanges-class} object with the
 coverage summarization across the annotation ranges.
+
+A \code{tibble::tible()} with columns \code{chr}, \code{start}, \code{end} and \code{score}.
 }
 \description{
 Read an \verb{*annotation.tsv} file created by \code{get_coverage()} or manually by
 the user using Megadepth.
 }
+\section{Functions}{
+\itemize{
+\item \code{read_coverage_table}: Read a coverage TSV file created by Megadepth as
+a table
+}}
+
 \examples{
 
 ## Install if necessary
@@ -48,7 +59,10 @@ stopifnot(identical(bw_cov, bw_cov_manual))
 ## To get an RleList object, just like the one you would get
 ## from using rtracklayer::import.bw(as = "RleList") directly on the
 ## BigWig file, use:
-GenomicRanges::coverage(bw_cov_manual, weight = "cov")
+GenomicRanges::coverage(bw_cov_manual)
+
+## The coverage data can also be read as a `tibble::tibble()`
+read_coverage_table(tsv_file)
 }
 \seealso{
 Other Coverage functions: 

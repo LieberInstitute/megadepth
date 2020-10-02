@@ -40,7 +40,7 @@
 #'
 #' ## If you want to cast this into a RleList object use the following code:
 #' ## (it's equivalent to rtracklayer::import.bw(as = "RleList"))
-#' GenomicRanges::coverage(bw_cov, weight = "cov")
+#' GenomicRanges::coverage(bw_cov)
 #'
 #' ## Checking other tools
 #' bed <- rtracklayer::import(annotation_file)

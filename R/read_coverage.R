@@ -42,31 +42,41 @@
 #' ## To get an RleList object, just like the one you would get
 #' ## from using rtracklayer::import.bw(as = "RleList") directly on the
 #' ## BigWig file, use:
-#' GenomicRanges::coverage(bw_cov_manual, weight = "cov")
+#' GenomicRanges::coverage(bw_cov_manual)
+#'
+#' ## The coverage data can also be read as a `tibble::tibble()`
+#' read_coverage_table(tsv_file)
 read_coverage <- function(tsv_file, verbose = TRUE) {
     if (verbose) {
-        coverage <- read_coverage_internal(tsv_file)
+        coverage <- read_coverage_table(tsv_file)
     } else {
-        suppressMessages(coverage <- read_coverage_internal(tsv_file))
+        suppressMessages(coverage <- read_coverage_table(tsv_file))
     }
+
+    ## Cast into a GRanges object
+    coverage <- GenomicRanges::GRanges(coverage)
+
     return(coverage)
 }
 
-read_coverage_internal <- function(tsv_file) {
+
+#' @describeIn read_coverage Read a coverage TSV file created by Megadepth as
+#' a table
+#'
+#' @return A `tibble::tible()` with columns `chr`, `start`, `end` and `score`.
+#' @export
+read_coverage_table <- function(tsv_file) {
     coverage <- readr::read_delim(
         tsv_file,
         delim = "\t",
-        col_names = c("chr", "start", "end", "cov"),
+        col_names = c("chr", "start", "end", "score"),
         col_types = readr::cols(
             chr = "c",
             start = "i",
             end = "i",
-            cov = "n"
+            score = "n"
         ),
         progress = FALSE
     )
-
-    ## Cast into a GRanges object
-    coverage <- GenomicRanges::GRanges(coverage)
     return(coverage)
 }
