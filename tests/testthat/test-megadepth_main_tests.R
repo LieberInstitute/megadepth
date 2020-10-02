@@ -106,18 +106,6 @@ if (!xfun::is_windows()) {
     }
 }
 
-## Run test to obtain junctions from a BAM file
-bam_to_junctions(
-    pkg_file("tests", "test2.bam")
-)
-
-test_that("test long reads support for junctions", {
-    expect_equal(
-        readLines(file.path(tempdir(), "test2.bam.jxs.tsv")),
-        readLines("https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/test2.bam.jxs.tsv")
-    )
-})
-
 ## Run AUC test
 total_auc <-
     megadepth_shell(file.path(tempdir(), "test.bam.all.bw"))

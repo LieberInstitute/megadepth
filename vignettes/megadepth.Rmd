@@ -197,7 +197,8 @@ One use case of [Megadepth](https://github.com/ChristopherWilks/megadepth) is to
 ```{r, eval = !xfun::is_windows()}
 ## Find the example BAM file
 example_bam <- system.file("tests", "test.bam",
-    package = "megadepth", mustWork = TRUE)
+    package = "megadepth", mustWork = TRUE
+)
 
 ## Create the BigWig file
 ## Currently Megadepth does not support this on Windows

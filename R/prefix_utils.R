@@ -19,7 +19,6 @@ prefix_files <- function(prefix) {
 ## Helper function for checking if the files exist already
 prefix_exists <- function(prefix, expected_ext) {
     expected_files <- paste0(prefix, ".", expected_ext)
-    print(expected_files)
     files_present <- file.exists(expected_files)
     if (any(files_present)) {
         stop(
