@@ -64,7 +64,8 @@ read_junction_table <- function(tsv_file) {
     ## Define the expected columns and classes
     col_names <- c("chr", "pos", "strand", "insert_length", "cigar", "coords")
     col_names <- c(col_names, paste0("mate_", col_names))
-    col_class <- setNames(rep(c("c", "i", "i", "i", "c", "c"), 2), col_names)
+    col_class <- rep(c("c", "i", "i", "i", "c", "c"), 2)
+    names(col_class) <- col_names
 
     ## Limit to the number of columns present
     col_names <- col_names[seq_len(ncol(header))]
