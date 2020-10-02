@@ -257,16 +257,3 @@ test_that("test bigwig2mean on remote bw", {
         )
     )
 })
-
-if (!xfun::is_windows()) {
-
-    ## test conversion of BAM to BigWig
-    bam_to_bigwig(pkg_file("tests", "test.bam"))
-
-    test_that("test conversion of BAM to bw", {
-        expect_equal(
-            unname(tools::md5sum(file.path(tempdir(), "test.bam.all.bw"))),
-            unname(tools::md5sum(pkg_file("tests", "test.bam.all.bw")))
-        )
-    })
-}
