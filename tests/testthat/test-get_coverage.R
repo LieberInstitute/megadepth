@@ -24,7 +24,7 @@ test_that("test bigwig2mean", {
             tempdir(), "bw2.mean.annotation.tsv"
         )),
         get_coverage(
-            file.path(tempdir(), "test.bam.all.bw"),
+            pkg_file("tests", "test.bam.all.bw"),
             op = "mean",
             annotation = pkg_file("tests", "testbw2.bed"),
             prefix = file.path(tempdir(), "bw2.mean.r")
