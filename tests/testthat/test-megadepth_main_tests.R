@@ -3,46 +3,28 @@
 if (FALSE) {
     ## Code for getting the files
     dir.create(here::here("inst", "tests"), showWarnings = FALSE)
-    download.file(
-        "https://github.com/ChristopherWilks/megadepth/raw/master/tests/test.bam",
-        destfile = here::here("inst", "tests", "test.bam"),
-        mode = "wb"
+
+    test_files <- c(
+        "test.bam",
+        "test.bam.bai",
+        "test_exons.bed",
+        "testbw2.bed",
+        "test3.bam",
+        "long_reads.bam",
+        "test2.bam",
+        "test2.bam.bai"
     )
-    download.file(
-        "https://github.com/ChristopherWilks/megadepth/raw/master/tests/test.bam.bai",
-        destfile = here::here("inst", "tests", "test.bam.bai"),
-        mode = "wb"
-    )
-    download.file(
-        "https://github.com/ChristopherWilks/megadepth/raw/master/tests/test_exons.bed",
-        destfile = here::here("inst", "tests", "test_exons.bed"),
-        mode = "wb"
-    )
-    download.file(
-        "https://github.com/ChristopherWilks/megadepth/raw/master/tests/testbw2.bed",
-        destfile = here::here("inst", "tests", "testbw2.bed"),
-        mode = "wb"
-    )
-    download.file(
-        "https://github.com/ChristopherWilks/megadepth/raw/master/tests/test3.bam",
-        destfile = here::here("inst", "tests", "test3.bam"),
-        mode = "wb"
-    )
-    download.file(
-        "https://github.com/ChristopherWilks/megadepth/raw/master/tests/long_reads.bam",
-        destfile = here::here("inst", "tests", "long_reads.bam"),
-        mode = "wb"
-    )
-    download.file(
-        "https://github.com/ChristopherWilks/megadepth/raw/master/tests/test2.bam",
-        destfile = here::here("inst", "tests", "test2.bam"),
-        mode = "wb"
-    )
-    download.file(
-        "https://github.com/ChristopherWilks/megadepth/raw/master/tests/test2.bam.bai",
-        destfile = here::here("inst", "tests", "test2.bam.bai"),
-        mode = "wb"
-    )
+    sapply(test_files, function(x) {
+        download.file(
+            paste0(
+                "https://github.com/ChristopherWilks/megadepth/",
+                "raw/master/tests/",
+                x
+            ),
+            destfile = here::here("inst", "tests", x),
+            mode = "wb"
+        )
+    })
 }
 
 ## Install if necessary
