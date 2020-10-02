@@ -24,7 +24,7 @@ prefix_exists <- function(prefix, expected_ext) {
     if (any(files_present)) {
         stop(
             "The following files already exist.\n",
-            "Use overwrite = TRUE to replace them.:\n",
+            "Use overwrite = TRUE to replace them. Existing file(s):\n",
             paste(expected_files[files_present], collapse = "\n"),
             call. = FALSE
         )

@@ -7,7 +7,7 @@
 bam_to_bigwig(
   bam_file,
   prefix = file.path(tempdir(), basename(bam_file)),
-  min_unique_qual = 10,
+  min_unique_qual = FALSE,
   double_count = FALSE,
   overwrite = FALSE
 )
@@ -21,12 +21,13 @@ prefix is the BAM file name and the file is created in the \code{tempdir()} and
 will be deleted after you close your R session.}
 
 \item{min_unique_qual}{A \code{integer(1)} specifying a mapping quality threshold
-and only bases above this will be used to generate the BigWig.}
+and only bases above this will be used to generate the BigWig. If set to
+\code{FALSE} this argument is not used by Megadepth.}
 
 \item{double_count}{A \code{logical(1)} determining whether to count the
 overlapping ends of paired ends reads twice.}
 
-\item{ovewrite}{A \code{logical(1)} specifying whether to overwrite the output
+\item{overwrite}{A \code{logical(1)} specifying whether to overwrite the output
 files, if they exist already.}
 }
 \value{

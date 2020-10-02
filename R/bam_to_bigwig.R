@@ -12,10 +12,11 @@
 #'   prefix is the BAM file name and the file is created in the `tempdir()` and
 #'   will be deleted after you close your R session.
 #' @param min_unique_qual A `integer(1)` specifying a mapping quality threshold
-#'   and only bases above this will be used to generate the BigWig.
+#'   and only bases above this will be used to generate the BigWig. If set to
+#'   `FALSE` this argument is not used by Megadepth.
 #' @param double_count A `logical(1)` determining whether to count the
 #'   overlapping ends of paired ends reads twice.
-#' @param ovewrite A `logical(1)` specifying whether to overwrite the output
+#' @param overwrite A `logical(1)` specifying whether to overwrite the output
 #' files, if they exist already.
 #'
 #' @return A `character()` with the path to the generated BigWig files.
@@ -54,9 +55,19 @@
 #' }
 bam_to_bigwig <- function(bam_file,
     prefix = file.path(tempdir(), basename(bam_file)),
-    min_unique_qual = 10,
+    min_unique_qual = FALSE,
     double_count = FALSE,
     overwrite = FALSE) {
+
+    if (xfun::is_windows()) {
+        warning(
+            "Megadepth currently does not support creating bigWig files on ",
+            "Windows. This function will still try to run the code, as a ",
+            "newer version of Megadepth might support this feature. Please ",
+            "let us know if code works for you on Windows! Thanks!",
+            call. = FALSE
+        )
+    }
 
     ## Hm.. the unique.tsv file is empty with the current example data
     ## even with min_unique_qual = 0
