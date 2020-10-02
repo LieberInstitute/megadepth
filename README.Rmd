@@ -22,7 +22,13 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/LieberInstitute/megadepth/branch/master/graph/badge.svg)](https://codecov.io/gh/LieberInstitute/megadepth?branch=master)
 <!-- badges: end -->
 
-The goal of `megadepth` is to provide an R interface to the command line tool [Megadepth](https://github.com/ChristopherWilks/megadepth) for BigWig and BAM related utilities created by [Christopher Wilks](https://twitter.com/chrisnwilks). This R package enables fast processing of bigWig files on downstream packages such as [dasper](https://bioconductor.org/packages/dasper) and [recount3](https://bioconductor.org/packages/recount3).
+The goal of `megadepth` is to provide an R interface to the command line tool [Megadepth](https://github.com/ChristopherWilks/megadepth) for BigWig and BAM related utilities created by [Christopher Wilks](https://twitter.com/chrisnwilks). This R package enables **fast** processing of BigWig files on downstream packages such as [dasper](https://bioconductor.org/packages/dasper) and [recount3](https://bioconductor.org/packages/recount3). The [Megadepth](https://github.com/ChristopherWilks/megadepth) software also provides utilities for processing BAM files and extracting coverage information from them.
+
+Here is an illustration on how fast `megadepth` is compared to other tools for processing local and remote BigWig files.
+
+<a href="https://github.com/LieberInstitute/megadepth/tree/master/analysis"><img src="https://raw.githubusercontent.com/LieberInstitute/megadepth/master/analysis/md_rt_pybw_runtime.png" width="800px" ></a>
+
+Throughout the documentation we use a capital `M` to refer to the software by Christopher Wilks and a lower case `m` to refer to this R/Bioconductor package.
 
 ## Installation instructions
 
@@ -43,12 +49,51 @@ BiocManager::install("LieberInstitute/megadepth")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+In the following example, we install [Megadepth](https://github.com/ChristopherWilks/megadepth) with `install_megadepth()`, which downloads a binary for your OS (Linux, Windows or macOS). We can then use with an example BigWig file to compute the coverage at a set of regions.
 
 ```{r example, eval = requireNamespace('megadepth')}
 library("megadepth")
 ## basic example code
+
+## Install Megadepth
+install_megadepth()
+
+## Next, we locate the example BigWig and annotation files
+example_bw <- system.file("tests", "test.bam.all.bw",
+    package = "megadepth", mustWork = TRUE
+)
+annotation_file <- system.file("tests", "testbw2.bed",
+    package = "megadepth", mustWork = TRUE
+)
+
+## We can then use megadepth to compute the coverage
+bw_cov <- get_coverage(example_bw, op = "mean", annotation = annotation_file)
+bw_cov
 ```
+
+## Full set of utilities
+
+[Megadepth](https://github.com/ChristopherWilks/megadepth) is very powerful and can do a lot of different things. The R/Bioconductor package provides two functions for interfacing with [Megadepth](https://github.com/ChristopherWilks/megadepth), `megadepth_cmd()` and `megadepth_shell()`. For the first one, `megadepth_cmd()`, you need to know the actual command syntax you want to use and format it accordingly. If you are more comfortable with R functions, `megadepth_shell()` uses `r BiocStyle::CRANpkg("cmdfun")` to power this interface and capture the standard output stream into R.
+
+To make it easier to use, `megadepth` includes functions that simplify the number of arguments, read in the output files, and converts them into R/Bioconductor friendly objects, such as `get_coverage()` illustrated above.
+
+We hope that you'll find `megadepth` and [Megadepth](https://github.com/ChristopherWilks/megadepth) useful for your work. If you are interested in checking how **fast** `megadepth` is, check out the [**speed analysis**](https://github.com/LieberInstitute/megadepth/tree/master/analysis) comparison against other tools. Note that the size of the files used and the number of genomic regions queried will affect the speed comparisons.
+
+```{r "interface_options"}
+## R-like interface
+## that captures the standard output into R
+head(megadepth_shell(help = TRUE))
+
+## Command-like interface
+megadepth_cmd("--help")
+```
+
+```{r "show_help", echo = FALSE}
+x <- megadepth_shell(help = TRUE)
+cat(paste0(x, "\n"))
+```
+
+
 
 ## Citation
 

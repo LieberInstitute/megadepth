@@ -42,7 +42,7 @@ return 0 counts.
 ## Install if necessary
 install_megadepth()
 
-## Locate example BigWig and annotation files
+Next, we locate the example BigWig and annotation files
 example_bw <- system.file("tests", "test.bam.all.bw",
     package = "megadepth", mustWork = TRUE
 )
