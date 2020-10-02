@@ -43,7 +43,8 @@ Suggests:
     rtracklayer,
     derfinder,
     GenomeInfoDb,
-    tools
+    tools,
+    RefManageR
 SystemRequirements: megadepth (<https://github.com/ChristopherWilks/megadepth>)
 VignetteBuilder: knitr
 Imports: 
