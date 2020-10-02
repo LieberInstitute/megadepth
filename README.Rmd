@@ -47,6 +47,7 @@ And the development version from [GitHub](https://github.com/) with:
 ```{r 'install_dev', eval = FALSE}
 BiocManager::install("LieberInstitute/megadepth")
 ```
+
 ## Example
 
 In the following example, we install [Megadepth](https://github.com/ChristopherWilks/megadepth) with `install_megadepth()`, which downloads a binary for your OS (Linux, Windows or macOS). We can then use with an example BigWig file to compute the coverage at a set of regions.

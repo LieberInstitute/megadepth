@@ -83,7 +83,7 @@ annotation_file <- system.file("tests", "testbw2.bed",
 bw_cov <- get_coverage(example_bw, op = "mean", annotation = annotation_file)
 bw_cov
 #> GRanges object with 4 ranges and 1 metadata column:
-#>         seqnames          ranges strand |       cov
+#>         seqnames          ranges strand |     score
 #>            <Rle>       <IRanges>  <Rle> | <numeric>
 #>   [1]      chr10            0-10      * |     0.000
 #>   [2]      chr10 8756697-8756762      * |    15.846
