@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract junctions from a BAM file — bam_to_junctions • megadepth</title>
+<title>Read a junction TSV file created by Megadepth as a table — read_junction_table • megadepth</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,9 @@
 
 
 
-<meta property="og:title" content="Extract junctions from a BAM file — bam_to_junctions" />
-<meta property="og:description" content="Given a BAM file, extract junction information including co-ordinates,
-strand, anchor length for each junction read. For details on the format of
-the output TSV file, check
-https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions." />
+<meta property="og:title" content="Read a junction TSV file created by Megadepth as a table — read_junction_table" />
+<meta property="og:description" content="Read an *jxs.tsv file created by bam_to_junctions() or manually by
+the user using Megadepth." />
 
 
 
@@ -111,54 +109,34 @@ https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junction
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract junctions from a BAM file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/LieberInstitute/megadepth/blob/master/R/bam_to_junctions.R'><code>R/bam_to_junctions.R</code></a></small>
-    <div class="hidden name"><code>bam_to_junctions.Rd</code></div>
+    <h1>Read a junction TSV file created by Megadepth as a table</h1>
+    <small class="dont-index">Source: <a href='https://github.com/LieberInstitute/megadepth/blob/master/R/read_junction.R'><code>R/read_junction.R</code></a></small>
+    <div class="hidden name"><code>read_junction_table.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Given a BAM file, extract junction information including co-ordinates,
-strand, anchor length for each junction read. For details on the format of
-the output TSV file, check
-<a href='https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions'>https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions</a>.</p>
+    <p>Read an <code>*jxs.tsv</code> file created by <code><a href='bam_to_junctions.html'>bam_to_junctions()</a></code> or manually by
+the user using Megadepth.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bam_to_junctions</span><span class='op'>(</span>
-  <span class='va'>bam_file</span>,
-  prefix <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>bam_file</span><span class='op'>)</span><span class='op'>)</span>,
-  long_reads <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  overwrite <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>read_junction_table</span><span class='op'>(</span><span class='va'>tsv_file</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>bam_file</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the input BAM file.</p></td>
-    </tr>
-    <tr>
-      <th>prefix</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> specifying the output file prefix. This
-function creates a file called <code>prefix.jxs.tsv</code>. By default, the prefix is
-the BAM file name and the file is created in the <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code> and will be
-deleted after you close your R session.</p></td>
-    </tr>
-    <tr>
-      <th>long_reads</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> indicating whether to increase the buffer
-size to accommodate for long-read RNA-sequencing.</p></td>
-    </tr>
-    <tr>
-      <th>overwrite</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> specifying whether to overwrite the output
-file(s), if they exist already.</p></td>
+      <th>tsv_file</th>
+      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> specifying the path to the tab-separated
+(TSV) file created manually using <code><a href='megadepth_cmd.html'>megadepth_shell()</a></code> or on a previous
+<code><a href='bam_to_junctions.html'>bam_to_junctions()</a></code> run.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the output junction tsv file.</p>
+    <p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> with the junction data that follows the format
+specified at
+<a href='https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions'>https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -171,12 +149,12 @@ file(s), if they exist already.</p></td>
 <span class='op'>)</span>
 
 <span class='co'>## Run bam_to_junctions()</span>
-<span class='va'>example_jxs</span> <span class='op'>&lt;-</span> <span class='fu'>bam_to_junctions</span><span class='op'>(</span><span class='va'>example_bam</span>, overwrite <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>example_jxs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bam_to_junctions.html'>bam_to_junctions</a></span><span class='op'>(</span><span class='va'>example_bam</span>, overwrite <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='co'>## Path to the output file generated by bam_to_junctions()</span>
-<span class='va'>example_jxs</span>
-</div><div class='output co'>#&gt;                            jxs.tsv 
-#&gt; "/tmp/RtmprE5F3w/test.bam.jxs.tsv" </div></pre>
+<span class='co'># ## Read the data as a tibble using the format specified at</span>
+<span class='co'># ## https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions</span>
+<span class='co'># read_junction_table(example_jxs)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
