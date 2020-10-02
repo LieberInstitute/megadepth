@@ -64,10 +64,10 @@ Windows or macOS). We can then use with an example BigWig file to
 compute the coverage at a set of regions.
 
 ``` r
+## Load the R package
 library("megadepth")
-## basic example code
 
-## Install Megadepth
+## Install Megadepth's pre-compiled binary on your system
 install_megadepth()
 #> It seems megadepth has been installed. Use force = TRUE to reinstall or upgrade.
 

@@ -55,6 +55,7 @@ bib <- c(
     sessioninfo = citation("sessioninfo")[1],
     testthat = citation("testthat")[1],
     megadepth = citation("megadepth")[1],
+    megadepthpaper = citation("megadepth")[2],
     bioconductor2015 = RefManageR::BibEntry(
         bibtype = "Article",
         key = "bioconductor2015",
@@ -71,7 +72,7 @@ write.bibtex(bib, file = "megadepth.bib")
 ```
 
 
-The goal of `r Biocpkg("megadepth")` is to provide an R interface to the command line tool [Megadepth](https://github.com/ChristopherWilks/megadepth) for BigWig and BAM related utilities created by [Christopher Wilks](https://twitter.com/chrisnwilks). This R package enables **fast** processing of BigWig files on downstream packages such as [dasper](https://bioconductor.org/packages/dasper) and [recount3](https://bioconductor.org/packages/recount3). The [Megadepth](https://github.com/ChristopherWilks/megadepth) software also provides utilities for processing BAM files and extracting coverage information from them.
+The goal of `r Biocpkg("megadepth")` is to provide an R interface to the command line tool [Megadepth](https://github.com/ChristopherWilks/megadepth) for BigWig and BAM related utilities created by [Christopher Wilks](https://twitter.com/chrisnwilks) `r citep(bib[["megadepthpaper"]])`. This R package enables **fast** processing of BigWig files on downstream packages such as [dasper](https://bioconductor.org/packages/dasper) and [recount3](https://bioconductor.org/packages/recount3). The [Megadepth](https://github.com/ChristopherWilks/megadepth) software also provides utilities for processing BAM files and extracting coverage information from them.
 
 Here is an illustration on how fast `r Biocpkg("megadepth")` is compared to other tools for processing local and remote BigWig files.
 
