@@ -9,7 +9,8 @@ c(
     bibentry(bibtype="manual",
         title = "megadepth: BigWig and BAM related utilities",
         author = personList(
-            as.person("LieberInstitute")
+            as.person("David Zhang"),
+            as.person("Leonardo Collado-Torres")
         ),
         year = format(Sys.Date(), "%Y"),
         url = "http://www.bioconductor.org/packages/megadepth",
@@ -19,10 +20,10 @@ c(
     bibentry(bibtype="article",
         title = "megadepth: BigWig and BAM related utilities",
         author = personList(
-            as.person("David Zhang"),
             as.person("Christopher Wilks"),
-            as.person("Ben Langmead"),
-            as.person("Leonardo Collado-Torres")
+            as.person("David Zhang"),
+            as.person("Leonardo Collado-Torres"),
+            as.person("Ben Langmead")
         ),
         year = 2020,
         journal = "bioRxiv",

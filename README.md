@@ -222,8 +222,8 @@ Please run this yourself to check for any updates on how to cite
 ``` r
 print(citation("megadepth"), bibtex = TRUE)
 #> 
-#> LieberInstitute (2020). _megadepth: BigWig and BAM related utilities_.
-#> doi: 10.18129/B9.bioc.megadepth (URL:
+#> Zhang D, Collado-Torres L (2020). _megadepth: BigWig and BAM related
+#> utilities_. doi: 10.18129/B9.bioc.megadepth (URL:
 #> https://doi.org/10.18129/B9.bioc.megadepth),
 #> https://github.com/LieberInstitute/megadepth - R package version
 #> 0.99.0, <URL: http://www.bioconductor.org/packages/megadepth>.
@@ -232,14 +232,14 @@ print(citation("megadepth"), bibtex = TRUE)
 #> 
 #>   @Manual{,
 #>     title = {megadepth: BigWig and BAM related utilities},
-#>     author = {{LieberInstitute}},
+#>     author = {David Zhang and Leonardo Collado-Torres},
 #>     year = {2020},
 #>     url = {http://www.bioconductor.org/packages/megadepth},
 #>     note = {https://github.com/LieberInstitute/megadepth - R package version 0.99.0},
 #>     doi = {10.18129/B9.bioc.megadepth},
 #>   }
 #> 
-#> Zhang D, Wilks C, Langmead B, Collado-Torres L (2020). "megadepth:
+#> Wilks C, Zhang D, Collado-Torres L, Langmead B (2020). "megadepth:
 #> BigWig and BAM related utilities." _bioRxiv_. doi: 10.1101/TODO (URL:
 #> https://doi.org/10.1101/TODO), <URL:
 #> https://www.biorxiv.org/content/10.1101/TODO>.
@@ -248,7 +248,7 @@ print(citation("megadepth"), bibtex = TRUE)
 #> 
 #>   @Article{,
 #>     title = {megadepth: BigWig and BAM related utilities},
-#>     author = {David Zhang and Christopher Wilks and Ben Langmead and Leonardo Collado-Torres},
+#>     author = {Christopher Wilks and David Zhang and Leonardo Collado-Torres and Ben Langmead},
 #>     year = {2020},
 #>     journal = {bioRxiv},
 #>     doi = {10.1101/TODO},
