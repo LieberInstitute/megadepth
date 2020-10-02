@@ -137,7 +137,7 @@ used in <code><a href='get_coverage.html'>get_coverage()</a></code>.</p>
     <tr>
       <th>prefix</th>
       <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> specifying the output file prefix. This
-function creates a BigWig file called <code>prefix.all.bw</code>. By default, the
+function creates a BigWig file called <code>{prefix}.all.bw</code>. By default, the
 prefix is the BAM file name and the file is created in the <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code> and
 will be deleted after you close your R session.</p></td>
     </tr>
@@ -145,7 +145,8 @@ will be deleted after you close your R session.</p></td>
       <th>min_unique_qual</th>
       <td><p>A <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code> specifying a mapping quality threshold
 and only bases above this will be used to generate the BigWig. If set to
-<code>FALSE</code> this argument is not used by Megadepth.</p></td>
+<code>FALSE</code> this argument is not used by Megadepth. Otherwise it will generate
+files <code>{prefix}.unique.bw</code> and <code>{prefix}.unique.tsv</code>.</p></td>
     </tr>
     <tr>
       <th>double_count</th>
@@ -161,7 +162,7 @@ files, if they exist already.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://rdrr.io/r/base/character.html'>character()</a></code> with the path to the generated BigWig files.</p>
+    <p>A <code><a href='https://rdrr.io/r/base/character.html'>character()</a></code> with the path to the output files(s).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Note that this functionality is currently not supported on Windows by
