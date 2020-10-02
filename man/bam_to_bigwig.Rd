@@ -16,13 +16,14 @@ bam_to_bigwig(
 \item{bam_file}{A \code{character(1)} with the path to the input BAM file.}
 
 \item{prefix}{A \code{character(1)} specifying the output file prefix. This
-function creates a BigWig file called \code{prefix.all.bw}. By default, the
+function creates a BigWig file called \verb{\{prefix\}.all.bw}. By default, the
 prefix is the BAM file name and the file is created in the \code{tempdir()} and
 will be deleted after you close your R session.}
 
 \item{min_unique_qual}{A \code{integer(1)} specifying a mapping quality threshold
 and only bases above this will be used to generate the BigWig. If set to
-\code{FALSE} this argument is not used by Megadepth.}
+\code{FALSE} this argument is not used by Megadepth. Otherwise it will generate
+files \verb{\{prefix\}.unique.bw} and \verb{\{prefix\}.unique.tsv}.}
 
 \item{double_count}{A \code{logical(1)} determining whether to count the
 overlapping ends of paired ends reads twice.}
@@ -31,7 +32,7 @@ overlapping ends of paired ends reads twice.}
 files, if they exist already.}
 }
 \value{
-A \code{character()} with the path to the generated BigWig files.
+A \code{character()} with the path to the output files(s).
 }
 \description{
 Given an input BAM file, convert this to the BigWig format which can then be

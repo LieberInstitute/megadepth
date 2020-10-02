@@ -8,18 +8,19 @@
 #'
 #' @param bam_file A `character(1)` with the path to the input BAM file.
 #' @param prefix A `character(1)` specifying the output file prefix. This
-#'   function creates a BigWig file called `prefix.all.bw`. By default, the
+#'   function creates a BigWig file called `{prefix}.all.bw`. By default, the
 #'   prefix is the BAM file name and the file is created in the `tempdir()` and
 #'   will be deleted after you close your R session.
 #' @param min_unique_qual A `integer(1)` specifying a mapping quality threshold
 #'   and only bases above this will be used to generate the BigWig. If set to
-#'   `FALSE` this argument is not used by Megadepth.
+#'   `FALSE` this argument is not used by Megadepth. Otherwise it will generate
+#'   files `{prefix}.unique.bw` and `{prefix}.unique.tsv`.
 #' @param double_count A `logical(1)` determining whether to count the
 #'   overlapping ends of paired ends reads twice.
 #' @param overwrite A `logical(1)` specifying whether to overwrite the output
 #' files, if they exist already.
 #'
-#' @return A `character()` with the path to the generated BigWig files.
+#' @return A `character()` with the path to the output files(s).
 #' @export
 #'
 #' @examples
