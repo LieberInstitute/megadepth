@@ -60,23 +60,32 @@ GenomicRanges::coverage(bw_cov)
 
 ## Checking other tools
 bed <- rtracklayer::import(annotation_file)
-bw_cov_rtrack <- rtracklayer::import.bw(rtracklayer::BigWigFile(example_bw), which = bed)
+bw_cov_rtrack <- rtracklayer::import.bw(
+    rtracklayer::BigWigFile(example_bw),
+    which = bed
+)
 bw_cov_rtrack
 
 names(example_bw) <- "example"
-fullCov <- derfinder::fullCoverage(rtracklayer::BigWigFileList(example_bw), chrs = GenomeInfoDb::seqlevels(bw_cov))
-regionCov <- derfinder::getRegionCoverage(fullCov, regions = bed)
+fullCov <- derfinder::fullCoverage(
+    rtracklayer::BigWigFileList(example_bw),
+    chrs = GenomeInfoDb::seqlevels(bw_cov)
+)
+regionCov <- derfinder::getRegionCoverage(
+    fullCov,
+    regions = bed
+)
 
 ## We have to round the mean to make them comparable
 testthat::expect_equivalent(
     round(sapply(regionCov[c(1, 3:4, 2)], function(x) mean(x$value)), 3),
-    bw_cov$cov,
+    bw_cov$score,
 )
 
 ## Note that there's no need to round here
 testthat::expect_equivalent(
     sapply(regionCov[c(1, 3:4, 2)], function(x) sum(x$value)),
-    get_coverage(example_bw, op = "sum", annotation = annotation_file)$cov,
+    get_coverage(example_bw, op = "sum", annotation = annotation_file)$score,
 )
 }
 \seealso{
