@@ -30,7 +30,7 @@ A \code{character(1)} with the path to the generated BigWig file.
 }
 \description{
 Given an input BAM file, convert this to the BigWig format which can then be
-used in \code{get_coverage}.
+used in \code{get_coverage()}.
 }
 \examples{
 

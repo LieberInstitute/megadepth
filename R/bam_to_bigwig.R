@@ -1,7 +1,7 @@
 #' Convert a BAM file to a BigWig
 #'
 #' Given an input BAM file, convert this to the BigWig format which can then be
-#' used in `get_coverage`.
+#' used in `get_coverage()`.
 #'
 #' @param bam_file A `character(1)` with the path to the input BAM file.
 #' @param prefix A `character(1)` specifying the output file prefix. This

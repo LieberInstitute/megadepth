@@ -10,7 +10,7 @@
 #'   the BAM file name and the file is created in the `tempdir()` and will be
 #'   deleted after you close your R session.
 #' @param long_reads A `logical(1)` indicating whether to increase the buffer
-#'   size to accomodate for long-read RNA-sequencing.
+#'   size to accommodate for long-read RNA-sequencing.
 #'
 #' @return A `character(1)` with the path to the generated junctions TSV file.
 #' @export

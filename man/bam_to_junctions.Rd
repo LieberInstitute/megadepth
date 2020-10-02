@@ -19,7 +19,7 @@ the BAM file name and the file is created in the \code{tempdir()} and will be
 deleted after you close your R session.}
 
 \item{long_reads}{A \code{logical(1)} indicating whether to increase the buffer
-size to accomodate for long-read RNA-sequencing.}
+size to accommodate for long-read RNA-sequencing.}
 }
 \value{
 A \code{character(1)} with the path to the generated junctions TSV file.
