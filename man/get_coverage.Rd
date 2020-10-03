@@ -67,6 +67,7 @@ bed <- rtracklayer::import(annotation_file)
 names(example_bw) <- "example"
 
 ## Read in the base-pair coverage data
+if( !xfun::is_windows()) {
 regionCov <- derfinder::getRegionCoverage(
     regions = bed,
     files = example_bw,
@@ -85,6 +86,7 @@ testthat::expect_equivalent(
     sapply(regionCov[c(1, 3:4, 2)], function(x) sum(x$value)),
     get_coverage(example_bw, op = "sum", annotation = annotation_file)$score,
 )
+}
 }
 \seealso{
 Other Coverage functions: 

@@ -51,6 +51,7 @@
 #' names(example_bw) <- "example"
 #'
 #' ## Read in the base-pair coverage data
+#' if( !xfun::is_windows()) {
 #' regionCov <- derfinder::getRegionCoverage(
 #'     regions = bed,
 #'     files = example_bw,
@@ -69,6 +70,7 @@
 #'     sapply(regionCov[c(1, 3:4, 2)], function(x) sum(x$value)),
 #'     get_coverage(example_bw, op = "sum", annotation = annotation_file)$score,
 #' )
+#' }
 get_coverage <-
     function(bigwig_file,
     op = c("sum", "mean", "max", "min"),
