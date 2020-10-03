@@ -223,3 +223,109 @@ cmd_list_drop_named <- function(list, names){
   list[!(names(list) %in% names)]
 }
 
+cmd_list_keep <- function(flags, keep){
+
+  testthat::expect_named(flags)
+
+  if (length(keep) == 0){
+    return(list())
+  }
+
+  if (is.numeric(keep)){
+    return(list_keep_index(flags, keep))
+  }
+
+  if (is.null(names(keep))){
+    keeps <- list_index_names(flags, keep)
+    return(cmd_list_keep(flags, keeps))
+  }
+
+  if (!is.null(names(keep))) {
+    keeps <- list_index_named_values(flags, keep)
+    return(list_keep_index(flags, keeps))
+  }
+
+}
+
+cmd_list_drop <- function(flags, drop){
+
+  testthat::expect_named(flags)
+
+  if (length(drop) == 0){
+    return(flags)
+  }
+
+  if (is.numeric(drop)){
+    return(list_drop_index(flags, drop))
+  }
+
+  if (is.null(names(drop))){
+    drops <- list_index_names(flags, drop)
+    return(cmd_list_drop(flags, drops))
+  }
+
+  if (!is.null(names(drop))) {
+    drops <- list_index_named_values(flags, drop)
+    return(list_drop_index(flags, drops))
+  }
+
+}
+
+list_keep_index <- function(flags, index){
+
+  if (length(index) == 0 | all(is.na(index))){ return(list()) }
+
+  index <- index[!is.na(index)]
+
+  flags[index]
+}
+
+list_drop_index <- function(list, index){
+
+  if (length(index) == 0 | all(is.na(index))){ return(list) }
+
+  index <- index[!is.na(index)]
+
+  list[-index]
+}
+
+list_index_names <- function(list, names){
+  i <- which(names(list) %in% names)
+  names(i) <- NULL
+
+  if (length(i) == 0) { return(NULL) }
+
+  return(i)
+}
+
+list_index_named_values <- function(list, named_values){
+
+  testthat::expect_named(named_values)
+
+  if (any(names(named_values) == "")){
+    warnVals <- named_values[names(named_values) == ""]
+    warning(paste0("The following values have no names associated with them and will be ignored: ", warnVals))
+  }
+
+  if (any(is.na(named_values))){
+    warnVals <- named_values[is.na(named_values)]
+    warnNames <- names(warnVals)
+    warning(paste0("The following names in named_values have NA values and will be ignored: ", warnNames))
+  }
+
+  indices <- purrr::imap_int(named_values, ~{
+    i <- which(names(list) == .y & list == .x)
+    names(i) <- NULL
+
+    if (length(i) == 0){return(NA)}
+    if (.y == ""){return(NA)}
+
+    return(i)
+  }) %>%
+    purrr::set_names(NULL)
+  return(indices[!is.na(indices)])
+}
+
+
+
+
