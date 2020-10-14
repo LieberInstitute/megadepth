@@ -1,7 +1,7 @@
 Package: megadepth
 Title: megadepth: BigWig and BAM related utilities
-Version: 0.99.3
-Date: 2020-10-03
+Version: 0.99.4
+Date: 2020-10-14
 Authors@R: 
     c(
     person(
@@ -43,7 +43,8 @@ Suggests:
     derfinder,
     GenomeInfoDb,
     tools,
-    RefManageR
+    RefManageR,
+    testthat
 SystemRequirements: megadepth (<https://github.com/ChristopherWilks/megadepth>)
 VignetteBuilder: knitr
 Imports: 
@@ -51,7 +52,4 @@ Imports:
     utils,
     fs,
     GenomicRanges,
-    readr,
-    purrr,
-    testthat,
-    magrittr
+    readr
