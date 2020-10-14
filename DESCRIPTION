@@ -1,6 +1,6 @@
 Package: megadepth
 Title: megadepth: BigWig and BAM related utilities
-Version: 0.99.5
+Version: 0.99.6
 Date: 2020-10-14
 Authors@R: 
     c(
@@ -52,4 +52,5 @@ Imports:
     utils,
     fs,
     GenomicRanges,
-    readr
+    readr,
+    cmdfun
