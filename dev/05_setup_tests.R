@@ -1,6 +1,15 @@
 ## Code for getting the files
 dir.create(here::here("inst", "tests"), showWarnings = FALSE)
 
+
+## Clean any tests files
+unlink(dir(
+    here::here("inst", "tests"),
+    full.names = TRUE,
+    include.dirs = TRUE
+),
+    recursive = TRUE)
+
 test_files <- c(
     "test.bam",
     "test.bam.bai",
@@ -55,7 +64,9 @@ dir.create(here::here("inst", "tests", "test_output_files"),
     showWarnings = FALSE)
 sapply(test_files,
     file.copy,
-    here::here("inst", "tests", "test_output_files/"))
+    here::here("inst", "tests", "test_output_files/"),
+    overwrite = TRUE
+)
 
 
 ## For trying to debug on Windows
