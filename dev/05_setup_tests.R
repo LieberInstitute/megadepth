@@ -8,8 +8,7 @@ test_files <- c(
     "testbw2.bed",
     "test3.bam",
     "long_reads.bam",
-    "test2.bam",
-    "test2.bam.bai"
+    "test2.bam"
 )
 sapply(test_files, function(x) {
     download.file(
