@@ -1,6 +1,3 @@
-## Install if necessary
-install_megadepth()
-
 ## Run test to obtain junctions from a BAM file
 test_that("test long reads support for junctions", {
     bam_to_junctions(pkg_file("tests", "test2.bam"), overwrite = TRUE)

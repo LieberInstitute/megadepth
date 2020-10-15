@@ -1,10 +1,5 @@
 # Based on tests at https://github.com/ChristopherWilks/megadepth/blob/master/tests/test.sh
 
-## Install if necessary
-install_megadepth()
-
-
-
 ## Create test files
 if (!xfun::is_windows()) {
     ## This currently fails on Windows

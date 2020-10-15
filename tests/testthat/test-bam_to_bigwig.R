@@ -1,6 +1,3 @@
-## Install if necessary
-install_megadepth()
-
 ## test conversion of BAM to BigWig
 if (!xfun::is_windows()) {
     test_that("test conversion of BAM to bw", {

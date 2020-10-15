@@ -1,6 +1,3 @@
-## Install if necessary
-install_megadepth()
-
 test_that("read_junction tests", {
     example_bam <- system.file("tests",
         "test.bam",

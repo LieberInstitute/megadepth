@@ -1,6 +1,3 @@
-## Install if necessary
-install_megadepth()
-
 ## test bigwig2mean
 test_that("test bigwig2mean", {
     megadepth_shell(

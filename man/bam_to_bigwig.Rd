@@ -44,8 +44,8 @@ Megadepth.
 }
 \examples{
 
-## Install if necessary
-install_megadepth()
+## Install the latest version if necessary
+install_megadepth(force = TRUE)
 
 ## Find the example BAM file
 example_bam <- system.file("tests", "test.bam",
