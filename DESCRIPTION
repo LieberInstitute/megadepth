@@ -1,6 +1,6 @@
 Package: megadepth
 Title: megadepth: BigWig and BAM related utilities
-Version: 0.99.8
+Version: 0.99.9
 Date: 2020-10-15
 Authors@R: 
     c(
