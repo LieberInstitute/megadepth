@@ -61,7 +61,7 @@
 #' ## Summarize the base-pair coverage data.
 #' ## Note that we have to round the mean to make them comparable.
 #' testthat::expect_equivalent(
-#'     round(sapply(regionCov[c(1, 3:4, 2)], function(x) mean(x$value)), 3),
+#'     round(sapply(regionCov[c(1, 3:4, 2)], function(x) mean(x$value)), 2),
 #'     bw_cov$score,
 #' )
 #'

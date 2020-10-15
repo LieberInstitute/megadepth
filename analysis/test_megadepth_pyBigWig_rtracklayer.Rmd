@@ -85,8 +85,8 @@ md_cov <- megadepth::get_coverage(bigwig_file = bw_local,
                                   annotation = annotation_path, 
                                   op = "mean")
 
-# round here to match 3 digits returned by megadepth
-try(testthat::expect_equivalent(rt_cov %>% BiocGenerics::mean() %>% round(3), 
+# round here to match 2 digits returned by megadepth
+try(testthat::expect_equivalent(rt_cov %>% BiocGenerics::mean() %>% round(2), 
                                 md_cov$cov))
 
 ```
