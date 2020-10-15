@@ -73,7 +73,7 @@ using Megadepth for a given BigWig file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">megadepth</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.7</span>
       </span>
     </div>
 
@@ -170,7 +170,7 @@ return 0 counts.</p>
     <pre class="examples"><div class='input'>
 <span class='co'>## Install if necessary</span>
 <span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.0.4</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.0.6</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
 <span class='co'>## Next, we locate the example BigWig and annotation files</span>
 <span class='va'>example_bw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"test.bam.all.bw"</span>,
     package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span>
@@ -185,10 +185,10 @@ return 0 counts.</p>
 </div><div class='output co'>#&gt; GRanges object with 4 ranges and 1 metadata column:
 #&gt;         seqnames          ranges strand |     score
 #&gt;            &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt;
-#&gt;   [1]      chr10            0-10      * |     0.000
-#&gt;   [2]      chr10 8756697-8756762      * |    15.846
-#&gt;   [3]      chr10 4359156-4359188      * |     3.000
-#&gt;   [4] GL000219.1   168500-168620      * |     1.258
+#&gt;   [1]      chr10            0-10      * |      0.00
+#&gt;   [2]      chr10 8756697-8756762      * |     15.85
+#&gt;   [3]      chr10 4359156-4359188      * |      3.00
+#&gt;   [4] GL000219.1   168500-168620      * |      1.26
 #&gt;   -------
 #&gt;   seqinfo: 2 sequences from an unspecified genome; no seqlengths</div><div class='input'>
 <span class='co'>## If you want to cast this into a RleList object use the following code:</span>
@@ -223,7 +223,7 @@ return 0 counts.</p>
 <span class='co'>## Summarize the base-pair coverage data.</span>
 <span class='co'>## Note that we have to round the mean to make them comparable.</span>
 <span class='fu'>testthat</span><span class='fu'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/equality-expectations.html'>expect_equivalent</a></span><span class='op'>(</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>regionCov</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>]</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>value</span><span class='op'>)</span><span class='op'>)</span>, <span class='fl'>3</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>regionCov</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>]</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>value</span><span class='op'>)</span><span class='op'>)</span>, <span class='fl'>2</span><span class='op'>)</span>,
     <span class='va'>bw_cov</span><span class='op'>$</span><span class='va'>score</span>,
 <span class='op'>)</span>
 
@@ -233,7 +233,7 @@ return 0 counts.</p>
     <span class='fu'>get_coverage</span><span class='op'>(</span><span class='va'>example_bw</span>, op <span class='op'>=</span> <span class='st'>"sum"</span>, annotation <span class='op'>=</span> <span class='va'>annotation_file</span><span class='op'>)</span><span class='op'>$</span><span class='va'>score</span>,
 <span class='op'>)</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: multiple methods tables found for ‘rowRanges’</span></div><div class='output co'>#&gt; <span class='message'>No methods found in package ‘IRanges’ for request: ‘values&lt;-’ when loading ‘derfinder’</span></div><div class='output co'>#&gt; <span class='message'>No methods found in package ‘IRanges’ for request: ‘values’ when loading ‘derfinder’</span></div></pre>
+</div><div class='output co'>#&gt; <span class='message'>No methods found in package ‘IRanges’ for request: ‘values&lt;-’ when loading ‘derfinder’</span></div><div class='output co'>#&gt; <span class='message'>No methods found in package ‘IRanges’ for request: ‘values’ when loading ‘derfinder’</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

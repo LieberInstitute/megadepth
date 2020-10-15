@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">megadepth</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.7</span>
       </span>
     </div>
 
@@ -77,7 +77,7 @@
       Lieber Institute for Brain Development, Johns Hopkins Medical Campus<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
       </address>
                   
-            <h4 class="date">3 October 2020</h4>
+            <h4 class="date">15 October 2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/LieberInstitute/megadepth/blob/master/vignettes/megadepth.Rmd"><code>vignettes/megadepth.Rmd</code></a></small>
       <div class="hidden name"><code>megadepth.Rmd</code></div>
@@ -136,7 +136,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">#&gt; utilities_. doi: 10.18129/B9.bioc.megadepth (URL:</span>
 <span class="co">#&gt; https://doi.org/10.18129/B9.bioc.megadepth),</span>
 <span class="co">#&gt; https://github.com/LieberInstitute/megadepth - R package version</span>
-<span class="co">#&gt; 0.99.3, &lt;URL: http://www.bioconductor.org/packages/megadepth&gt;.</span>
+<span class="co">#&gt; 0.99.7, &lt;URL: http://www.bioconductor.org/packages/megadepth&gt;.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Wilks C, Zhang D, Collado-Torres L, Langmead B (2020). "megadepth:</span>
 <span class="co">#&gt; BigWig and BAM related utilities." _bioRxiv_. doi: 10.1101/TODO (URL:</span>
@@ -158,7 +158,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="co">## Install Megadepth</span>
 <span class="fu"><a href="../reference/install_megadepth.html">install_megadepth</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; The latest megadepth version is 1.0.4</span>
+<span class="co">#&gt; The latest megadepth version is 1.0.6</span>
 <span class="co">#&gt; megadepth has been installed to /github/home/bin</span></pre></div>
 <p>Next, we might want to use <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> to quantify the coverage at a set of regions of the genome of interest to us. Here we will use two example files that are include in the package for illustration and testing purposes. One of them is a <a href="https://genome.ucsc.edu/goldenPath/help/bigWig.html">bigWig file</a> that contains the base-pair coverage information for a sample of interest and the second one is <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format1">BED file</a> which contains the genomic region coordinates of interest. So we first locate them.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
@@ -187,10 +187,10 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">#&gt; GRanges object with 4 ranges and 1 metadata column:</span>
 <span class="co">#&gt;         seqnames          ranges strand |     score</span>
 <span class="co">#&gt;            &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt;</span>
-<span class="co">#&gt;   [1]      chr10            0-10      * |     0.000</span>
-<span class="co">#&gt;   [2]      chr10 8756697-8756762      * |    15.846</span>
-<span class="co">#&gt;   [3]      chr10 4359156-4359188      * |     3.000</span>
-<span class="co">#&gt;   [4] GL000219.1   168500-168620      * |     1.258</span>
+<span class="co">#&gt;   [1]      chr10            0-10      * |      0.00</span>
+<span class="co">#&gt;   [2]      chr10 8756697-8756762      * |     15.85</span>
+<span class="co">#&gt;   [3]      chr10 4359156-4359188      * |      3.00</span>
+<span class="co">#&gt;   [4] GL000219.1   168500-168620      * |      1.26</span>
 <span class="co">#&gt;   -------</span>
 <span class="co">#&gt;   seqinfo: 2 sequences from an unspecified genome; no seqlengths</span></pre></div>
 <p><code><a href="../reference/get_coverage.html">get_coverage()</a></code> returns an object that is familiar to <em><a href="https://bioconductor.org/packages/3.12/GenomicRanges">GenomicRanges</a></em> users, that is, a <code>GRanges</code> object that can be used with other Bioconductor software packages <a id="cite-bioconductor2015"></a>(<a href="https://doi.org/10.1038/nmeth.3252">Huber, Carey, Gentleman, Anders, et al., 2015</a>).</p>
@@ -209,13 +209,13 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">## R-like interface</span>
 <span class="co">## that captures the standard output into R</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/megadepth_cmd.html">megadepth_shell</a></span><span class="op">(</span>help <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "megadepth 1.0.4"                  ""                                </span>
+<span class="co">#&gt; [1] "megadepth 1.0.6"                  ""                                </span>
 <span class="co">#&gt; [3] "BAM and BigWig utility."          ""                                </span>
 <span class="co">#&gt; [5] "Usage:"                           "  megadepth &lt;bam|bw|-&gt; [options]"</span>
 
 <span class="co">## Command-like interface</span>
 <span class="fu"><a href="../reference/megadepth_cmd.html">megadepth_cmd</a></span><span class="op">(</span><span class="st">"--help"</span><span class="op">)</span></pre></div>
-<pre><code>#&gt; megadepth 1.0.4
+<pre><code>#&gt; megadepth 1.0.6
 #&gt;  
 #&gt;  BAM and BigWig utility.
 #&gt;  
@@ -229,6 +229,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;                              if the 2nd is intended then a TXT file listing the paths to the BigWigs to process in parallel
 #&gt;                              should be passed in as the main input file instead of a single BigWig file (EXPERIMENTAL).
 #&gt;    --prefix                 String to use to prefix all output files.
+#&gt;    --no-auc-stdout          Force all AUC(s) to be written to &lt;prefix&gt;.auc.tsv rather than STDOUT
 #&gt;    --no-annotation-stdout   Force summarized annotation regions to be written to &lt;prefix&gt;.annotation.tsv rather than STDOUT
 #&gt;    --no-coverage-stdout     Force covered regions to be written to &lt;prefix&gt;.coverage.tsv rather than STDOUT
 #&gt;    --keep-order             Output annotation coverage in the order chromosomes appear in the BAM/BigWig file
@@ -249,9 +250,12 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;  
 #&gt;  BAM Input:
 #&gt;  Extract basic junction information from the BAM, including co-occurrence
+#&gt;  If only the name of the BAM file is passed in with no other args, it will *only* report total AUC to STDOUT.
 #&gt;    --junctions          Extract jx coordinates, strand, and anchor length, per read
 #&gt;                         writes to a TSV file &lt;prefix&gt;.jxs.tsv
 #&gt;    --longreads          Modifies certain buffer sizes to accommodate longer reads such as PB/Oxford.
+#&gt;    --filter-in          Integer bitmask, any bits of which alignments need to have to be kept (similar to samtools view -f).
+#&gt;    --filter-out         Integer bitmask, any bits of which alignments need to have to be skipped (similar to samtools view -F).
 #&gt;  
 #&gt;  Non-reference summaries:
 #&gt;    --alts                       Print differing from ref per-base coverages
@@ -270,12 +274,14 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;    --coverage           Print per-base coverage (slow but totally worth it)
 #&gt;    --auc                Print per-base area-under-coverage, will generate it for the genome
 #&gt;                         and for the annotation if --annotation is also passed in
-#&gt;                         Writes to a TSV file &lt;prefix&gt;.auc.tsv
+#&gt;                         Defaults to STDOUT, unless other params are passed in as well, then
+#&gt;                         if writes to a TSV file &lt;prefix&gt;.auc.tsv
 #&gt;    --bigwig             Output coverage as BigWig file(s).  Writes to &lt;prefix&gt;.bw
 #&gt;                         (also &lt;prefix&gt;.unique.bw when --min-unique-qual is specified).
 #&gt;                         Requires libBigWig.
 #&gt;    --annotation &lt;bed&gt;   Path to BED file containing list of regions to sum coverage over
 #&gt;                         (tab-delimited: chrm,start,end)
+#&gt;    --op &lt;sum[default], mean&gt;     Statistic to run on the intervals provided by --annotation
 #&gt;    --min-unique-qual &lt;int&gt;
 #&gt;                         Output second bigWig consisting built only from alignments
 #&gt;                         with at least this mapping quality.  --bigwig must be specified.
@@ -284,6 +290,8 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;    --double-count       Allow overlapping ends of PE read to count twice toward
 #&gt;                         coverage
 #&gt;    --num-bases          Report total sum of bases in alignments processed (that pass filters)
+#&gt;    --gzip               Turns on gzipping of coverage output (no effect if --bigwig is passsed),
+#&gt;                         this will also enable --no-coverage-stdout.
 #&gt;  
 #&gt;  Other outputs:
 #&gt;    --read-ends          Print counts of read starts/ends, if --min-unique-qual is set
@@ -314,7 +322,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">## Path to the output files generated by bam_to_bigwig()</span>
 <span class="va">example_bw</span>
 <span class="co">#&gt;                            all.bw </span>
-<span class="co">#&gt; "/tmp/RtmpgNKliN/test.bam.all.bw"</span></pre></div>
+<span class="co">#&gt; "/tmp/Rtmp9tIYfc/test.bam.all.bw"</span></pre></div>
 <p>Currently this functionality does not work on Windows. In which case, you can continue the vignette with the following example bigWig file.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="co">## On Windows, use the example bigWig file that is already included in</span>
@@ -339,10 +347,10 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">#&gt; GRanges object with 4 ranges and 1 metadata column:</span>
 <span class="co">#&gt;         seqnames          ranges strand |     score</span>
 <span class="co">#&gt;            &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt;</span>
-<span class="co">#&gt;   [1]      chr10            0-10      * |     0.000</span>
-<span class="co">#&gt;   [2]      chr10 8756697-8756762      * |    15.846</span>
-<span class="co">#&gt;   [3]      chr10 4359156-4359188      * |     3.000</span>
-<span class="co">#&gt;   [4] GL000219.1   168500-168620      * |     1.258</span>
+<span class="co">#&gt;   [1]      chr10            0-10      * |      0.00</span>
+<span class="co">#&gt;   [2]      chr10 8756697-8756762      * |     15.85</span>
+<span class="co">#&gt;   [3]      chr10 4359156-4359188      * |      3.00</span>
+<span class="co">#&gt;   [4] GL000219.1   168500-168620      * |      1.26</span>
 <span class="co">#&gt;   -------</span>
 <span class="co">#&gt;   seqinfo: 2 sequences from an unspecified genome; no seqlengths</span></pre></div>
 <p>If you are familiar with <em><a href="https://bioconductor.org/packages/3.12/rtracklayer">rtracklayer</a></em>, you’ll notice that the coverage summaries are basically the same to the one that can be generated with <code><a href="https://rdrr.io/pkg/rtracklayer/man/BigWigFile.html">rtracklayer::import.bw()</a></code>, which is what <em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em> uses internally.</p>
@@ -359,14 +367,13 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
     files <span class="op">=</span> <span class="va">example_bw</span>,
     verbose <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span>
-<span class="co">#&gt; Warning: multiple methods tables found for 'rowRanges'</span>
 <span class="co">#&gt; No methods found in package 'IRanges' for request: 'values&lt;-' when loading 'derfinder'</span>
 <span class="co">#&gt; No methods found in package 'IRanges' for request: 'values' when loading 'derfinder'</span>
 
 <span class="co">## Summarize the base-pair coverage data.</span>
 <span class="co">## Note that we have to round the mean to make them comparable.</span>
 <span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equivalent</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">regionCov</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">value</span><span class="op">)</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">regionCov</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">value</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,
     <span class="va">bw_cov</span><span class="op">$</span><span class="va">score</span>,
 <span class="op">)</span>
 
@@ -393,7 +400,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">## Path to the output file generated by bam_to_junctions()</span>
 <span class="va">example_jxs</span>
 <span class="co">#&gt;                            jxs.tsv </span>
-<span class="co">#&gt; "/tmp/RtmpgNKliN/test.bam.jxs.tsv"</span>
+<span class="co">#&gt; "/tmp/Rtmp9tIYfc/test.bam.jxs.tsv"</span>
 
 <span class="co">## Read the data as a tibble using the format specified at</span>
 <span class="co">## https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions</span>
@@ -479,9 +486,9 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.remove</a></span><span class="op">(</span><span class="st">"megadepth.bib"</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code>#&gt; [1] "2020-10-03 16:10:44 UTC"</code></pre>
+<pre><code>#&gt; [1] "2020-10-15 01:30:30 UTC"</code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code>#&gt; Time difference of 17.357 secs</code></pre>
+<pre><code>#&gt; Time difference of 17.981 secs</code></pre>
 <p><code>R</code> session information.</p>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
@@ -493,7 +500,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;  collate  en_US.UTF-8                 
 #&gt;  ctype    en_US.UTF-8                 
 #&gt;  tz       Etc/UTC                     
-#&gt;  date     2020-10-03                  
+#&gt;  date     2020-10-15                  
 #&gt; 
 #&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  package              * version    date       lib source                        
@@ -509,18 +516,19 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;  BiocManager            1.30.10    2019-11-16 [2] CRAN (R 4.0.2)                
 #&gt;  BiocParallel           1.23.2     2020-07-06 [1] Bioconductor                  
 #&gt;  BiocStyle            * 2.17.1     2020-09-24 [1] Bioconductor                  
-#&gt;  biomaRt                2.45.3     2020-09-21 [1] Bioconductor                  
+#&gt;  biomaRt                2.45.8     2020-10-13 [1] Bioconductor                  
 #&gt;  Biostrings             2.57.2     2020-06-09 [1] Bioconductor                  
 #&gt;  bit                    4.0.4      2020-08-04 [1] RSPM (R 4.0.2)                
 #&gt;  bit64                  4.0.5      2020-08-30 [1] RSPM (R 4.0.2)                
 #&gt;  bitops                 1.0-6      2013-08-17 [1] RSPM (R 4.0.0)                
 #&gt;  blob                   1.2.1      2020-01-20 [1] RSPM (R 4.0.0)                
-#&gt;  bookdown               0.20       2020-06-23 [1] RSPM (R 4.0.2)                
-#&gt;  BSgenome               1.57.6     2020-09-02 [1] Bioconductor                  
+#&gt;  bookdown               0.21       2020-10-13 [1] RSPM (R 4.0.2)                
+#&gt;  BSgenome               1.57.7     2020-10-07 [1] Bioconductor                  
 #&gt;  bumphunter             1.31.0     2020-04-28 [1] Bioconductor                  
 #&gt;  checkmate              2.0.0      2020-02-06 [1] RSPM (R 4.0.0)                
-#&gt;  cli                    2.0.2      2020-02-28 [2] RSPM (R 4.0.0)                
+#&gt;  cli                    2.1.0      2020-10-12 [2] RSPM (R 4.0.2)                
 #&gt;  cluster                2.1.0      2019-06-19 [3] CRAN (R 4.0.2)                
+#&gt;  cmdfun                 1.0.2      2020-10-10 [1] RSPM (R 4.0.2)                
 #&gt;  codetools              0.2-16     2018-12-24 [3] CRAN (R 4.0.2)                
 #&gt;  colorspace             1.4-1      2019-03-18 [1] RSPM (R 4.0.0)                
 #&gt;  crayon                 1.3.4      2017-09-16 [2] RSPM (R 4.0.0)                
@@ -528,7 +536,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;  data.table             1.13.0     2020-07-24 [1] RSPM (R 4.0.2)                
 #&gt;  DBI                    1.1.0      2019-12-15 [1] RSPM (R 4.0.0)                
 #&gt;  dbplyr                 1.4.4      2020-05-27 [1] RSPM (R 4.0.0)                
-#&gt;  DelayedArray           0.15.13    2020-10-01 [1] Bioconductor                  
+#&gt;  DelayedArray           0.15.16    2020-10-06 [1] Bioconductor                  
 #&gt;  derfinder              1.23.1     2020-05-10 [1] Bioconductor                  
 #&gt;  derfinderHelper        1.23.1     2020-05-10 [1] Bioconductor                  
 #&gt;  desc                   1.2.0      2018-05-01 [2] RSPM (R 4.0.0)                
@@ -544,7 +552,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;  fs                     1.5.0      2020-07-31 [2] RSPM (R 4.0.2)                
 #&gt;  generics               0.0.2      2018-11-29 [1] RSPM (R 4.0.0)                
 #&gt;  GenomeInfoDb           1.25.11    2020-09-03 [1] Bioconductor                  
-#&gt;  GenomeInfoDbData       1.2.3      2020-10-01 [1] Bioconductor                  
+#&gt;  GenomeInfoDbData       1.2.4      2020-10-15 [1] Bioconductor                  
 #&gt;  GenomicAlignments      1.25.3     2020-06-09 [1] Bioconductor                  
 #&gt;  GenomicFeatures        1.41.3     2020-09-03 [1] Bioconductor                  
 #&gt;  GenomicFiles           1.25.0     2020-04-27 [1] Bioconductor                  
@@ -558,7 +566,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;  hms                    0.5.3      2020-01-08 [1] RSPM (R 4.0.0)                
 #&gt;  htmlTable              2.1.0      2020-09-16 [1] RSPM (R 4.0.2)                
 #&gt;  htmltools              0.5.0      2020-06-16 [2] RSPM (R 4.0.1)                
-#&gt;  htmlwidgets            1.5.1      2019-10-08 [2] RSPM (R 4.0.0)                
+#&gt;  htmlwidgets            1.5.2      2020-10-03 [2] RSPM (R 4.0.2)                
 #&gt;  httr                   1.4.2      2020-07-20 [2] RSPM (R 4.0.2)                
 #&gt;  IRanges                2.23.10    2020-06-13 [1] Bioconductor                  
 #&gt;  iterators              1.0.12     2019-07-26 [1] RSPM (R 4.0.0)                
@@ -573,32 +581,33 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;  lubridate              1.7.9      2020-06-08 [1] RSPM (R 4.0.2)                
 #&gt;  magrittr               1.5        2014-11-22 [2] RSPM (R 4.0.0)                
 #&gt;  Matrix                 1.2-18     2019-11-27 [3] CRAN (R 4.0.2)                
-#&gt;  MatrixGenerics         1.1.3      2020-09-30 [1] Bioconductor                  
+#&gt;  MatrixGenerics         1.1.6      2020-10-13 [1] Bioconductor                  
 #&gt;  matrixStats            0.57.0     2020-09-25 [1] RSPM (R 4.0.2)                
-#&gt;  megadepth            * 0.99.3     2020-10-03 [1] Bioconductor                  
+#&gt;  megadepth            * 0.99.7     2020-10-15 [1] Bioconductor                  
 #&gt;  memoise                1.1.0      2017-04-21 [2] RSPM (R 4.0.0)                
 #&gt;  munsell                0.5.0      2018-06-12 [1] RSPM (R 4.0.0)                
 #&gt;  nnet                   7.3-14     2020-04-26 [3] CRAN (R 4.0.2)                
 #&gt;  openssl                1.4.3      2020-09-18 [2] RSPM (R 4.0.2)                
 #&gt;  pillar                 1.4.6      2020-07-10 [2] RSPM (R 4.0.2)                
 #&gt;  pkgconfig              2.0.3      2019-09-22 [2] RSPM (R 4.0.0)                
-#&gt;  pkgdown                1.6.1.9000 2020-10-01 [1] Github (r-lib/pkgdown@e1e46f2)
+#&gt;  pkgdown                1.6.1.9000 2020-10-15 [1] Github (r-lib/pkgdown@e1e46f2)
 #&gt;  plyr                   1.8.6      2020-03-03 [1] RSPM (R 4.0.2)                
 #&gt;  png                    0.1-7      2013-12-03 [1] RSPM (R 4.0.0)                
 #&gt;  prettyunits            1.1.1      2020-01-24 [2] RSPM (R 4.0.0)                
 #&gt;  progress               1.2.2      2019-05-16 [1] RSPM (R 4.0.0)                
+#&gt;  ps                     1.4.0      2020-10-07 [2] RSPM (R 4.0.2)                
 #&gt;  purrr                  0.3.4      2020-04-17 [2] RSPM (R 4.0.0)                
 #&gt;  qvalue                 2.21.0     2020-04-27 [1] Bioconductor                  
 #&gt;  R6                     2.4.1      2019-11-12 [2] RSPM (R 4.0.0)                
-#&gt;  ragg                   0.3.1      2020-07-03 [1] RSPM (R 4.0.2)                
+#&gt;  ragg                   0.4.0      2020-10-05 [1] RSPM (R 4.0.2)                
 #&gt;  rappdirs               0.3.1      2016-03-28 [1] RSPM (R 4.0.0)                
 #&gt;  RColorBrewer           1.1-2      2014-12-07 [1] RSPM (R 4.0.0)                
 #&gt;  Rcpp                   1.0.5      2020-07-06 [2] RSPM (R 4.0.2)                
 #&gt;  RCurl                  1.98-1.2   2020-04-18 [1] RSPM (R 4.0.0)                
-#&gt;  readr                  1.3.1      2018-12-21 [1] RSPM (R 4.0.2)                
+#&gt;  readr                  1.4.0      2020-10-05 [1] RSPM (R 4.0.2)                
 #&gt;  RefManageR             1.2.12     2019-04-03 [1] RSPM (R 4.0.0)                
 #&gt;  reshape2               1.4.4      2020-04-09 [1] RSPM (R 4.0.2)                
-#&gt;  rlang                  0.4.7      2020-07-09 [2] RSPM (R 4.0.2)                
+#&gt;  rlang                  0.4.8      2020-10-08 [2] RSPM (R 4.0.2)                
 #&gt;  rmarkdown              2.4        2020-09-30 [1] RSPM (R 4.0.2)                
 #&gt;  rngtools               1.5        2020-01-23 [1] RSPM (R 4.0.0)                
 #&gt;  rpart                  4.1-15     2019-04-12 [3] CRAN (R 4.0.2)                
@@ -607,7 +616,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;  RSQLite                2.2.1      2020-09-30 [1] RSPM (R 4.0.2)                
 #&gt;  rstudioapi             0.11       2020-02-07 [2] RSPM (R 4.0.0)                
 #&gt;  rtracklayer            1.49.5     2020-08-07 [1] Bioconductor                  
-#&gt;  S4Vectors              0.27.13    2020-09-18 [1] Bioconductor                  
+#&gt;  S4Vectors              0.27.14    2020-10-09 [1] Bioconductor                  
 #&gt;  scales                 1.1.1      2020-05-11 [1] RSPM (R 4.0.0)                
 #&gt;  sessioninfo          * 1.1.1      2018-11-05 [2] RSPM (R 4.0.0)                
 #&gt;  stringi                1.5.3      2020-09-09 [2] RSPM (R 4.0.2)                
@@ -616,7 +625,8 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;  survival               3.2-7      2020-09-28 [3] RSPM (R 4.0.2)                
 #&gt;  systemfonts            0.3.2      2020-09-29 [1] RSPM (R 4.0.2)                
 #&gt;  testthat               2.3.2      2020-03-02 [2] RSPM (R 4.0.0)                
-#&gt;  tibble                 3.0.3      2020-07-10 [2] RSPM (R 4.0.2)                
+#&gt;  textshaping            0.1.2      2020-10-08 [1] RSPM (R 4.0.2)                
+#&gt;  tibble                 3.0.4      2020-10-12 [2] RSPM (R 4.0.2)                
 #&gt;  tidyselect             1.1.0      2020-05-11 [1] RSPM (R 4.0.0)                
 #&gt;  utf8                   1.1.4      2018-05-24 [2] RSPM (R 4.0.0)                
 #&gt;  VariantAnnotation      1.35.3     2020-06-26 [1] Bioconductor                  
@@ -648,7 +658,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <p>[8] H. Wickham. “testthat: Get Started with Testing”. In: <em>The R Journal</em> 3 (2011), pp. 5-10. &lt;URL: <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" class="uri">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>&gt;.</p>
 <p>[9] C. Wilks, D. Zhang, L. Collado-Torres, and B. Langmead. “megadepth: BigWig and BAM related utilities”. In: <em>bioRxiv</em> (2020). DOI: 10.1101/TODO. &lt;URL: <a href="https://www.biorxiv.org/content/10.1101/TODO" class="uri">https://www.biorxiv.org/content/10.1101/TODO</a>&gt;.</p>
 <p>[10] Y. Xie. <em>knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. R package version 1.30. 2020. &lt;URL: <a href="https://yihui.org/knitr/" class="uri">https://yihui.org/knitr/</a>&gt;.</p>
-<p>[11] D. Zhang and L. Collado-Torres. <em>megadepth: BigWig and BAM related utilities</em>. <a href="https://github.com/LieberInstitute/megadepth" class="uri">https://github.com/LieberInstitute/megadepth</a> - R package version 0.99.3. 2020. DOI: 10.18129/B9.bioc.megadepth. &lt;URL: <a href="http://www.bioconductor.org/packages/megadepth" class="uri">http://www.bioconductor.org/packages/megadepth</a>&gt;.</p>
+<p>[11] D. Zhang and L. Collado-Torres. <em>megadepth: BigWig and BAM related utilities</em>. <a href="https://github.com/LieberInstitute/megadepth" class="uri">https://github.com/LieberInstitute/megadepth</a> - R package version 0.99.7. 2020. DOI: 10.18129/B9.bioc.megadepth. &lt;URL: <a href="http://www.bioconductor.org/packages/megadepth" class="uri">http://www.bioconductor.org/packages/megadepth</a>&gt;.</p>
 </div>
 <div class="footnotes">
 <hr>
