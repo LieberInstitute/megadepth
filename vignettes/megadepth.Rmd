@@ -131,8 +131,8 @@ library("megadepth")
 Once we have the R package loaded, we need to install the [Megadepth](https://github.com/ChristopherWilks/megadepth) software. We can do so with `install_megadepth()`, which downloads a binary for your OS (Linux, Windows or macOS) ^[Please check [Megadepth](https://github.com/ChristopherWilks/megadepth) for instructions on how to compile the software from source if the binary version doesn't work for you.]. We can then use with an example BigWig file to compute the coverage at a set of regions.
 
 ```{r "install_software"}
-## Install Megadepth
-install_megadepth()
+## Install the latest version of Megadepth
+install_megadepth(force = TRUE)
 ```
 
 Next, we might want to use `r Biocpkg("megadepth")` to quantify the coverage at a set of regions of the genome of interest to us. Here we will use two example files that are include in the package for illustration and testing purposes. One of them is a [bigWig file](https://genome.ucsc.edu/goldenPath/help/bigWig.html) that contains the base-pair coverage information for a sample of interest and the second one is [BED file](https://genome.ucsc.edu/FAQ/FAQformat.html#format1) which contains the genomic region coordinates of interest. So we first locate them.
