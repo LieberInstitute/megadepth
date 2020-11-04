@@ -8,7 +8,8 @@ unlink(dir(
     full.names = TRUE,
     include.dirs = TRUE
 ),
-    recursive = TRUE)
+recursive = TRUE
+)
 
 test_files <- c(
     "test.bam",
@@ -61,7 +62,8 @@ file.copy(
 ## Copy test files to the package for the other tests on Windows
 test_files <- dir(tempdir(), "test.bam", full.names = TRUE)
 dir.create(here::here("inst", "tests", "test_output_files"),
-    showWarnings = FALSE)
+    showWarnings = FALSE
+)
 sapply(test_files,
     file.copy,
     here::here("inst", "tests", "test_output_files/"),
@@ -102,4 +104,3 @@ if (xfun::is_windows()) {
     # [bwClose] There was an error while finishing writing a bigWig file! The output is likely truncated.
     # Read 96 records
 }
-

@@ -67,25 +67,25 @@ bed <- rtracklayer::import(annotation_file)
 names(example_bw) <- "example"
 
 ## Read in the base-pair coverage data
-if( !xfun::is_windows()) {
-regionCov <- derfinder::getRegionCoverage(
-    regions = bed,
-    files = example_bw,
-    verbose = FALSE
-)
+if (!xfun::is_windows()) {
+    regionCov <- derfinder::getRegionCoverage(
+        regions = bed,
+        files = example_bw,
+        verbose = FALSE
+    )
 
-## Summarize the base-pair coverage data.
-## Note that we have to round the mean to make them comparable.
-testthat::expect_equivalent(
-    round(sapply(regionCov[c(1, 3:4, 2)], function(x) mean(x$value)), 2),
-    bw_cov$score,
-)
+    ## Summarize the base-pair coverage data.
+    ## Note that we have to round the mean to make them comparable.
+    testthat::expect_equivalent(
+        round(sapply(regionCov[c(1, 3:4, 2)], function(x) mean(x$value)), 2),
+        bw_cov$score,
+    )
 
-## If we compute the sum, there's no need to round
-testthat::expect_equivalent(
-    sapply(regionCov[c(1, 3:4, 2)], function(x) sum(x$value)),
-    get_coverage(example_bw, op = "sum", annotation = annotation_file)$score,
-)
+    ## If we compute the sum, there's no need to round
+    testthat::expect_equivalent(
+        sapply(regionCov[c(1, 3:4, 2)], function(x) sum(x$value)),
+        get_coverage(example_bw, op = "sum", annotation = annotation_file)$score,
+    )
 }
 }
 \seealso{

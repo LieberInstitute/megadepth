@@ -92,8 +92,8 @@ Throughout the documentation we use a capital `M` to refer to the software by Ch
 
 ```{r "install", eval = FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
-      install.packages("BiocManager")
-  }
+    install.packages("BiocManager")
+}
 
 BiocManager::install("megadepth")
 
