@@ -85,10 +85,10 @@ bw_cov
 #> GRanges object with 4 ranges and 1 metadata column:
 #>         seqnames          ranges strand |     score
 #>            <Rle>       <IRanges>  <Rle> | <numeric>
-#>   [1]      chr10            0-10      * |     0.000
-#>   [2]      chr10 8756697-8756762      * |    15.846
-#>   [3]      chr10 4359156-4359188      * |     3.000
-#>   [4] GL000219.1   168500-168620      * |     1.258
+#>   [1]      chr10            0-10      * |      0.00
+#>   [2]      chr10 8756697-8756762      * |     15.85
+#>   [3]      chr10 4359156-4359188      * |      3.00
+#>   [4] GL000219.1   168500-168620      * |      1.26
 #>   -------
 #>   seqinfo: 2 sequences from an unspecified genome; no seqlengths
 ```
@@ -123,7 +123,7 @@ the number of genomic regions queried will affect the speed comparisons.
 ## R-like interface
 ## that captures the standard output into R
 head(megadepth_shell(help = TRUE))
-#> [1] "megadepth 1.0.4"                  ""                                
+#> [1] "megadepth 1.0.8"                  ""                                
 #> [3] "BAM and BigWig utility."          ""                                
 #> [5] "Usage:"                           "  megadepth <bam|bw|-> [options]"
 
@@ -131,7 +131,7 @@ head(megadepth_shell(help = TRUE))
 megadepth_cmd("--help")
 ```
 
-    #> megadepth 1.0.4
+    #> megadepth 1.0.8
     #>  
     #>  BAM and BigWig utility.
     #>  
@@ -145,6 +145,7 @@ megadepth_cmd("--help")
     #>                              if the 2nd is intended then a TXT file listing the paths to the BigWigs to process in parallel
     #>                              should be passed in as the main input file instead of a single BigWig file (EXPERIMENTAL).
     #>    --prefix                 String to use to prefix all output files.
+    #>    --no-auc-stdout          Force all AUC(s) to be written to <prefix>.auc.tsv rather than STDOUT
     #>    --no-annotation-stdout   Force summarized annotation regions to be written to <prefix>.annotation.tsv rather than STDOUT
     #>    --no-coverage-stdout     Force covered regions to be written to <prefix>.coverage.tsv rather than STDOUT
     #>    --keep-order             Output annotation coverage in the order chromosomes appear in the BAM/BigWig file
@@ -165,9 +166,14 @@ megadepth_cmd("--help")
     #>  
     #>  BAM Input:
     #>  Extract basic junction information from the BAM, including co-occurrence
+    #>  If only the name of the BAM file is passed in with no other args, it will *only* report total AUC to STDOUT.
+    #>    --fasta               Path to the reference FASTA file if a CRAM file is passed as the input file (ignored otherwise)
+    #>                         If not passed, references will be downloaded using the CRAM header.
     #>    --junctions          Extract jx coordinates, strand, and anchor length, per read
     #>                         writes to a TSV file <prefix>.jxs.tsv
     #>    --longreads          Modifies certain buffer sizes to accommodate longer reads such as PB/Oxford.
+    #>    --filter-in          Integer bitmask, any bits of which alignments need to have to be kept (similar to samtools view -f).
+    #>    --filter-out         Integer bitmask, any bits of which alignments need to have to be skipped (similar to samtools view -F).
     #>  
     #>  Non-reference summaries:
     #>    --alts                       Print differing from ref per-base coverages
@@ -186,12 +192,14 @@ megadepth_cmd("--help")
     #>    --coverage           Print per-base coverage (slow but totally worth it)
     #>    --auc                Print per-base area-under-coverage, will generate it for the genome
     #>                         and for the annotation if --annotation is also passed in
-    #>                         Writes to a TSV file <prefix>.auc.tsv
+    #>                         Defaults to STDOUT, unless other params are passed in as well, then
+    #>                         if writes to a TSV file <prefix>.auc.tsv
     #>    --bigwig             Output coverage as BigWig file(s).  Writes to <prefix>.bw
     #>                         (also <prefix>.unique.bw when --min-unique-qual is specified).
     #>                         Requires libBigWig.
     #>    --annotation <bed>   Path to BED file containing list of regions to sum coverage over
     #>                         (tab-delimited: chrm,start,end)
+    #>    --op <sum[default], mean>     Statistic to run on the intervals provided by --annotation
     #>    --min-unique-qual <int>
     #>                         Output second bigWig consisting built only from alignments
     #>                         with at least this mapping quality.  --bigwig must be specified.
@@ -200,6 +208,8 @@ megadepth_cmd("--help")
     #>    --double-count       Allow overlapping ends of PE read to count twice toward
     #>                         coverage
     #>    --num-bases          Report total sum of bases in alignments processed (that pass filters)
+    #>    --gzip               Turns on gzipping of coverage output (no effect if --bigwig is passsed),
+    #>                         this will also enable --no-coverage-stdout.
     #>  
     #>  Other outputs:
     #>    --read-ends          Print counts of read starts/ends, if --min-unique-qual is set
@@ -225,8 +235,8 @@ print(citation("megadepth"), bibtex = TRUE)
 #> Zhang D, Collado-Torres L (2020). _megadepth: BigWig and BAM related
 #> utilities_. doi: 10.18129/B9.bioc.megadepth (URL:
 #> https://doi.org/10.18129/B9.bioc.megadepth),
-#> https://github.com/LieberInstitute/megadepth - R package version
-#> 0.99.0, <URL: http://www.bioconductor.org/packages/megadepth>.
+#> https://github.com/LieberInstitute/megadepth - R package version 1.1.1,
+#> <URL: http://www.bioconductor.org/packages/megadepth>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -235,7 +245,7 @@ print(citation("megadepth"), bibtex = TRUE)
 #>     author = {David Zhang and Leonardo Collado-Torres},
 #>     year = {2020},
 #>     url = {http://www.bioconductor.org/packages/megadepth},
-#>     note = {https://github.com/LieberInstitute/megadepth - R package version 0.99.0},
+#>     note = {https://github.com/LieberInstitute/megadepth - R package version 1.1.1},
 #>     doi = {10.18129/B9.bioc.megadepth},
 #>   }
 #> 
@@ -277,7 +287,7 @@ By contributing to this project, you agree to abide by its terms.
     *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
     customized to use [Bioconductor’s docker
     containers](https://www.bioconductor.org/help/docker/) and
-    *[BiocCheck](https://bioconductor.org/packages/3.12/BiocCheck)*.
+    *[BiocCheck](https://bioconductor.org/packages/3.11/BiocCheck)*.
   - Code coverage assessment is possible thanks to
     [codecov](https://codecov.io/gh) and
     *[covr](https://CRAN.R-project.org/package=covr)*.
@@ -306,9 +316,9 @@ R/Bioconductor package and other tools are related to each other.
 
 ## Teams involved
 
-*[megadepth](https://bioconductor.org/packages/3.12/megadepth)* was made
+*[megadepth](https://bioconductor.org/packages/3.11/megadepth)* was made
 possible to [David Zhang](https://twitter.com/dyzhang32), the author of
-*[dasper](https://bioconductor.org/packages/3.12/dasper)*, and a member
+*[dasper](https://bioconductor.org/packages/3.11/dasper)*, and a member
 of the [Mina Ryten](https://snca.atica.um.es/)’s lab at UCL.
 
 The `ReCount` family involves the following teams:

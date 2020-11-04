@@ -88,11 +88,10 @@ megadepth_latest <- function() {
     h <- readLines("https://github.com/ChristopherWilks/megadepth/releases/latest",
         warn = FALSE
     )
-    r <- '^.*?releases/tag/([0-9.]+)".*'
+    r <- '^.*?releases/tag/([0-9.]+[a-z]?)".*'
     version <- gsub(r, "\\1", grep(r, h, value = TRUE)[1])
     return(version)
 }
-
 
 install_megadepth_bin <- function(exec) {
     success <- FALSE
@@ -101,15 +100,15 @@ install_megadepth_bin <- function(exec) {
         dir.create(destdir, showWarnings = FALSE)
         success <- file.copy(exec, destdir, overwrite = TRUE)
         if (success) {
-              break
-          }
+            break
+        }
     }
     if (!success) {
-          stop(
-              "Unable to install megadepth to any of these dirs: ",
-              paste(dirs, collapse = ", ")
-          )
-      }
+        stop(
+            "Unable to install megadepth to any of these dirs: ",
+            paste(dirs, collapse = ", ")
+        )
+    }
     message("megadepth has been installed to ", normalizePath(destdir))
 }
 
@@ -136,36 +135,36 @@ bin_paths <- function(dir = "Megadepth",
 find_exec <- function(cmd, dir, info = "") {
     for (d in bin_paths(dir)) {
         exec <- if (xfun::is_windows()) {
-              paste0(cmd, ".exe")
-          } else {
-              cmd
-          }
+            paste0(cmd, ".exe")
+        } else {
+            cmd
+        }
         path <- file.path(d, exec)
         if (utils::file_test("-x", path)) {
-              break
-          } else {
-              path <- ""
-          }
+            break
+        } else {
+            path <- ""
+        }
     }
     path2 <- Sys.which(cmd)
     if (path == "" || xfun::same_path(path, path2)) {
         if (path2 == "") {
-              stop(cmd, " not found. ", info, call. = FALSE)
-          }
+            stop(cmd, " not found. ", info, call. = FALSE)
+        }
         return(cmd) # do not use the full path of the command
     } else {
         if (path2 != "") {
-              warning(
-                  "Found ",
-                  cmd,
-                  ' at "',
-                  path,
-                  '" and "',
-                  path2,
-                  '". The former will be used. ',
-                  "If you don't need both copies, you may delete/uninstall one."
-              )
-          }
+            warning(
+                "Found ",
+                cmd,
+                ' at "',
+                path,
+                '" and "',
+                path2,
+                '". The former will be used. ',
+                "If you don't need both copies, you may delete/uninstall one."
+            )
+        }
     }
     normalizePath(path)
 }
@@ -174,12 +173,12 @@ find_megadepth <- local({
     path <- NULL # cache the path to megadepth
     function() {
         if (is.null(path)) {
-              path <<- find_exec(
-                  "megadepth",
-                  "Megadepth",
-                  "You can install it via megadepth::install_megadepth()"
-              )
-          }
+            path <<- find_exec(
+                "megadepth",
+                "Megadepth",
+                "You can install it via megadepth::install_megadepth()"
+            )
+        }
         path
     }
 })

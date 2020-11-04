@@ -7,9 +7,11 @@ test_that("installation of the latest version works", {
         find_exec("megadepth", "Megadepth"),
         find_megadepth()
     )
-    expect_equal(
-        megadepth_cmd("--version", stdout = TRUE),
-        paste("megadepth", megadepth_latest())
+    expect_true(
+        grepl(
+            pattern = megadepth_cmd("--version", stdout = TRUE),
+            paste("megadepth", megadepth_latest())
+        )
     )
     expect_equal(
         megadepth_cmd("--version", stdout = TRUE),
