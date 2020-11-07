@@ -235,7 +235,7 @@ print(citation("megadepth"), bibtex = TRUE)
 #> Zhang D, Collado-Torres L (2020). _megadepth: BigWig and BAM related
 #> utilities_. doi: 10.18129/B9.bioc.megadepth (URL:
 #> https://doi.org/10.18129/B9.bioc.megadepth),
-#> https://github.com/LieberInstitute/megadepth - R package version 1.1.1,
+#> https://github.com/LieberInstitute/megadepth - R package version 1.0.1,
 #> <URL: http://www.bioconductor.org/packages/megadepth>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -245,7 +245,7 @@ print(citation("megadepth"), bibtex = TRUE)
 #>     author = {David Zhang and Leonardo Collado-Torres},
 #>     year = {2020},
 #>     url = {http://www.bioconductor.org/packages/megadepth},
-#>     note = {https://github.com/LieberInstitute/megadepth - R package version 1.1.1},
+#>     note = {https://github.com/LieberInstitute/megadepth - R package version 1.0.1},
 #>     doi = {10.18129/B9.bioc.megadepth},
 #>   }
 #> 
