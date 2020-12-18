@@ -6,13 +6,21 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![BioC
 status](http://www.bioconductor.org/shields/build/release/bioc/megadepth.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/megadepth)
-[![R build
-status](https://github.com/LieberInstitute/megadepth/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/LieberInstitute/megadepth/actions)
+[![BioC dev
+status](http://www.bioconductor.org/shields/build/devel/bioc/megadepth.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/megadepth)
 [![Codecov test
 coverage](https://codecov.io/gh/LieberInstitute/megadepth/branch/master/graph/badge.svg)](https://codecov.io/gh/LieberInstitute/megadepth?branch=master)
+[![R build
+status](https://github.com/LieberInstitute/megadepth/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/LieberInstitute/megadepth/actions)
+[![Support site activity, last 6 months: tagged questions/avg. answers
+per question/avg. comments per question/accepted answers, or 0 if no
+tagged
+posts.](http://www.bioconductor.org/shields/posts/megadepth.svg)](https://support.bioconductor.org/t/megadepth/)
+[![GitHub
+issues](https://img.shields.io/github/issues/LieberInstitute/megadepth)](https://github.com/LieberInstitute/megadepth/issues)
 <!-- badges: end -->
 
 The goal of `megadepth` is to provide an R interface to the command line
@@ -123,7 +131,7 @@ the number of genomic regions queried will affect the speed comparisons.
 ## R-like interface
 ## that captures the standard output into R
 head(megadepth_shell(help = TRUE))
-#> [1] "megadepth 1.0.8"                  ""                                
+#> [1] "megadepth 1.0.9"                  ""                                
 #> [3] "BAM and BigWig utility."          ""                                
 #> [5] "Usage:"                           "  megadepth <bam|bw|-> [options]"
 
@@ -131,7 +139,7 @@ head(megadepth_shell(help = TRUE))
 megadepth_cmd("--help")
 ```
 
-    #> megadepth 1.0.8
+    #> megadepth 1.0.9
     #>  
     #>  BAM and BigWig utility.
     #>  
@@ -197,9 +205,12 @@ megadepth_cmd("--help")
     #>    --bigwig             Output coverage as BigWig file(s).  Writes to <prefix>.bw
     #>                         (also <prefix>.unique.bw when --min-unique-qual is specified).
     #>                         Requires libBigWig.
-    #>    --annotation <bed>   Path to BED file containing list of regions to sum coverage over
-    #>                         (tab-delimited: chrm,start,end)
+    #>    --annotation <BED|window_size>   Path to BED file containing list of regions to sum coverage over
+    #>                         (tab-delimited: chrm,start,end). Or this can specify a contiguous region size in bp.
     #>    --op <sum[default], mean>     Statistic to run on the intervals provided by --annotation
+    #>    --no-index           If using --annotation, skip the use of the BAM index (BAI) for pulling out regions.
+    #>                         Setting this can be faster if doing windows across the whole genome.
+    #>                         This will be turned on automatically if a window size is passed to --annotation.
     #>    --min-unique-qual <int>
     #>                         Output second bigWig consisting built only from alignments
     #>                         with at least this mapping quality.  --bigwig must be specified.
@@ -235,7 +246,7 @@ print(citation("megadepth"), bibtex = TRUE)
 #> Zhang D, Collado-Torres L (2020). _megadepth: BigWig and BAM related
 #> utilities_. doi: 10.18129/B9.bioc.megadepth (URL:
 #> https://doi.org/10.18129/B9.bioc.megadepth),
-#> https://github.com/LieberInstitute/megadepth - R package version 1.0.1,
+#> https://github.com/LieberInstitute/megadepth - R package version 1.0.2,
 #> <URL: http://www.bioconductor.org/packages/megadepth>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -245,7 +256,7 @@ print(citation("megadepth"), bibtex = TRUE)
 #>     author = {David Zhang and Leonardo Collado-Torres},
 #>     year = {2020},
 #>     url = {http://www.bioconductor.org/packages/megadepth},
-#>     note = {https://github.com/LieberInstitute/megadepth - R package version 1.0.1},
+#>     note = {https://github.com/LieberInstitute/megadepth - R package version 1.0.2},
 #>     doi = {10.18129/B9.bioc.megadepth},
 #>   }
 #> 
@@ -279,7 +290,7 @@ By contributing to this project, you agree to abide by its terms.
 
 ## Development tools
 
-  - Continuous code testing is possible thanks to [GitHub
+-   Continuous code testing is possible thanks to [GitHub
     actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
     through *[usethis](https://CRAN.R-project.org/package=usethis)*,
     *[remotes](https://CRAN.R-project.org/package=remotes)*,
@@ -287,24 +298,24 @@ By contributing to this project, you agree to abide by its terms.
     *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
     customized to use [Bioconductor’s docker
     containers](https://www.bioconductor.org/help/docker/) and
-    *[BiocCheck](https://bioconductor.org/packages/3.11/BiocCheck)*.
-  - Code coverage assessment is possible thanks to
+    *[BiocCheck](https://bioconductor.org/packages/3.12/BiocCheck)*.
+-   Code coverage assessment is possible thanks to
     [codecov](https://codecov.io/gh) and
     *[covr](https://CRAN.R-project.org/package=covr)*.
-  - The [documentation
+-   The [documentation
     website](http://LieberInstitute.github.io/megadepth) is
     automatically updated thanks to
     *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
-  - The code is styled automatically thanks to
+-   The code is styled automatically thanks to
     *[styler](https://CRAN.R-project.org/package=styler)*.
-  - The documentation is formatted thanks to
+-   The documentation is formatted thanks to
     *[devtools](https://CRAN.R-project.org/package=devtools)* and
     *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
 
 For more details, check the `dev` directory.
 
 This package was developed using
-*[biocthis](https://github.com/lcolladotor/biocthis)*.
+*[biocthis](https://bioconductor.org/packages/3.12/biocthis)*.
 
 ## `ReCount` project
 
@@ -316,25 +327,26 @@ R/Bioconductor package and other tools are related to each other.
 
 ## Teams involved
 
-*[megadepth](https://bioconductor.org/packages/3.11/megadepth)* was made
+*[megadepth](https://bioconductor.org/packages/3.12/megadepth)* was made
 possible to [David Zhang](https://twitter.com/dyzhang32), the author of
-*[dasper](https://bioconductor.org/packages/3.11/dasper)*, and a member
+*[dasper](https://bioconductor.org/packages/3.12/dasper)*, and a member
 of the [Mina Ryten](https://snca.atica.um.es/)’s lab at UCL.
 
 The `ReCount` family involves the following teams:
 
-  - [Ben Langmead’s lab](http://www.langmead-lab.org/) at JHU Computer
+-   [Ben Langmead’s lab](http://www.langmead-lab.org/) at JHU Computer
     Science
-  - [Kasper Daniel Hansen’s lab](https://www.hansenlab.org/) at JHBSPH
+-   [Kasper Daniel Hansen’s lab](https://www.hansenlab.org/) at JHBSPH
     Biostatistics Department
-  - [Leonardo Collado-Torres](http://lcolladotor.github.io/) and [Andrew
-    E. Jaffe](http://aejaffe.com/) from [LIBD](https://www.libd.org/)
-  - [Abhinav Nellore’s lab](http://nellore.bio/) at OHSU
-  - [Jeff Leek’s lab](http://jtleek.com/) at JHBSPH Biostatistics
+-   [Leonardo Collado-Torres](http://lcolladotor.github.io/) and
+    [Andrew E. Jaffe](http://aejaffe.com/) from
+    [LIBD](https://www.libd.org/)
+-   [Abhinav Nellore’s lab](http://nellore.bio/) at OHSU
+-   [Jeff Leek’s lab](http://jtleek.com/) at JHBSPH Biostatistics
     Deparment
-  - Data hosted by [SciServer from IDIES at
+-   Data hosted by [SciServer from IDIES at
     JHU](https://www.sciserver.org/)
 
 |                                                                                                                                                                               |                                                                                                              |                                                                                                                                                                         |                                                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | <a href="http://www.langmead-lab.org/"><img src="http://www.langmead-lab.org/wp-content/uploads/2014/01/Screen-Shot-2014-02-02-at-5.20.13-PM-1024x199.png" width="250px"></a> | <a href="https://www.libd.org/"><img src="http://lcolladotor.github.io/img/LIBD_logo.jpg" width="250px"></a> | <a href="http://nellore.bio/"><img src="https://seekvectorlogo.net/wp-content/uploads/2018/08/oregon-health-science-university-ohsu-vector-logo.png" width="250px"></a> | <a href="https://www.sciserver.org/"><img src="https://skyserver.sdss.org/dr14/en/images/sciserver_logo_inverted_vertical.png" width="250px"></a> |

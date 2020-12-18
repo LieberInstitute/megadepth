@@ -16,10 +16,13 @@ knitr::opts_chunk$set(
 # megadepth
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![BioC status](http://www.bioconductor.org/shields/build/release/bioc/megadepth.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/megadepth)
-[![R build status](https://github.com/LieberInstitute/megadepth/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/LieberInstitute/megadepth/actions)
+[![BioC dev status](http://www.bioconductor.org/shields/build/devel/bioc/megadepth.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/megadepth)
 [![Codecov test coverage](https://codecov.io/gh/LieberInstitute/megadepth/branch/master/graph/badge.svg)](https://codecov.io/gh/LieberInstitute/megadepth?branch=master)
+[![R build status](https://github.com/LieberInstitute/megadepth/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/LieberInstitute/megadepth/actions)
+[![Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts.](http://www.bioconductor.org/shields/posts/megadepth.svg)](https://support.bioconductor.org/t/megadepth/)
+[![GitHub issues](https://img.shields.io/github/issues/LieberInstitute/megadepth)](https://github.com/LieberInstitute/megadepth/issues)
 <!-- badges: end -->
 
 The goal of `megadepth` is to provide an R interface to the command line tool [Megadepth](https://github.com/ChristopherWilks/megadepth) for BigWig and BAM related utilities created by [Christopher Wilks](https://twitter.com/chrisnwilks). This R package enables **fast** processing of BigWig files on downstream packages such as [dasper](https://bioconductor.org/packages/dasper) and [recount3](https://bioconductor.org/packages/recount3). The [Megadepth](https://github.com/ChristopherWilks/megadepth) software also provides utilities for processing BAM files and extracting coverage information from them.
@@ -121,7 +124,7 @@ Please note that the `megadepth` project is released with a [Contributor Code of
 
 For more details, check the `dev` directory.
 
-This package was developed using `r BiocStyle::Githubpkg('lcolladotor/biocthis')`.
+This package was developed using `r BiocStyle::Biocpkg('biocthis')`.
 
 ## `ReCount` project
 
