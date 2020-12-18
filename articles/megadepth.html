@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">megadepth</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -56,7 +56,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/LieberInstitute/megadepth/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -70,8 +70,7 @@
 
       
 
-      </header><script src="megadepth_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="megadepth_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="megadepth_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="megadepth_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>megadepth quick start guide</h1>
@@ -84,7 +83,7 @@
       Lieber Institute for Brain Development, Johns Hopkins Medical Campus<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
       </address>
                   
-            <h4 class="date">4 November 2020</h4>
+            <h4 class="date">18 December 2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/LieberInstitute/megadepth/blob/master/vignettes/megadepth.Rmd"><code>vignettes/megadepth.Rmd</code></a></small>
       <div class="hidden name"><code>megadepth.Rmd</code></div>
@@ -93,7 +92,7 @@
 
     
     
-<p>The goal of <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> is to provide an R interface to the command line tool <a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> for BigWig and BAM related utilities created by <a href="https://twitter.com/chrisnwilks">Christopher Wilks</a> <a id="cite-Wilks_2020"></a>(<a href="https://www.biorxiv.org/content/10.1101/TODO">Wilks, Zhang, Collado-Torres, and Langmead, 2020</a>). This R package enables <strong>fast</strong> processing of BigWig files on downstream packages such as <a href="https://bioconductor.org/packages/dasper">dasper</a> and <a href="https://bioconductor.org/packages/recount3">recount3</a>. The <a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> software also provides utilities for processing BAM files and extracting coverage information from them.</p>
+<p>The goal of <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> is to provide an R interface to the command line tool <a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> for BigWig and BAM related utilities created by <a href="https://twitter.com/chrisnwilks">Christopher Wilks</a> (Wilks, Zhang, Collado-Torres, and Langmead, 2020). This R package enables <strong>fast</strong> processing of BigWig files on downstream packages such as <a href="https://bioconductor.org/packages/dasper">dasper</a> and <a href="https://bioconductor.org/packages/recount3">recount3</a>. The <a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> software also provides utilities for processing BAM files and extracting coverage information from them.</p>
 <p>Here is an illustration on how fast <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> is compared to other tools for processing local and remote BigWig files.</p>
 <div class="figure">
 <img src="https://raw.githubusercontent.com/LieberInstitute/megadepth/master/analysis/md_rt_pybw_runtime.png" alt="Timing results. Timing comparison for processing 1,000 genomic regions on a bigWig file that is available on the local disk or on a remote resource. We compared megadepth against rtracklayer and pyBigWig. megadepth is typically faster that these other software solutions for computing the mean coverage across a set of 1,000 input genomic regions. Check &lt;https://github.com/LieberInstitute/megadepth/tree/master/analysis&gt; for more details." width="100%"><p class="caption">
@@ -109,20 +108,20 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <a href="#install-megadepth" class="anchor"></a>Install <code>megadepth</code>
 </h2>
 <p><code>R</code> is an open-source statistical environment which can be easily modified to enhance its functionality via packages. <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> is a <code>R</code> package available via the <a href="http://bioconductor.org">Bioconductor</a> repository for packages. <code>R</code> can be installed on any operating system from <a href="https://cran.r-project.org/">CRAN</a> after which you can install <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> by using the following commands in your <code>R</code> session:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
     <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"megadepth"</span><span class="op">)</span>
 
 <span class="co">## Check that you have a valid Bioconductor installation</span>
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/valid.html">valid</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/valid.html">valid</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="required-knowledge" class="section level2">
 <h2 class="hasAnchor">
 <a href="#required-knowledge" class="anchor"></a>Required knowledge</h2>
-<p><em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data and high-throughput sequencing data in general. You might benefit from being familiar with the BigWig file format and the <em><a href="https://bioconductor.org/packages/3.12/rtracklayer">rtracklayer</a></em> for importing those files into R as well as exporting BED files <a id="cite-Lawrence_2009"></a>(<a href="http://bioinformatics.oxfordjournals.org/content/25/14/1841.abstract">Lawrence, Gentleman, and Carey, 2009</a>). If you are working with annoation files, <em><a href="https://bioconductor.org/packages/3.12/GenomicFeatures">GenomicFeatures</a></em> and <em><a href="https://bioconductor.org/packages/3.12/GenomicRanges">GenomicRanges</a></em> will also be useful to you.</p>
+<p><em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data and high-throughput sequencing data in general. You might benefit from being familiar with the BigWig file format and the <em><a href="https://bioconductor.org/packages/3.12/rtracklayer">rtracklayer</a></em> for importing those files into R as well as exporting BED files (Lawrence, Gentleman, and Carey, 2009). If you are working with annoation files, <em><a href="https://bioconductor.org/packages/3.12/GenomicFeatures">GenomicFeatures</a></em> and <em><a href="https://bioconductor.org/packages/3.12/GenomicRanges">GenomicRanges</a></em> will also be useful to you.</p>
 <p>If you are asking yourself the question “Where do I start using Bioconductor?” you might be interested in <a href="http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU">this blog post</a>.</p>
 </div>
 <div id="asking-for-help" class="section level2">
@@ -135,14 +134,14 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <a href="#citing-megadepth" class="anchor"></a>Citing <code>megadepth</code>
 </h2>
 <p>We hope that <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> will be useful for your research. Please use the following information to cite the package and the overall approach. Thank you!</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co">## Citation info</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Citation info</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"megadepth"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Zhang D, Collado-Torres L (2020). _megadepth: BigWig and BAM related</span>
 <span class="co">#&gt; utilities_. doi: 10.18129/B9.bioc.megadepth (URL:</span>
 <span class="co">#&gt; https://doi.org/10.18129/B9.bioc.megadepth),</span>
-<span class="co">#&gt; https://github.com/LieberInstitute/megadepth - R package version 1.1.1,</span>
+<span class="co">#&gt; https://github.com/LieberInstitute/megadepth - R package version 1.1.2,</span>
 <span class="co">#&gt; &lt;URL: http://www.bioconductor.org/packages/megadepth&gt;.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Wilks C, Zhang D, Collado-Torres L, Langmead B (2020). "megadepth:</span>
@@ -152,24 +151,24 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To see these entries in BibTeX format, use 'print(&lt;citation&gt;,</span>
 <span class="co">#&gt; bibtex=TRUE)', 'toBibtex(.)', or set</span>
-<span class="co">#&gt; 'options(citation.bibtex.max=999)'.</span></pre></div>
+<span class="co">#&gt; 'options(citation.bibtex.max=999)'.</span></code></pre></div>
 </div>
 </div>
 <div id="quick-start" class="section level1">
 <h1 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick start</h1>
 <p>To get started, we need to load the <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> package into our R session. This will load all the required dependencies.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/LieberInstitute/megadepth">"megadepth"</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/LieberInstitute/megadepth">"megadepth"</a></span><span class="op">)</span></code></pre></div>
 <p>Once we have the R package loaded, we need to install the <a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> software. We can do so with <code><a href="../reference/install_megadepth.html">install_megadepth()</a></code>, which downloads a binary for your OS (Linux, Windows or macOS) <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. We can then use with an example BigWig file to compute the coverage at a set of regions.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co">## Install the latest version of Megadepth</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Install the latest version of Megadepth</span>
 <span class="fu"><a href="../reference/install_megadepth.html">install_megadepth</a></span><span class="op">(</span>force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; The latest megadepth version is 1.0.8b</span>
-<span class="co">#&gt; megadepth has been installed to /github/home/bin</span></pre></div>
+<span class="co">#&gt; The latest megadepth version is 1.0.9</span>
+<span class="co">#&gt; megadepth has been installed to /github/home/bin</span></code></pre></div>
 <p>Next, we might want to use <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> to quantify the coverage at a set of regions of the genome of interest to us. Here we will use two example files that are include in the package for illustration and testing purposes. One of them is a <a href="https://genome.ucsc.edu/goldenPath/help/bigWig.html">bigWig file</a> that contains the base-pair coverage information for a sample of interest and the second one is <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format1">BED file</a> which contains the genomic region coordinates of interest. So we first locate them.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="co">## Next, we locate the example BigWig and annotation files</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Next, we locate the example BigWig and annotation files</span>
 <span class="va">example_bw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"tests"</span>, <span class="st">"test.bam.all.bw"</span>,
     package <span class="op">=</span> <span class="st">"megadepth"</span>, mustWork <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span>
@@ -181,10 +180,10 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="va">example_bw</span>
 <span class="co">#&gt; [1] "/__w/_temp/Library/megadepth/tests/test.bam.all.bw"</span>
 <span class="va">annotation_file</span>
-<span class="co">#&gt; [1] "/__w/_temp/Library/megadepth/tests/testbw2.bed"</span></pre></div>
+<span class="co">#&gt; [1] "/__w/_temp/Library/megadepth/tests/testbw2.bed"</span></code></pre></div>
 <p>Once we have located the example files we can proceed to calculating the base-pair coverage for our genomic regions of interest. There are several ways to do this with <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em>, but here we use the user-friendly function <code><a href="../reference/get_coverage.html">get_coverage()</a></code>. This function will perform a given operation <strong>op</strong> on the bigWig file for a given set of regions of interest (<em>annotation</em>). One of those operations is to compute the mean base-pair coverage for each input region. This is what we’ll do with our example bigWig file.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="co">## We can then use megadepth to compute the coverage</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## We can then use megadepth to compute the coverage</span>
 <span class="va">bw_cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_coverage.html">get_coverage</a></span><span class="op">(</span>
     <span class="va">example_bw</span>,
     op <span class="op">=</span> <span class="st">"mean"</span>,
@@ -199,8 +198,8 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">#&gt;   [3]      chr10 4359156-4359188      * |      3.00</span>
 <span class="co">#&gt;   [4] GL000219.1   168500-168620      * |      1.26</span>
 <span class="co">#&gt;   -------</span>
-<span class="co">#&gt;   seqinfo: 2 sequences from an unspecified genome; no seqlengths</span></pre></div>
-<p><code><a href="../reference/get_coverage.html">get_coverage()</a></code> returns an object that is familiar to <em><a href="https://bioconductor.org/packages/3.12/GenomicRanges">GenomicRanges</a></em> users, that is, a <code>GRanges</code> object that can be used with other Bioconductor software packages <a id="cite-bioconductor2015"></a>(<a href="https://doi.org/10.1038/nmeth.3252">Huber, Carey, Gentleman, Anders, et al., 2015</a>).</p>
+<span class="co">#&gt;   seqinfo: 2 sequences from an unspecified genome; no seqlengths</span></code></pre></div>
+<p><code><a href="../reference/get_coverage.html">get_coverage()</a></code> returns an object that is familiar to <em><a href="https://bioconductor.org/packages/3.12/GenomicRanges">GenomicRanges</a></em> users, that is, a <code>GRanges</code> object that can be used with other Bioconductor software packages (Huber, Carey, Gentleman, Anders, Carlson, Carvalho, Bravo, Davis, Gatto, Girke, Gottardo, Hahne, Hansen, Irizarry, Lawrence, Love, MacDonald, Obenchain, Oleś, Pagès, Reyes, Shannon, Smyth, Tenenbaum, Waldron, and Morgan, 2015).</p>
 <p>This example is just the tip of the iceberg, as <a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> and thus <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> can do a lot of useful processing operations on BAM and bigWig files.</p>
 </div>
 <div id="users-guide" class="section level1">
@@ -212,17 +211,17 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <p><a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> is very powerful and can do a lot of different things. The R/Bioconductor package provides two functions for interfacing with <a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a>, <code><a href="../reference/megadepth_cmd.html">megadepth_cmd()</a></code> and <code><a href="../reference/megadepth_cmd.html">megadepth_shell()</a></code>. For the first one, <code><a href="../reference/megadepth_cmd.html">megadepth_cmd()</a></code>, you need to know the actual command syntax you want to use and format it accordingly. If you are more comfortable with R functions, <code><a href="../reference/megadepth_cmd.html">megadepth_shell()</a></code> uses <em><a href="https://CRAN.R-project.org/package=cmdfun">cmdfun</a></em> to power this interface and capture the standard output stream into R.</p>
 <p>To make it easier to use, <code>megadepth</code> includes functions that simplify the number of arguments, read in the output files, and converts them into R/Bioconductor friendly objects, such as <code><a href="../reference/get_coverage.html">get_coverage()</a></code> illustrated previously in the quick start section.</p>
 <p>We hope that you’ll find <code>megadepth</code> and <a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> useful for your work. If you are interested in checking how <strong>fast</strong> <code>megadepth</code> is, check out the <a href="https://github.com/LieberInstitute/megadepth/tree/master/analysis"><strong>speed analysis</strong></a> comparison against other tools. Note that the size of the files used and the number of genomic regions queried will affect the speed comparisons.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="co">## R-like interface</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## R-like interface</span>
 <span class="co">## that captures the standard output into R</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/megadepth_cmd.html">megadepth_shell</a></span><span class="op">(</span>help <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "megadepth 1.0.8"                  ""                                </span>
+<span class="co">#&gt; [1] "megadepth 1.0.9"                  ""                                </span>
 <span class="co">#&gt; [3] "BAM and BigWig utility."          ""                                </span>
 <span class="co">#&gt; [5] "Usage:"                           "  megadepth &lt;bam|bw|-&gt; [options]"</span>
 
 <span class="co">## Command-like interface</span>
-<span class="fu"><a href="../reference/megadepth_cmd.html">megadepth_cmd</a></span><span class="op">(</span><span class="st">"--help"</span><span class="op">)</span></pre></div>
-<pre><code>#&gt; megadepth 1.0.8
+<span class="fu"><a href="../reference/megadepth_cmd.html">megadepth_cmd</a></span><span class="op">(</span><span class="st">"--help"</span><span class="op">)</span></code></pre></div>
+<pre><code>#&gt; megadepth 1.0.9
 #&gt;  
 #&gt;  BAM and BigWig utility.
 #&gt;  
@@ -288,9 +287,12 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;    --bigwig             Output coverage as BigWig file(s).  Writes to &lt;prefix&gt;.bw
 #&gt;                         (also &lt;prefix&gt;.unique.bw when --min-unique-qual is specified).
 #&gt;                         Requires libBigWig.
-#&gt;    --annotation &lt;bed&gt;   Path to BED file containing list of regions to sum coverage over
-#&gt;                         (tab-delimited: chrm,start,end)
+#&gt;    --annotation &lt;BED|window_size&gt;   Path to BED file containing list of regions to sum coverage over
+#&gt;                         (tab-delimited: chrm,start,end). Or this can specify a contiguous region size in bp.
 #&gt;    --op &lt;sum[default], mean&gt;     Statistic to run on the intervals provided by --annotation
+#&gt;    --no-index           If using --annotation, skip the use of the BAM index (BAI) for pulling out regions.
+#&gt;                         Setting this can be faster if doing windows across the whole genome.
+#&gt;                         This will be turned on automatically if a window size is passed to --annotation.
 #&gt;    --min-unique-qual &lt;int&gt;
 #&gt;                         Output second bigWig consisting built only from alignments
 #&gt;                         with at least this mapping quality.  --bigwig must be specified.
@@ -318,8 +320,8 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <h2 class="hasAnchor">
 <a href="#bam-to-bigwig" class="anchor"></a>BAM to bigWig</h2>
 <p>One use case of <a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> is to convert BAM files to bigWig coverage files. To simplify this process and verify that you are not accidentally overwriting valuable files, <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> provides the function <code><a href="../reference/bam_to_bigwig.html">bam_to_bigwig()</a></code>. To illustrate this functionality, we first locate an example BAM file. We then generate the output bigWig files</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="co">## Find the example BAM file</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Find the example BAM file</span>
 <span class="va">example_bam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"tests"</span>, <span class="st">"test.bam"</span>,
     package <span class="op">=</span> <span class="st">"megadepth"</span>, mustWork <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span>
@@ -331,21 +333,21 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">## Path to the output files generated by bam_to_bigwig()</span>
 <span class="va">example_bw</span>
 <span class="co">#&gt;                            all.bw </span>
-<span class="co">#&gt; "/tmp/Rtmpn09O6D/test.bam.all.bw"</span></pre></div>
+<span class="co">#&gt; "/tmp/RtmpOfEhSG/test.bam.all.bw"</span></code></pre></div>
 <p>Currently this functionality does not work on Windows. In which case, you can continue the vignette with the following example bigWig file.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="co">## On Windows, use the example bigWig file that is already included in</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## On Windows, use the example bigWig file that is already included in</span>
 <span class="co">## the R package</span>
 <span class="va">example_bw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"tests"</span>, <span class="st">"test.bam.all.bw"</span>,
     package <span class="op">=</span> <span class="st">"megadepth"</span>, mustWork <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 </div>
 <div id="summarize-coverage-over-regions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#summarize-coverage-over-regions" class="anchor"></a>Summarize coverage over regions</h2>
 <p>Once you have a biWig file, you might want to quantify the mean or total expression across a set of genomic coordinates. bigWig files are typically used by genome browsers, and as part of the <em><a href="https://bioconductor.org/packages/3.12/recount">recount</a></em> and <em><a href="https://bioconductor.org/packages/3.12/recount3">recount3</a></em> projects we have released thousands of them. Before we expand more complex uses cases, you might be interested in <code><a href="../reference/get_coverage.html">get_coverage()</a></code>. This function will use <a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> to create a tab-separated value (TSV) file containing the coverage summary information <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> for a given input file that can be read into R using <code><a href="../reference/read_coverage.html">read_coverage()</a></code> <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> as shown below with an example set of genomic regions of interest (<em>annotation</em>).</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="co">## Next, we locate the example annotation BED file</span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Next, we locate the example annotation BED file</span>
 <span class="va">annotation_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"tests"</span>, <span class="st">"testbw2.bed"</span>,
     package <span class="op">=</span> <span class="st">"megadepth"</span>, mustWork <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span>
@@ -361,10 +363,10 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">#&gt;   [3]      chr10 4359156-4359188      * |      3.00</span>
 <span class="co">#&gt;   [4] GL000219.1   168500-168620      * |      1.26</span>
 <span class="co">#&gt;   -------</span>
-<span class="co">#&gt;   seqinfo: 2 sequences from an unspecified genome; no seqlengths</span></pre></div>
+<span class="co">#&gt;   seqinfo: 2 sequences from an unspecified genome; no seqlengths</span></code></pre></div>
 <p>If you are familiar with <em><a href="https://bioconductor.org/packages/3.12/rtracklayer">rtracklayer</a></em>, you’ll notice that the coverage summaries are basically the same to the one that can be generated with <code><a href="https://rdrr.io/pkg/rtracklayer/man/BigWigFile.html">rtracklayer::import.bw()</a></code>, which is what <em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em> uses internally.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="co">## Checking with derfinder and rtracklayer</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Checking with derfinder and rtracklayer</span>
 <span class="va">bed</span> <span class="op">&lt;-</span> <span class="fu">rtracklayer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtracklayer/man/export.html">import</a></span><span class="op">(</span><span class="va">annotation_file</span><span class="op">)</span>
 
 <span class="co">## The file needs a name</span>
@@ -390,15 +392,15 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/expect_equivalent.html">expect_equivalent</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">regionCov</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">value</span><span class="op">)</span><span class="op">)</span>,
     <span class="fu"><a href="../reference/get_coverage.html">get_coverage</a></span><span class="op">(</span><span class="va">example_bw</span>, op <span class="op">=</span> <span class="st">"sum"</span>, annotation <span class="op">=</span> <span class="va">annotation_file</span><span class="op">)</span><span class="op">$</span><span class="va">score</span>,
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 </div>
 <div id="bam-to-junctions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bam-to-junctions" class="anchor"></a>BAM to junctions</h2>
 <p><a href="https://github.com/ChristopherWilks/megadepth">Megadepth</a> provides utilities that might be of use for future work or that were developed for building <em><a href="https://bioconductor.org/packages/3.12/recount3">recount3</a></em>. One of these features is the possibility to extract locally co-ocurring junctions from a BAM file as described in the <a href="https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions">Megadepth documentation</a>. This feature works only for junctions for which a read or (read pair) has 2 or more junctions.</p>
 <p>To illustrate this functionality, we will use an example BAM file and generate the locally co-occurring junction table with <code><a href="../reference/bam_to_junctions.html">bam_to_junctions()</a></code>. We’ll then read in the data using <code><a href="../reference/read_junction_table.html">read_junction_table()</a></code> <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="co">## Find the example BAM file</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Find the example BAM file</span>
 <span class="va">example_bam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"tests"</span>, <span class="st">"test.bam"</span>,
     package <span class="op">=</span> <span class="st">"megadepth"</span>, mustWork <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span>
@@ -409,7 +411,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">## Path to the output file generated by bam_to_junctions()</span>
 <span class="va">example_jxs</span>
 <span class="co">#&gt;                            jxs.tsv </span>
-<span class="co">#&gt; "/tmp/Rtmpn09O6D/test.bam.jxs.tsv"</span>
+<span class="co">#&gt; "/tmp/RtmpOfEhSG/test.bam.jxs.tsv"</span>
 
 <span class="co">## Read the data as a tibble using the format specified at</span>
 <span class="co">## https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions</span>
@@ -429,7 +431,7 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <span class="co">#&gt; 10 chr10 8.76e6 +              23853 47M2… 87567… chr10     8756742 -          </span>
 <span class="co">#&gt; 11 chr10 8.76e6 +              23853 47M2… 87567… chr10     8756743 -          </span>
 <span class="co">#&gt; # … with 3 more variables: mate_insert_length &lt;int&gt;, mate_cigar &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mate_coords &lt;chr&gt;</span></pre></div>
+<span class="co">#&gt; #   mate_coords &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="teams-involved" class="section level2">
 <h2 class="hasAnchor">
@@ -464,40 +466,36 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <div id="reproducibility" class="section level1">
 <h1 class="hasAnchor">
 <a href="#reproducibility" class="anchor"></a>Reproducibility</h1>
-<p>The <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> package <a id="cite-Zhang_2020"></a>(<a href="http://www.bioconductor.org/packages/megadepth">Zhang and Collado-Torres, 2020</a>) was made possible thanks to:</p>
+<p>The <em><a href="https://bioconductor.org/packages/3.12/megadepth">megadepth</a></em> package (Zhang and Collado-Torres, 2020) was made possible thanks to:</p>
 <ul>
-<li>R <a id="cite-R_Core_Team_2020"></a>(<a href="https://www.R-project.org/">R Core Team, 2020</a>)</li>
+<li>R (R Core Team, 2020)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.12/BiocStyle">BiocStyle</a></em> <a id="cite-Oles_2020"></a>(<a href="https://github.com/Bioconductor/BiocStyle">Oleś, Morgan, and Huber, 2020</a>)</li>
+<em><a href="https://bioconductor.org/packages/3.12/BiocStyle">BiocStyle</a></em> (Oleś, Morgan, and Huber, 2020)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=knitcitations">knitcitations</a></em> <a id="cite-Boettiger_2020"></a>(<a href="https://github.com/cboettig/knitcitations">Boettiger, 2020</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> (Xie, 2020)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> <a id="cite-Xie_2020"></a>(<a href="https://yihui.org/knitr/">Xie, 2020</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em> (Allaire, Xie, McPherson, Luraschi, Ushey, Atkins, Wickham, Cheng, Chang, and Iannone, 2020)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em> <a id="cite-Allaire_2020"></a>(<a href="https://github.com/rstudio/rmarkdown">Allaire, Xie, McPherson, Luraschi, et al., 2020</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=RefManageR">RefManageR</a></em> (McLean, 2017)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=sessioninfo">sessioninfo</a></em> <a id="cite-Csardi_2018"></a>(<a href="https://github.com/r-lib/sessioninfo#readme">Csárdi, core, Wickham, Chang, et al., 2018</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=sessioninfo">sessioninfo</a></em> (Csárdi, core, Wickham, Chang, Flight, Müller, and Hester, 2018)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=testthat">testthat</a></em> <a id="cite-Wickham_2011"></a>(<a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">Wickham, 2011</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=testthat">testthat</a></em> (Wickham, 2011)</li>
 </ul>
-<p>This package was developed using <em><a href="https://github.com/lcolladotor/biocthis">biocthis</a></em>.</p>
+<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.12/biocthis">biocthis</a></em>.</p>
 <p>Code for creating the vignette</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="co">## Create the vignette</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Create the vignette</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown">"rmarkdown"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span><span class="op">(</span><span class="st">"megadepth.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">## Extract the R code</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/">"knitr"</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">knit</a></span><span class="op">(</span><span class="st">"megadepth.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="co">## Clean up</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files.html">file.remove</a></span><span class="op">(</span><span class="st">"megadepth.bib"</span><span class="op">)</span>
-<span class="co">#&gt; [1] TRUE</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">knit</a></span><span class="op">(</span><span class="st">"megadepth.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code>#&gt; [1] "2020-11-04 13:13:50 UTC"</code></pre>
+<pre><code>#&gt; [1] "2020-12-18 02:08:40 UTC"</code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code>#&gt; Time difference of 18.857 secs</code></pre>
+<pre><code>#&gt; Time difference of 17.685 secs</code></pre>
 <p><code>R</code> session information.</p>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
@@ -509,144 +507,143 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 #&gt;  collate  en_US.UTF-8                 
 #&gt;  ctype    en_US.UTF-8                 
 #&gt;  tz       Etc/UTC                     
-#&gt;  date     2020-11-04                  
+#&gt;  date     2020-12-18                  
 #&gt; 
 #&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-#&gt;  package              * version  date       lib source                                 
-#&gt;  AnnotationDbi          1.52.0   2020-10-27 [1] Bioconductor                           
-#&gt;  askpass                1.1      2019-01-13 [2] RSPM (R 4.0.0)                         
-#&gt;  assertthat             0.2.1    2019-03-21 [2] RSPM (R 4.0.0)                         
-#&gt;  backports              1.2.0    2020-11-02 [2] RSPM (R 4.0.3)                         
-#&gt;  base64enc              0.1-3    2015-07-28 [2] RSPM (R 4.0.0)                         
-#&gt;  Biobase                2.50.0   2020-10-27 [1] Bioconductor                           
-#&gt;  BiocFileCache          1.14.0   2020-10-27 [1] Bioconductor                           
-#&gt;  BiocGenerics           0.36.0   2020-10-27 [1] Bioconductor                           
-#&gt;  BiocManager            1.30.10  2019-11-16 [2] CRAN (R 4.0.3)                         
-#&gt;  BiocParallel           1.24.0   2020-10-27 [1] Bioconductor                           
-#&gt;  BiocStyle            * 2.18.0   2020-10-27 [1] Bioconductor                           
-#&gt;  biomaRt                2.46.0   2020-10-27 [1] Bioconductor                           
-#&gt;  Biostrings             2.58.0   2020-10-27 [1] Bioconductor                           
-#&gt;  bit                    4.0.4    2020-08-04 [1] RSPM (R 4.0.2)                         
-#&gt;  bit64                  4.0.5    2020-08-30 [1] RSPM (R 4.0.2)                         
-#&gt;  bitops                 1.0-6    2013-08-17 [1] RSPM (R 4.0.0)                         
-#&gt;  blob                   1.2.1    2020-01-20 [1] RSPM (R 4.0.0)                         
-#&gt;  bookdown               0.21     2020-10-13 [1] RSPM (R 4.0.2)                         
-#&gt;  BSgenome               1.58.0   2020-10-27 [1] Bioconductor                           
-#&gt;  bumphunter             1.32.0   2020-10-27 [1] Bioconductor                           
-#&gt;  checkmate              2.0.0    2020-02-06 [1] RSPM (R 4.0.0)                         
-#&gt;  cli                    2.1.0    2020-10-12 [2] RSPM (R 4.0.2)                         
-#&gt;  cluster                2.1.0    2019-06-19 [3] CRAN (R 4.0.3)                         
-#&gt;  cmdfun                 1.0.2    2020-10-10 [1] RSPM (R 4.0.2)                         
-#&gt;  codetools              0.2-16   2018-12-24 [3] CRAN (R 4.0.3)                         
-#&gt;  colorspace             1.4-1    2019-03-18 [1] RSPM (R 4.0.0)                         
-#&gt;  crayon                 1.3.4    2017-09-16 [2] RSPM (R 4.0.0)                         
-#&gt;  curl                   4.3      2019-12-02 [2] RSPM (R 4.0.0)                         
-#&gt;  data.table             1.13.2   2020-10-19 [1] RSPM (R 4.0.3)                         
-#&gt;  DBI                    1.1.0    2019-12-15 [1] RSPM (R 4.0.0)                         
-#&gt;  dbplyr                 1.4.4    2020-05-27 [1] RSPM (R 4.0.0)                         
-#&gt;  DelayedArray           0.16.0   2020-10-27 [1] Bioconductor                           
-#&gt;  derfinder              1.24.0   2020-10-27 [1] Bioconductor                           
-#&gt;  derfinderHelper        1.24.0   2020-10-27 [1] Bioconductor                           
-#&gt;  desc                   1.2.0    2018-05-01 [2] RSPM (R 4.0.0)                         
-#&gt;  digest                 0.6.27   2020-10-24 [2] RSPM (R 4.0.3)                         
-#&gt;  doRNG                  1.8.2    2020-01-27 [1] RSPM (R 4.0.0)                         
-#&gt;  dplyr                  1.0.2    2020-08-18 [1] RSPM (R 4.0.2)                         
-#&gt;  ellipsis               0.3.1    2020-05-15 [2] RSPM (R 4.0.0)                         
-#&gt;  evaluate               0.14     2019-05-28 [2] RSPM (R 4.0.0)                         
-#&gt;  fansi                  0.4.1    2020-01-08 [2] RSPM (R 4.0.0)                         
-#&gt;  foreach                1.5.1    2020-10-15 [1] RSPM (R 4.0.2)                         
-#&gt;  foreign                0.8-80   2020-05-24 [3] CRAN (R 4.0.3)                         
-#&gt;  Formula                1.2-4    2020-10-16 [1] RSPM (R 4.0.2)                         
-#&gt;  fs                     1.5.0    2020-07-31 [2] RSPM (R 4.0.2)                         
-#&gt;  generics               0.1.0    2020-10-31 [1] RSPM (R 4.0.3)                         
-#&gt;  GenomeInfoDb           1.26.0   2020-10-27 [1] Bioconductor                           
-#&gt;  GenomeInfoDbData       1.2.4    2020-11-04 [1] Bioconductor                           
-#&gt;  GenomicAlignments      1.26.0   2020-10-27 [1] Bioconductor                           
-#&gt;  GenomicFeatures        1.42.0   2020-10-27 [1] Bioconductor                           
-#&gt;  GenomicFiles           1.26.0   2020-10-27 [1] Bioconductor                           
-#&gt;  GenomicRanges          1.42.0   2020-10-27 [1] Bioconductor                           
-#&gt;  ggplot2                3.3.2    2020-06-19 [1] RSPM (R 4.0.1)                         
-#&gt;  glue                   1.4.2    2020-08-27 [2] RSPM (R 4.0.2)                         
-#&gt;  gridExtra              2.3      2017-09-09 [1] RSPM (R 4.0.0)                         
-#&gt;  gtable                 0.3.0    2019-03-25 [1] RSPM (R 4.0.0)                         
-#&gt;  highr                  0.8      2019-03-20 [2] RSPM (R 4.0.0)                         
-#&gt;  Hmisc                  4.4-1    2020-08-10 [1] RSPM (R 4.0.2)                         
-#&gt;  hms                    0.5.3    2020-01-08 [1] RSPM (R 4.0.0)                         
-#&gt;  htmlTable              2.1.0    2020-09-16 [1] RSPM (R 4.0.2)                         
-#&gt;  htmltools              0.5.0    2020-06-16 [2] RSPM (R 4.0.1)                         
-#&gt;  htmlwidgets            1.5.2    2020-10-03 [2] RSPM (R 4.0.2)                         
-#&gt;  httr                   1.4.2    2020-07-20 [2] RSPM (R 4.0.2)                         
-#&gt;  IRanges                2.24.0   2020-10-27 [1] Bioconductor                           
-#&gt;  iterators              1.0.13   2020-10-15 [1] RSPM (R 4.0.2)                         
-#&gt;  jpeg                   0.1-8.1  2019-10-24 [1] RSPM (R 4.0.0)                         
-#&gt;  jsonlite               1.7.1    2020-09-07 [2] RSPM (R 4.0.2)                         
-#&gt;  knitcitations        * 1.0.10   2020-11-04 [1] Github (cboettig/knitcitations@ea5d202)
-#&gt;  knitr                  1.30     2020-09-22 [2] RSPM (R 4.0.2)                         
-#&gt;  lattice                0.20-41  2020-04-02 [3] CRAN (R 4.0.3)                         
-#&gt;  latticeExtra           0.6-29   2019-12-19 [1] RSPM (R 4.0.0)                         
-#&gt;  lifecycle              0.2.0    2020-03-06 [2] RSPM (R 4.0.0)                         
-#&gt;  locfit                 1.5-9.4  2020-03-25 [1] RSPM (R 4.0.0)                         
-#&gt;  lubridate              1.7.9    2020-06-08 [1] RSPM (R 4.0.2)                         
-#&gt;  magrittr               1.5      2014-11-22 [2] RSPM (R 4.0.0)                         
-#&gt;  Matrix                 1.2-18   2019-11-27 [3] CRAN (R 4.0.3)                         
-#&gt;  MatrixGenerics         1.2.0    2020-10-27 [1] Bioconductor                           
-#&gt;  matrixStats            0.57.0   2020-09-25 [1] RSPM (R 4.0.2)                         
-#&gt;  megadepth            * 1.1.1    2020-11-04 [1] Bioconductor                           
-#&gt;  memoise                1.1.0    2017-04-21 [2] RSPM (R 4.0.0)                         
-#&gt;  munsell                0.5.0    2018-06-12 [1] RSPM (R 4.0.0)                         
-#&gt;  nnet                   7.3-14   2020-04-26 [3] CRAN (R 4.0.3)                         
-#&gt;  openssl                1.4.3    2020-09-18 [2] RSPM (R 4.0.2)                         
-#&gt;  pillar                 1.4.6    2020-07-10 [2] RSPM (R 4.0.2)                         
-#&gt;  pkgconfig              2.0.3    2019-09-22 [2] RSPM (R 4.0.0)                         
-#&gt;  pkgdown                1.6.1    2020-09-12 [1] RSPM (R 4.0.2)                         
-#&gt;  pkgload                1.1.0    2020-05-29 [2] RSPM (R 4.0.0)                         
-#&gt;  plyr                   1.8.6    2020-03-03 [1] RSPM (R 4.0.2)                         
-#&gt;  png                    0.1-7    2013-12-03 [1] RSPM (R 4.0.0)                         
-#&gt;  prettyunits            1.1.1    2020-01-24 [2] RSPM (R 4.0.0)                         
-#&gt;  progress               1.2.2    2019-05-16 [1] RSPM (R 4.0.0)                         
-#&gt;  ps                     1.4.0    2020-10-07 [2] RSPM (R 4.0.2)                         
-#&gt;  purrr                  0.3.4    2020-04-17 [2] RSPM (R 4.0.0)                         
-#&gt;  qvalue                 2.22.0   2020-10-27 [1] Bioconductor                           
-#&gt;  R6                     2.5.0    2020-10-28 [2] RSPM (R 4.0.3)                         
-#&gt;  ragg                   0.4.0    2020-10-05 [1] RSPM (R 4.0.2)                         
-#&gt;  rappdirs               0.3.1    2016-03-28 [1] RSPM (R 4.0.0)                         
-#&gt;  RColorBrewer           1.1-2    2014-12-07 [1] RSPM (R 4.0.0)                         
-#&gt;  Rcpp                   1.0.5    2020-07-06 [2] RSPM (R 4.0.2)                         
-#&gt;  RCurl                  1.98-1.2 2020-04-18 [1] RSPM (R 4.0.0)                         
-#&gt;  readr                  1.4.0    2020-10-05 [1] RSPM (R 4.0.2)                         
-#&gt;  RefManageR             1.3.0    2020-11-04 [1] Github (ropensci/RefManageR@ab8fe60)   
-#&gt;  reshape2               1.4.4    2020-04-09 [1] RSPM (R 4.0.2)                         
-#&gt;  rlang                  0.4.8    2020-10-08 [2] RSPM (R 4.0.2)                         
-#&gt;  rmarkdown              2.5      2020-10-21 [1] RSPM (R 4.0.3)                         
-#&gt;  rngtools               1.5      2020-01-23 [1] RSPM (R 4.0.0)                         
-#&gt;  rpart                  4.1-15   2019-04-12 [3] CRAN (R 4.0.3)                         
-#&gt;  rprojroot              1.3-2    2018-01-03 [2] RSPM (R 4.0.0)                         
-#&gt;  Rsamtools              2.6.0    2020-10-27 [1] Bioconductor                           
-#&gt;  RSQLite                2.2.1    2020-09-30 [1] RSPM (R 4.0.2)                         
-#&gt;  rstudioapi             0.11     2020-02-07 [2] RSPM (R 4.0.0)                         
-#&gt;  rtracklayer            1.50.0   2020-10-27 [1] Bioconductor                           
-#&gt;  S4Vectors              0.28.0   2020-10-27 [1] Bioconductor                           
-#&gt;  scales                 1.1.1    2020-05-11 [1] RSPM (R 4.0.0)                         
-#&gt;  sessioninfo          * 1.1.1    2018-11-05 [2] RSPM (R 4.0.0)                         
-#&gt;  stringi                1.5.3    2020-09-09 [2] RSPM (R 4.0.2)                         
-#&gt;  stringr                1.4.0    2019-02-10 [2] RSPM (R 4.0.0)                         
-#&gt;  SummarizedExperiment   1.20.0   2020-10-27 [1] Bioconductor                           
-#&gt;  survival               3.2-7    2020-09-28 [3] CRAN (R 4.0.3)                         
-#&gt;  systemfonts            0.3.2    2020-09-29 [1] RSPM (R 4.0.2)                         
-#&gt;  testthat               3.0.0    2020-10-31 [2] RSPM (R 4.0.3)                         
-#&gt;  textshaping            0.1.2    2020-10-08 [1] RSPM (R 4.0.2)                         
-#&gt;  tibble                 3.0.4    2020-10-12 [2] RSPM (R 4.0.2)                         
-#&gt;  tidyselect             1.1.0    2020-05-11 [1] RSPM (R 4.0.0)                         
-#&gt;  utf8                   1.1.4    2018-05-24 [2] RSPM (R 4.0.0)                         
-#&gt;  VariantAnnotation      1.36.0   2020-10-27 [1] Bioconductor                           
-#&gt;  vctrs                  0.3.4    2020-08-29 [2] RSPM (R 4.0.2)                         
-#&gt;  withr                  2.3.0    2020-09-22 [2] RSPM (R 4.0.2)                         
-#&gt;  xfun                   0.19     2020-10-30 [2] RSPM (R 4.0.3)                         
-#&gt;  XML                    3.99-0.5 2020-07-23 [1] RSPM (R 4.0.2)                         
-#&gt;  xml2                   1.3.2    2020-04-23 [2] RSPM (R 4.0.0)                         
-#&gt;  XVector                0.30.0   2020-10-27 [1] Bioconductor                           
-#&gt;  yaml                   2.2.1    2020-02-01 [2] RSPM (R 4.0.0)                         
-#&gt;  zlibbioc               1.36.0   2020-10-27 [1] Bioconductor                           
+#&gt;  package              * version  date       lib source        
+#&gt;  AnnotationDbi          1.52.0   2020-10-27 [1] Bioconductor  
+#&gt;  askpass                1.1      2019-01-13 [2] RSPM (R 4.0.0)
+#&gt;  assertthat             0.2.1    2019-03-21 [2] RSPM (R 4.0.0)
+#&gt;  backports              1.2.1    2020-12-09 [1] RSPM (R 4.0.3)
+#&gt;  base64enc              0.1-3    2015-07-28 [2] RSPM (R 4.0.0)
+#&gt;  Biobase                2.50.0   2020-10-27 [1] Bioconductor  
+#&gt;  BiocFileCache          1.14.0   2020-10-27 [1] Bioconductor  
+#&gt;  BiocGenerics           0.36.0   2020-10-27 [1] Bioconductor  
+#&gt;  BiocManager            1.30.10  2019-11-16 [2] CRAN (R 4.0.3)
+#&gt;  BiocParallel           1.24.1   2020-11-06 [1] Bioconductor  
+#&gt;  BiocStyle            * 2.18.1   2020-11-24 [1] Bioconductor  
+#&gt;  biomaRt                2.46.0   2020-10-27 [1] Bioconductor  
+#&gt;  Biostrings             2.58.0   2020-10-27 [1] Bioconductor  
+#&gt;  bit                    4.0.4    2020-08-04 [1] RSPM (R 4.0.2)
+#&gt;  bit64                  4.0.5    2020-08-30 [1] RSPM (R 4.0.2)
+#&gt;  bitops                 1.0-6    2013-08-17 [1] RSPM (R 4.0.0)
+#&gt;  blob                   1.2.1    2020-01-20 [1] RSPM (R 4.0.0)
+#&gt;  bookdown               0.21     2020-10-13 [1] RSPM (R 4.0.2)
+#&gt;  BSgenome               1.58.0   2020-10-27 [1] Bioconductor  
+#&gt;  bumphunter             1.32.0   2020-10-27 [1] Bioconductor  
+#&gt;  checkmate              2.0.0    2020-02-06 [1] RSPM (R 4.0.0)
+#&gt;  cli                    2.2.0    2020-11-20 [2] RSPM (R 4.0.3)
+#&gt;  cluster                2.1.0    2019-06-19 [3] CRAN (R 4.0.3)
+#&gt;  cmdfun                 1.0.2    2020-10-10 [1] RSPM (R 4.0.2)
+#&gt;  codetools              0.2-18   2020-11-04 [3] RSPM (R 4.0.3)
+#&gt;  colorspace             2.0-0    2020-11-11 [1] RSPM (R 4.0.3)
+#&gt;  crayon                 1.3.4    2017-09-16 [2] RSPM (R 4.0.0)
+#&gt;  curl                   4.3      2019-12-02 [2] RSPM (R 4.0.0)
+#&gt;  data.table             1.13.4   2020-12-08 [1] RSPM (R 4.0.3)
+#&gt;  DBI                    1.1.0    2019-12-15 [1] RSPM (R 4.0.0)
+#&gt;  dbplyr                 2.0.0    2020-11-03 [1] RSPM (R 4.0.3)
+#&gt;  DelayedArray           0.16.0   2020-10-27 [1] Bioconductor  
+#&gt;  derfinder              1.24.0   2020-10-27 [1] Bioconductor  
+#&gt;  derfinderHelper        1.24.0   2020-10-27 [1] Bioconductor  
+#&gt;  desc                   1.2.0    2018-05-01 [2] RSPM (R 4.0.0)
+#&gt;  digest                 0.6.27   2020-10-24 [2] RSPM (R 4.0.3)
+#&gt;  doRNG                  1.8.2    2020-01-27 [1] RSPM (R 4.0.0)
+#&gt;  dplyr                  1.0.2    2020-08-18 [1] RSPM (R 4.0.2)
+#&gt;  ellipsis               0.3.1    2020-05-15 [2] RSPM (R 4.0.0)
+#&gt;  evaluate               0.14     2019-05-28 [2] RSPM (R 4.0.0)
+#&gt;  fansi                  0.4.1    2020-01-08 [2] RSPM (R 4.0.0)
+#&gt;  foreach                1.5.1    2020-10-15 [1] RSPM (R 4.0.2)
+#&gt;  foreign                0.8-80   2020-05-24 [3] CRAN (R 4.0.3)
+#&gt;  Formula                1.2-4    2020-10-16 [1] RSPM (R 4.0.2)
+#&gt;  fs                     1.5.0    2020-07-31 [2] RSPM (R 4.0.2)
+#&gt;  generics               0.1.0    2020-10-31 [1] RSPM (R 4.0.3)
+#&gt;  GenomeInfoDb           1.26.2   2020-12-08 [1] Bioconductor  
+#&gt;  GenomeInfoDbData       1.2.4    2020-12-18 [1] Bioconductor  
+#&gt;  GenomicAlignments      1.26.0   2020-10-27 [1] Bioconductor  
+#&gt;  GenomicFeatures        1.42.1   2020-11-12 [1] Bioconductor  
+#&gt;  GenomicFiles           1.26.0   2020-10-27 [1] Bioconductor  
+#&gt;  GenomicRanges          1.42.0   2020-10-27 [1] Bioconductor  
+#&gt;  ggplot2                3.3.2    2020-06-19 [1] RSPM (R 4.0.1)
+#&gt;  glue                   1.4.2    2020-08-27 [2] RSPM (R 4.0.2)
+#&gt;  gridExtra              2.3      2017-09-09 [1] RSPM (R 4.0.0)
+#&gt;  gtable                 0.3.0    2019-03-25 [1] RSPM (R 4.0.0)
+#&gt;  highr                  0.8      2019-03-20 [2] RSPM (R 4.0.0)
+#&gt;  Hmisc                  4.4-2    2020-11-29 [1] RSPM (R 4.0.3)
+#&gt;  hms                    0.5.3    2020-01-08 [1] RSPM (R 4.0.0)
+#&gt;  htmlTable              2.1.0    2020-09-16 [1] RSPM (R 4.0.2)
+#&gt;  htmltools              0.5.0    2020-06-16 [2] RSPM (R 4.0.1)
+#&gt;  htmlwidgets            1.5.3    2020-12-10 [2] RSPM (R 4.0.3)
+#&gt;  httr                   1.4.2    2020-07-20 [2] RSPM (R 4.0.2)
+#&gt;  IRanges                2.24.1   2020-12-12 [1] Bioconductor  
+#&gt;  iterators              1.0.13   2020-10-15 [1] RSPM (R 4.0.2)
+#&gt;  jpeg                   0.1-8.1  2019-10-24 [1] RSPM (R 4.0.0)
+#&gt;  jsonlite               1.7.2    2020-12-09 [2] RSPM (R 4.0.3)
+#&gt;  knitr                  1.30     2020-09-22 [2] RSPM (R 4.0.2)
+#&gt;  lattice                0.20-41  2020-04-02 [3] CRAN (R 4.0.3)
+#&gt;  latticeExtra           0.6-29   2019-12-19 [1] RSPM (R 4.0.0)
+#&gt;  lifecycle              0.2.0    2020-03-06 [2] RSPM (R 4.0.0)
+#&gt;  locfit                 1.5-9.4  2020-03-25 [1] RSPM (R 4.0.0)
+#&gt;  lubridate              1.7.9.2  2020-11-13 [1] RSPM (R 4.0.3)
+#&gt;  magrittr               2.0.1    2020-11-17 [2] RSPM (R 4.0.3)
+#&gt;  Matrix                 1.2-18   2019-11-27 [3] CRAN (R 4.0.3)
+#&gt;  MatrixGenerics         1.2.0    2020-10-27 [1] Bioconductor  
+#&gt;  matrixStats            0.57.0   2020-09-25 [1] RSPM (R 4.0.2)
+#&gt;  megadepth            * 1.1.2    2020-12-18 [1] Bioconductor  
+#&gt;  memoise                1.1.0    2017-04-21 [2] RSPM (R 4.0.0)
+#&gt;  munsell                0.5.0    2018-06-12 [1] RSPM (R 4.0.0)
+#&gt;  nnet                   7.3-14   2020-04-26 [3] CRAN (R 4.0.3)
+#&gt;  openssl                1.4.3    2020-09-18 [2] RSPM (R 4.0.2)
+#&gt;  pillar                 1.4.7    2020-11-20 [2] RSPM (R 4.0.3)
+#&gt;  pkgconfig              2.0.3    2019-09-22 [2] RSPM (R 4.0.0)
+#&gt;  pkgdown                1.6.1    2020-09-12 [1] RSPM (R 4.0.2)
+#&gt;  pkgload                1.1.0    2020-05-29 [2] RSPM (R 4.0.0)
+#&gt;  plyr                   1.8.6    2020-03-03 [1] RSPM (R 4.0.2)
+#&gt;  png                    0.1-7    2013-12-03 [1] RSPM (R 4.0.0)
+#&gt;  prettyunits            1.1.1    2020-01-24 [2] RSPM (R 4.0.0)
+#&gt;  progress               1.2.2    2019-05-16 [1] RSPM (R 4.0.0)
+#&gt;  ps                     1.5.0    2020-12-05 [2] RSPM (R 4.0.3)
+#&gt;  purrr                  0.3.4    2020-04-17 [2] RSPM (R 4.0.0)
+#&gt;  qvalue                 2.22.0   2020-10-27 [1] Bioconductor  
+#&gt;  R6                     2.5.0    2020-10-28 [2] RSPM (R 4.0.3)
+#&gt;  ragg                   0.4.0    2020-10-05 [1] RSPM (R 4.0.3)
+#&gt;  rappdirs               0.3.1    2016-03-28 [2] RSPM (R 4.0.0)
+#&gt;  RColorBrewer           1.1-2    2014-12-07 [1] RSPM (R 4.0.0)
+#&gt;  Rcpp                   1.0.5    2020-07-06 [2] RSPM (R 4.0.2)
+#&gt;  RCurl                  1.98-1.2 2020-04-18 [1] RSPM (R 4.0.0)
+#&gt;  readr                  1.4.0    2020-10-05 [1] RSPM (R 4.0.3)
+#&gt;  RefManageR           * 1.3.0    2020-11-13 [1] RSPM (R 4.0.3)
+#&gt;  reshape2               1.4.4    2020-04-09 [1] RSPM (R 4.0.2)
+#&gt;  rlang                  0.4.9    2020-11-26 [2] RSPM (R 4.0.3)
+#&gt;  rmarkdown              2.6      2020-12-14 [1] RSPM (R 4.0.3)
+#&gt;  rngtools               1.5      2020-01-23 [1] RSPM (R 4.0.0)
+#&gt;  rpart                  4.1-15   2019-04-12 [3] CRAN (R 4.0.3)
+#&gt;  rprojroot              2.0.2    2020-11-15 [2] RSPM (R 4.0.3)
+#&gt;  Rsamtools              2.6.0    2020-10-27 [1] Bioconductor  
+#&gt;  RSQLite                2.2.1    2020-09-30 [1] RSPM (R 4.0.2)
+#&gt;  rstudioapi             0.13     2020-11-12 [2] RSPM (R 4.0.3)
+#&gt;  rtracklayer            1.50.0   2020-10-27 [1] Bioconductor  
+#&gt;  S4Vectors              0.28.1   2020-12-09 [1] Bioconductor  
+#&gt;  scales                 1.1.1    2020-05-11 [1] RSPM (R 4.0.0)
+#&gt;  sessioninfo          * 1.1.1    2018-11-05 [2] RSPM (R 4.0.0)
+#&gt;  stringi                1.5.3    2020-09-09 [2] RSPM (R 4.0.2)
+#&gt;  stringr                1.4.0    2019-02-10 [2] RSPM (R 4.0.0)
+#&gt;  SummarizedExperiment   1.20.0   2020-10-27 [1] Bioconductor  
+#&gt;  survival               3.2-7    2020-09-28 [3] CRAN (R 4.0.3)
+#&gt;  systemfonts            0.3.2    2020-09-29 [1] RSPM (R 4.0.3)
+#&gt;  testthat               3.0.0    2020-10-31 [2] RSPM (R 4.0.3)
+#&gt;  textshaping            0.2.1    2020-11-13 [1] RSPM (R 4.0.3)
+#&gt;  tibble                 3.0.4    2020-10-12 [2] RSPM (R 4.0.2)
+#&gt;  tidyselect             1.1.0    2020-05-11 [1] RSPM (R 4.0.0)
+#&gt;  utf8                   1.1.4    2018-05-24 [2] RSPM (R 4.0.0)
+#&gt;  VariantAnnotation      1.36.0   2020-10-27 [1] Bioconductor  
+#&gt;  vctrs                  0.3.5    2020-11-17 [2] RSPM (R 4.0.3)
+#&gt;  withr                  2.3.0    2020-09-22 [2] RSPM (R 4.0.2)
+#&gt;  xfun                   0.19     2020-10-30 [2] RSPM (R 4.0.3)
+#&gt;  XML                    3.99-0.5 2020-07-23 [1] RSPM (R 4.0.2)
+#&gt;  xml2                   1.3.2    2020-04-23 [2] RSPM (R 4.0.0)
+#&gt;  XVector                0.30.0   2020-10-27 [1] Bioconductor  
+#&gt;  yaml                   2.2.1    2020-02-01 [2] RSPM (R 4.0.0)
+#&gt;  zlibbioc               1.36.0   2020-10-27 [1] Bioconductor  
 #&gt; 
 #&gt; [1] /__w/_temp/Library
 #&gt; [2] /usr/local/lib/R/site-library
@@ -655,19 +652,41 @@ Timing results. Timing comparison for processing 1,000 genomic regions on a bigW
 <div id="bibliography" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bibliography" class="anchor"></a>Bibliography</h1>
-<p>This vignette was generated using <em><a href="https://bioconductor.org/packages/3.12/BiocStyle">BiocStyle</a></em> (<a href="https://github.com/Bioconductor/BiocStyle">Oleś, Morgan, and Huber, 2020</a>) with <em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> (<a href="https://yihui.org/knitr/">Xie, 2020</a>) and <em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em> (<a href="https://github.com/rstudio/rmarkdown">Allaire, Xie, McPherson, Luraschi, et al., 2020</a>) running behind the scenes.</p>
-<p>Citations made with <em><a href="https://CRAN.R-project.org/package=knitcitations">knitcitations</a></em> (<a href="https://github.com/cboettig/knitcitations">Boettiger, 2020</a>).</p>
-<p>[1] J. Allaire, Y. Xie, J. McPherson, J. Luraschi, et al. <em>rmarkdown: Dynamic Documents for R</em>. R package version 2.5. 2020. &lt;URL: <a href="https://github.com/rstudio/rmarkdown" class="uri">https://github.com/rstudio/rmarkdown</a>&gt;.</p>
-<p>[2] C. Boettiger. <em>knitcitations: Citations for ‘Knitr’ Markdown Files</em>. R package version 1.0.10. 2020. &lt;URL: <a href="https://github.com/cboettig/knitcitations" class="uri">https://github.com/cboettig/knitcitations</a>&gt;.</p>
-<p>[3] G. Csárdi, R. core, H. Wickham, W. Chang, et al. <em>sessioninfo: R Session Information</em>. R package version 1.1.1. 2018. &lt;URL: <a href="https://github.com/r-lib/sessioninfo#readme" class="uri">https://github.com/r-lib/sessioninfo#readme</a>&gt;.</p>
-<p>[4] W. Huber, V. J. Carey, R. Gentleman, S. Anders, et al. “Orchestrating high-throughput genomic analysis with Bioconductor”. In: <em>Nat Methods</em> (2015). DOI: 10.1038/nmeth.3252.</p>
-<p>[5] M. Lawrence, R. Gentleman, and V. Carey. “rtracklayer: an R package for interfacing with genome browsers”. In: <em>Bioinformatics</em> 25 (2009), pp. 1841-1842. DOI: 10.1093/bioinformatics/btp328. &lt;URL: <a href="http://bioinformatics.oxfordjournals.org/content/25/14/1841.abstract" class="uri">http://bioinformatics.oxfordjournals.org/content/25/14/1841.abstract</a>&gt;.</p>
-<p>[6] A. Oleś, M. Morgan, and W. Huber. <em>BiocStyle: Standard styles for vignettes and other Bioconductor documents</em>. R package version 2.18.0. 2020. &lt;URL: <a href="https://github.com/Bioconductor/BiocStyle" class="uri">https://github.com/Bioconductor/BiocStyle</a>&gt;.</p>
-<p>[7] R Core Team. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. Vienna, Austria, 2020. &lt;URL: <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>&gt;.</p>
-<p>[8] H. Wickham. “testthat: Get Started with Testing”. In: <em>The R Journal</em> 3 (2011), pp. 5-10. &lt;URL: <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" class="uri">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>&gt;.</p>
-<p>[9] C. Wilks, D. Zhang, L. Collado-Torres, and B. Langmead. “megadepth: BigWig and BAM related utilities”. In: <em>bioRxiv</em> (2020). DOI: 10.1101/TODO. &lt;URL: <a href="https://www.biorxiv.org/content/10.1101/TODO" class="uri">https://www.biorxiv.org/content/10.1101/TODO</a>&gt;.</p>
-<p>[10] Y. Xie. <em>knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. R package version 1.30. 2020. &lt;URL: <a href="https://yihui.org/knitr/" class="uri">https://yihui.org/knitr/</a>&gt;.</p>
-<p>[11] D. Zhang and L. Collado-Torres. <em>megadepth: BigWig and BAM related utilities</em>. <a href="https://github.com/LieberInstitute/megadepth" class="uri">https://github.com/LieberInstitute/megadepth</a> - R package version 1.1.1. 2020. DOI: 10.18129/B9.bioc.megadepth. &lt;URL: <a href="http://www.bioconductor.org/packages/megadepth" class="uri">http://www.bioconductor.org/packages/megadepth</a>&gt;.</p>
+<p>This vignette was generated using <em><a href="https://bioconductor.org/packages/3.12/BiocStyle">BiocStyle</a></em> (Oleś, Morgan, and Huber, 2020) with <em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> (Xie, 2020) and <em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em> (Allaire, Xie, McPherson, et al., 2020) running behind the scenes.</p>
+<p>Citations made with <em><a href="https://CRAN.R-project.org/package=RefManageR">RefManageR</a></em> (McLean, 2017).</p>
+<p>
+<a id="bib-allaire2020rmarkdown"></a><a href="#cite-allaire2020rmarkdown">[1]</a><cite> J. Allaire, Y. Xie, J. McPherson, et al. <em>rmarkdown: Dynamic Documents for R</em>. R package version 2.6. 2020. URL: <a href="https://github.com/rstudio/rmarkdown">https://github.com/rstudio/rmarkdown</a>.</cite>
+</p>
+<p>
+<a id="bib-csrdi2018sessioninfo"></a><a href="#cite-csrdi2018sessioninfo">[2]</a><cite> G. Csárdi, R. core, H. Wickham, et al. <em>sessioninfo: R Session Information</em>. R package version 1.1.1. 2018. URL: <a href="https://github.com/r-lib/sessioninfo#readme">https://github.com/r-lib/sessioninfo#readme</a>.</cite>
+</p>
+<p>
+<a id="bib-bioconductor2015"></a><a href="#cite-bioconductor2015">[3]</a><cite> W. Huber, V. J. Carey, R. Gentleman, et al. “Orchestrating high-throughput genomic analysis with Bioconductor”. In: <em>Nat Methods</em> (2015). DOI: <a href="https://doi.org/10.1038/nmeth.3252">10.1038/nmeth.3252</a>.</cite>
+</p>
+<p>
+<a id="bib-lawrence2009rtracklayer"></a><a href="#cite-lawrence2009rtracklayer">[4]</a><cite> M. Lawrence, R. Gentleman, and V. Carey. “rtracklayer: an R package for interfacing with genome browsers”. In: <em>Bioinformatics</em> 25 (2009), pp. 1841-1842. DOI: <a href="https://doi.org/10.1093/bioinformatics/btp328">10.1093/bioinformatics/btp328</a>. URL: <a href="http://bioinformatics.oxfordjournals.org/content/25/14/1841.abstract">http://bioinformatics.oxfordjournals.org/content/25/14/1841.abstract</a>.</cite>
+</p>
+<p>
+<a id="bib-mclean2017refmanager"></a><a href="#cite-mclean2017refmanager">[5]</a><cite> M. W. McLean. “RefManageR: Import and Manage BibTeX and BibLaTeX References in R”. In: <em>The Journal of Open Source Software</em> (2017). DOI: <a href="https://doi.org/10.21105/joss.00338">10.21105/joss.00338</a>.</cite>
+</p>
+<p>
+<a id="bib-ole2020biocstyle"></a><a href="#cite-ole2020biocstyle">[6]</a><cite> A. Oleś, M. Morgan, and W. Huber. <em>BiocStyle: Standard styles for vignettes and other Bioconductor documents</em>. R package version 2.18.1. 2020. URL: <a href="https://github.com/Bioconductor/BiocStyle">https://github.com/Bioconductor/BiocStyle</a>.</cite>
+</p>
+<p>
+<a id="bib-2020language"></a><a href="#cite-2020language">[7]</a><cite> R Core Team. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. Vienna, Austria, 2020. URL: <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</cite>
+</p>
+<p>
+<a id="bib-wickham2011testthat"></a><a href="#cite-wickham2011testthat">[8]</a><cite> H. Wickham. “testthat: Get Started with Testing”. In: <em>The R Journal</em> 3 (2011), pp. 5–10. URL: <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.</cite>
+</p>
+<p>
+<a id="bib-wilks2020megadepth"></a><a href="#cite-wilks2020megadepth">[9]</a><cite> C. Wilks, D. Zhang, L. Collado-Torres, et al. “megadepth: BigWig and BAM related utilities”. In: <em>bioRxiv</em> (2020). DOI: <a href="https://doi.org/10.1101/TODO">10.1101/TODO</a>. URL: <a href="https://www.biorxiv.org/content/10.1101/TODO">https://www.biorxiv.org/content/10.1101/TODO</a>.</cite>
+</p>
+<p>
+<a id="bib-xie2020knitr"></a><a href="#cite-xie2020knitr">[10]</a><cite> Y. Xie. <em>knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. R package version 1.30. 2020. URL: <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.</cite>
+</p>
+<p>
+<a id="bib-zhang2020megadepth"></a><a href="#cite-zhang2020megadepth">[11]</a><cite> D. Zhang and L. Collado-Torres. <em>megadepth: BigWig and BAM related utilities</em>. <a href="https://github.com/LieberInstitute/megadepth" class="uri">https://github.com/LieberInstitute/megadepth</a> - R package version 1.1.2. 2020. DOI: <a href="https://doi.org/10.18129/B9.bioc.megadepth">10.18129/B9.bioc.megadepth</a>. URL: <a href="http://www.bioconductor.org/packages/megadepth">http://www.bioconductor.org/packages/megadepth</a>.</cite>
+</p>
 </div>
 <div class="footnotes">
 <hr>

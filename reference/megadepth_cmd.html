@@ -73,7 +73,7 @@ system2('megadepth', ...)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">megadepth</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ system2('megadepth', ...)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -98,7 +98,7 @@ system2('megadepth', ...)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/LieberInstitute/megadepth/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -169,19 +169,19 @@ available at <a href='https://snystrom.github.io/cmdfun/index.html'>https://snys
     <pre class="examples"><div class='input'>
 <span class='co'>## Install if necessary</span>
 <span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.0.8b</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.0.9</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
 <span class='co'>## Find version</span>
 <span class='co'>## megadepth_shell() provides an interface more familiar to R users</span>
 <span class='fu'>megadepth_shell</span><span class='op'>(</span>version <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "megadepth 1.0.8"</div><div class='input'><span class='co'>## megadepth_cmd() requires using directly the command line syntax for</span>
+</div><div class='output co'>#&gt; [1] "megadepth 1.0.9"</div><div class='input'><span class='co'>## megadepth_cmd() requires using directly the command line syntax for</span>
 <span class='co'>## Megadepth</span>
 <span class='fu'>megadepth_cmd</span><span class='op'>(</span><span class='st'>"--version"</span>, stdout <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "megadepth 1.0.8"</div><div class='input'>
+</div><div class='output co'>#&gt; [1] "megadepth 1.0.9"</div><div class='input'>
 <span class='co'>## Compare the help files:</span>
 <span class='co'># megadepth_shell() captures the standard output and returns a character()</span>
 <span class='co'># megadepth_cmd() shows the standard output on the console</span>
 <span class='fu'>megadepth_shell</span><span class='op'>(</span><span class='st'>"--help"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] "megadepth 1.0.8"                                                                                                                                           
+</div><div class='output co'>#&gt;  [1] "megadepth 1.0.9"                                                                                                                                           
 #&gt;  [2] ""                                                                                                                                                          
 #&gt;  [3] "BAM and BigWig utility."                                                                                                                                   
 #&gt;  [4] ""                                                                                                                                                          
@@ -247,31 +247,34 @@ available at <a href='https://snystrom.github.io/cmdfun/index.html'>https://snys
 #&gt; [64] "  --bigwig             Output coverage as BigWig file(s).  Writes to &lt;prefix&gt;.bw"                                                                          
 #&gt; [65] "                       (also &lt;prefix&gt;.unique.bw when --min-unique-qual is specified)."                                                                     
 #&gt; [66] "                       Requires libBigWig."                                                                                                                
-#&gt; [67] "  --annotation &lt;bed&gt;   Path to BED file containing list of regions to sum coverage over"                                                                   
-#&gt; [68] "                       (tab-delimited: chrm,start,end)"                                                                                                    
+#&gt; [67] "  --annotation &lt;BED|window_size&gt;   Path to BED file containing list of regions to sum coverage over"                                                       
+#&gt; [68] "                       (tab-delimited: chrm,start,end). Or this can specify a contiguous region size in bp."                                               
 #&gt; [69] "  --op &lt;sum[default], mean&gt;     Statistic to run on the intervals provided by --annotation"                                                                
-#&gt; [70] "  --min-unique-qual &lt;int&gt;"                                                                                                                                 
-#&gt; [71] "                       Output second bigWig consisting built only from alignments"                                                                         
-#&gt; [72] "                       with at least this mapping quality.  --bigwig must be specified."                                                                   
-#&gt; [73] "                       Also produces second set of annotation sums based on this coverage"                                                                 
-#&gt; [74] "                       if --annotation is enabled"                                                                                                         
-#&gt; [75] "  --double-count       Allow overlapping ends of PE read to count twice toward"                                                                            
-#&gt; [76] "                       coverage"                                                                                                                           
-#&gt; [77] "  --num-bases          Report total sum of bases in alignments processed (that pass filters)"                                                              
-#&gt; [78] "  --gzip               Turns on gzipping of coverage output (no effect if --bigwig is passsed),"                                                           
-#&gt; [79] "                       this will also enable --no-coverage-stdout."                                                                                        
-#&gt; [80] ""                                                                                                                                                          
-#&gt; [81] "Other outputs:"                                                                                                                                            
-#&gt; [82] "  --read-ends          Print counts of read starts/ends, if --min-unique-qual is set"                                                                      
-#&gt; [83] "                       then only the alignments that pass that filter will be counted here"                                                                
-#&gt; [84] "                       Writes to 2 TSV files: &lt;prefix&gt;.starts.tsv, &lt;prefix&gt;.ends.tsv"                                                                      
-#&gt; [85] "  --frag-dist          Print fragment length distribution across the genome"                                                                               
-#&gt; [86] "                       Writes to a TSV file &lt;prefix&gt;.frags.tsv"                                                                                            
-#&gt; [87] "  --echo-sam           Print a SAM record for each aligned read"                                                                                           
-#&gt; [88] "  --ends               Report end coordinate for each read (useful for debugging)"                                                                         
-#&gt; [89] "  --test-polya         Lower Poly-A filter minimums for testing (only useful for debugging/testing)"                                                       
-#&gt; [90] ""                                                                                                                                                          
-#&gt; [91] ""                                                                                                                                                          </div><div class='input'><span class='fu'>megadepth_cmd</span><span class='op'>(</span><span class='st'>"--help"</span><span class='op'>)</span>
+#&gt; [70] "  --no-index           If using --annotation, skip the use of the BAM index (BAI) for pulling out regions."                                                
+#&gt; [71] "                       Setting this can be faster if doing windows across the whole genome."                                                               
+#&gt; [72] "                       This will be turned on automatically if a window size is passed to --annotation."                                                   
+#&gt; [73] "  --min-unique-qual &lt;int&gt;"                                                                                                                                 
+#&gt; [74] "                       Output second bigWig consisting built only from alignments"                                                                         
+#&gt; [75] "                       with at least this mapping quality.  --bigwig must be specified."                                                                   
+#&gt; [76] "                       Also produces second set of annotation sums based on this coverage"                                                                 
+#&gt; [77] "                       if --annotation is enabled"                                                                                                         
+#&gt; [78] "  --double-count       Allow overlapping ends of PE read to count twice toward"                                                                            
+#&gt; [79] "                       coverage"                                                                                                                           
+#&gt; [80] "  --num-bases          Report total sum of bases in alignments processed (that pass filters)"                                                              
+#&gt; [81] "  --gzip               Turns on gzipping of coverage output (no effect if --bigwig is passsed),"                                                           
+#&gt; [82] "                       this will also enable --no-coverage-stdout."                                                                                        
+#&gt; [83] ""                                                                                                                                                          
+#&gt; [84] "Other outputs:"                                                                                                                                            
+#&gt; [85] "  --read-ends          Print counts of read starts/ends, if --min-unique-qual is set"                                                                      
+#&gt; [86] "                       then only the alignments that pass that filter will be counted here"                                                                
+#&gt; [87] "                       Writes to 2 TSV files: &lt;prefix&gt;.starts.tsv, &lt;prefix&gt;.ends.tsv"                                                                      
+#&gt; [88] "  --frag-dist          Print fragment length distribution across the genome"                                                                               
+#&gt; [89] "                       Writes to a TSV file &lt;prefix&gt;.frags.tsv"                                                                                            
+#&gt; [90] "  --echo-sam           Print a SAM record for each aligned read"                                                                                           
+#&gt; [91] "  --ends               Report end coordinate for each read (useful for debugging)"                                                                         
+#&gt; [92] "  --test-polya         Lower Poly-A filter minimums for testing (only useful for debugging/testing)"                                                       
+#&gt; [93] ""                                                                                                                                                          
+#&gt; [94] ""                                                                                                                                                          </div><div class='input'><span class='fu'>megadepth_cmd</span><span class='op'>(</span><span class='st'>"--help"</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
