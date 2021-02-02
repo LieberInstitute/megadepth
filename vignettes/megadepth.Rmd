@@ -39,17 +39,12 @@ knitr::opts_chunk$set(
 startTime <- Sys.time()
 
 ## Bib setup
-library("knitcitations")
-
-## Load knitcitations with a clean bibliography
-cleanbib()
-cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
+library("RefManageR")
 
 ## Write bibliography information
 bib <- c(
     R = citation(),
     BiocStyle = citation("BiocStyle")[1],
-    knitcitations = citation("knitcitations")[1],
     knitr = citation("knitr")[1],
     rmarkdown = citation("rmarkdown")[1],
     sessioninfo = citation("sessioninfo")[1],
@@ -65,14 +60,13 @@ bib <- c(
         journal = "Nature Methods",
         journaltitle = "Nat Methods"
     ),
+    RefManageR = citation("RefManageR")[1],
     rtracklayer = citation("rtracklayer")
 )
-
-write.bibtex(bib, file = "megadepth.bib")
 ```
 
 
-The goal of `r Biocpkg("megadepth")` is to provide an R interface to the command line tool [Megadepth](https://github.com/ChristopherWilks/megadepth) for BigWig and BAM related utilities created by [Christopher Wilks](https://twitter.com/chrisnwilks) `r citep(bib[["megadepthpaper"]])`. This R package enables **fast** processing of BigWig files on downstream packages such as [dasper](https://bioconductor.org/packages/dasper) and [recount3](https://bioconductor.org/packages/recount3). The [Megadepth](https://github.com/ChristopherWilks/megadepth) software also provides utilities for processing BAM files and extracting coverage information from them.
+The goal of `r Biocpkg("megadepth")` is to provide an R interface to the command line tool [Megadepth](https://github.com/ChristopherWilks/megadepth) for BigWig and BAM related utilities created by [Christopher Wilks](https://twitter.com/chrisnwilks) `r Citep(bib[["megadepthpaper"]])`. This R package enables **fast** processing of BigWig files on downstream packages such as [dasper](https://bioconductor.org/packages/dasper) and [recount3](https://bioconductor.org/packages/recount3). The [Megadepth](https://github.com/ChristopherWilks/megadepth) software also provides utilities for processing BAM files and extracting coverage information from them.
 
 Here is an illustration on how fast `r Biocpkg("megadepth")` is compared to other tools for processing local and remote BigWig files.
 
@@ -103,7 +97,7 @@ BiocManager::valid()
 
 ## Required knowledge
 
-`r Biocpkg("megadepth")` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data and high-throughput sequencing data in general. You might benefit from being familiar with the BigWig file format and the `r Biocpkg("rtracklayer")` for importing those files into R as well as exporting BED files `r citep(bib[["rtracklayer"]])`. If you are working with annoation files, `r Biocpkg("GenomicFeatures")` and `r Biocpkg("GenomicRanges")` will also be useful to you.
+`r Biocpkg("megadepth")` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data and high-throughput sequencing data in general. You might benefit from being familiar with the BigWig file format and the `r Biocpkg("rtracklayer")` for importing those files into R as well as exporting BED files `r Citep(bib[["rtracklayer"]])`. If you are working with annoation files, `r Biocpkg("GenomicFeatures")` and `r Biocpkg("GenomicRanges")` will also be useful to you.
 
 If you are asking yourself the question "Where do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU).
 
@@ -163,7 +157,7 @@ bw_cov <- get_coverage(
 bw_cov
 ```
 
-`get_coverage()` returns an object that is familiar to `r Biocpkg("GenomicRanges")` users, that is, a `GRanges` object that can be used with other Bioconductor software packages `r citep(bib[["bioconductor2015"]])`.
+`get_coverage()` returns an object that is familiar to `r Biocpkg("GenomicRanges")` users, that is, a `GRanges` object that can be used with other Bioconductor software packages `r Citep(bib[["bioconductor2015"]])`.
 
 This example is just the tip of the iceberg, as [Megadepth](https://github.com/ChristopherWilks/megadepth) and thus `r Biocpkg("megadepth")` can do a lot of useful processing operations on BAM and bigWig files.
 
@@ -318,17 +312,17 @@ P.S. An [alternative version of this vignette is available](https://LieberInstit
 
 # Reproducibility
 
-The `r Biocpkg("megadepth")` package `r citep(bib[["megadepth"]])` was made possible thanks to:
+The `r Biocpkg("megadepth")` package `r Citep(bib[["megadepth"]])` was made possible thanks to:
 
-* R `r citep(bib[["R"]])`
-* `r Biocpkg("BiocStyle")` `r citep(bib[["BiocStyle"]])`
-* `r CRANpkg("knitcitations")` `r citep(bib[["knitcitations"]])`
-* `r CRANpkg("knitr")` `r citep(bib[["knitr"]])`
-* `r CRANpkg("rmarkdown")` `r citep(bib[["rmarkdown"]])`
-* `r CRANpkg("sessioninfo")` `r citep(bib[["sessioninfo"]])`
-* `r CRANpkg("testthat")` `r citep(bib[["testthat"]])`
+* R `r Citep(bib[["R"]])`
+* `r Biocpkg("BiocStyle")` `r Citep(bib[["BiocStyle"]])`
+* `r CRANpkg("knitr")` `r Citep(bib[["knitr"]])`
+* `r CRANpkg("rmarkdown")` `r Citep(bib[["rmarkdown"]])`
+* `r CRANpkg("RefManageR")` `r Citep(bib[["RefManageR"]])`
+* `r CRANpkg("sessioninfo")` `r Citep(bib[["sessioninfo"]])`
+* `r CRANpkg("testthat")` `r Citep(bib[["testthat"]])`
 
-This package was developed using `r BiocStyle::Githubpkg("lcolladotor/biocthis")`.
+This package was developed using `r BiocStyle::Biocpkg("biocthis")`.
 
 
 Code for creating the vignette
@@ -341,11 +335,6 @@ system.time(render("megadepth.Rmd", "BiocStyle::html_document"))
 ## Extract the R code
 library("knitr")
 knit("megadepth.Rmd", tangle = TRUE)
-```
-
-```{r createVignette2}
-## Clean up
-file.remove("megadepth.bib")
 ```
 
 Date the vignette was generated.
@@ -376,12 +365,12 @@ session_info()
 
 # Bibliography
 
-This vignette was generated using `r Biocpkg("BiocStyle")` `r citep(bib[["BiocStyle"]])`
-with `r CRANpkg("knitr")` `r citep(bib[["knitr"]])` and `r CRANpkg("rmarkdown")` `r citep(bib[["rmarkdown"]])` running behind the scenes.
+This vignette was generated using `r Biocpkg("BiocStyle")` `r Citep(bib[["BiocStyle"]])`
+with `r CRANpkg("knitr")` `r Citep(bib[["knitr"]])` and `r CRANpkg("rmarkdown")` `r Citep(bib[["rmarkdown"]])` running behind the scenes.
 
-Citations made with `r CRANpkg("knitcitations")` `r citep(bib[["knitcitations"]])`.
+Citations made with `r CRANpkg('RefManageR')` `r Citep(bib[['RefManageR']])`.
 
 ```{r vignetteBiblio, results = "asis", echo = FALSE, warning = FALSE, message = FALSE}
 ## Print bibliography
-bibliography()
+PrintBibliography(bib, .opts = list(hyperlink = "to.doc", style = "html"))
 ```

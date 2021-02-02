@@ -1,7 +1,7 @@
 Package: megadepth
 Title: megadepth: BigWig and BAM related utilities
-Version: 1.1.1
-Date: 2020-10-16
+Version: 1.1.2
+Date: 2020-12-17
 Authors@R: 
     c(
     person(
@@ -36,7 +36,6 @@ Suggests:
     covr,
     knitr,
     BiocStyle,
-    knitcitations,
     sessioninfo,
     rmarkdown,
     rtracklayer,
