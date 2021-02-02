@@ -13,12 +13,14 @@ read_junction_table(tsv_file)
 }
 \value{
 A \code{tibble::tibble()} with the junction data that follows the format
-specified at
-\url{https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions}.
+specified at \url{https://github.com/ChristopherWilks/megadepth#junctions}.
 }
 \description{
-Read an \verb{*jxs.tsv} file created by \code{bam_to_junctions()} or manually by
-the user using Megadepth.
+Read an \verb{*all_jxs.tsv} or \verb{*jxs.tsv} file created by \code{bam_to_junctions()} or
+manually by the user using Megadepth. The rows of a \verb{*jxs.tsv} can have
+either 7 or 14 columns, which can lead to warnings when reading in - these
+are safe to ignore. For details on the format of the input TSV file, check
+\url{https://github.com/ChristopherWilks/megadepth#junctions}.
 }
 \examples{
 
@@ -33,7 +35,8 @@ example_bam <- system.file("tests", "test.bam",
 ## Run bam_to_junctions()
 example_jxs <- bam_to_junctions(example_bam, overwrite = TRUE)
 
-# ## Read the data as a tibble using the format specified at
-# ## https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions
-# read_junction_table(example_jxs)
+## Read the junctions in as a tibble
+all_jxs <- read_junction_table(example_jxs[["all_jxs.tsv"]])
+
+all_jxs
 }

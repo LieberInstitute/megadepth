@@ -1,16 +1,18 @@
 #' Read a junction TSV file created by Megadepth as a table
 #'
-#' Read an `*jxs.tsv` file created by `bam_to_junctions()` or manually by
-#' the user using Megadepth.
+#' Read an `*all_jxs.tsv` or `*jxs.tsv` file created by `bam_to_junctions()` or
+#' manually by the user using Megadepth. The rows of a `*jxs.tsv` can have
+#' either 7 or 14 columns, which can lead to warnings when reading in - these
+#' are safe to ignore. For details on the format of the input TSV file, check
+#' <https://github.com/ChristopherWilks/megadepth#junctions>.
 #'
 #' @param tsv_file A `character(1)` specifying the path to the tab-separated
-#' (TSV) file created manually using `megadepth_shell()` or on a previous
-#' `bam_to_junctions()` run.
+#'   (TSV) file created manually using `megadepth_shell()` or on a previous
+#'   `bam_to_junctions()` run.
 #'
 #' @importFrom readr read_delim
 #' @return A `tibble::tibble()` with the junction data that follows the format
-#' specified at
-#' <https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions>.
+#'   specified at <https://github.com/ChristopherWilks/megadepth#junctions>.
 #' @export
 #'
 #' @examples
@@ -26,63 +28,62 @@
 #' ## Run bam_to_junctions()
 #' example_jxs <- bam_to_junctions(example_bam, overwrite = TRUE)
 #'
-#' # ## Read the data as a tibble using the format specified at
-#' # ## https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions
-#' # read_junction_table(example_jxs)
+#' ## Read the junctions in as a tibble
+#' all_jxs <- read_junction_table(example_jxs[["all_jxs.tsv"]])
+#'
+#' all_jxs
 read_junction_table <- function(tsv_file) {
-    suppressMessages(
-        header <- readr::read_delim(
-            tsv_file,
-            delim = "\t",
-            progress = FALSE,
-            n_max = 1,
-            col_names = FALSE
-        )
-    )
 
-    ## The output might have 6 or 12 columns
-    ## https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions
-    if (!ncol(header) %in% c(6, 12)) {
-        warning(
-            "Looks like the number of columns in:\n",
-            tsv_file,
-            "\n is different from the expected output of 6 or 12 fields",
-            "(single or paired-end data).",
-            call. = FALSE
+    # define the expected column names and types
+    if (grepl("all_jxs.tsv", tsv_file)) {
+        col_names <- c(
+            "read_name",
+            "chr",
+            "start",
+            "end",
+            "mapping_strand",
+            "cigar",
+            "unique"
         )
-        ## Try reading it anyway
-        return(
-            readr::read_delim(
-                tsv_file,
-                delim = "\t",
-                progress = FALSE,
-                col_names = FALSE
-            )
+
+        col_types <- c("dcddici")
+    } else if (grepl("jxs.tsv", tsv_file)) {
+        col_names <- c(
+            "chr_id",
+            "POS_field",
+            "mapping_strand",
+            "insert_length",
+            "cigar",
+            "junction_coords",
+            "unique",
+            "mate_ref_id",
+            "mate_POS_field",
+            "mate_mapping_strand",
+            "mate_insert_length",
+            "mate_cigar",
+            "mate_junction_coords",
+            "mate_unique"
         )
+
+        col_types <- c("ciidcciciidcci")
+    } else {
+        stop('tsv_file must have the extension "all_jxs.tsv" or "jxs.tsv"')
     }
 
-    ## Define the expected columns and classes
-    col_names <- c("chr", "pos", "strand", "insert_length", "cigar", "coords")
-    col_names <- c(col_names, paste0("mate_", col_names))
-    col_class <- rep(c("c", "i", "i", "i", "c", "c"), 2)
-    names(col_class) <- col_names
-
-    ## Limit to the number of columns present
-    col_names <- col_names[seq_len(ncol(header))]
-    col_class <- col_class[seq_len(ncol(header))]
-
-    ## Read the junctions
-    jxs <- readr::read_delim(
+    # load in the junctions
+    jxs <- read_delim(
         tsv_file,
         delim = "\t",
+        progress = FALSE,
         col_names = col_names,
-        col_types = col_class,
-        progress = FALSE
+        col_types = col_types,
     )
 
     ## Translate the strand into the format used in Bioconductor
-    for (i in c("strand", "mate_strand")[c("strand", "mate_strand") %in% colnames(jxs)]) {
-        jxs[[i]] <- ifelse(jxs[[i]] == 0, "+", "-")
+    for (i in seq_along(jxs)) {
+        if (grepl("strand", colnames(jxs[i]))) {
+            jxs[[i]] <- ifelse(jxs[[i]] == 0, "+", "-")
+        }
     }
 
     return(jxs)
