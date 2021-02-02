@@ -40,8 +40,11 @@
 
 
 <meta property="og:title" content="Read a junction TSV file created by Megadepth as a table — read_junction_table" />
-<meta property="og:description" content="Read an *jxs.tsv file created by bam_to_junctions() or manually by
-the user using Megadepth." />
+<meta property="og:description" content="Read an *all_jxs.tsv or *jxs.tsv file created by bam_to_junctions() or
+manually by the user using Megadepth. *jxs.tsv rows can have either 7 or 14
+columns, which can lead to warnings when reading in - these are safe to
+ignore. For details on the format of the input TSV file, check
+https://github.com/ChristopherWilks/megadepth#junctions." />
 
 
 
@@ -121,8 +124,11 @@ the user using Megadepth." />
     </div>
 
     <div class="ref-description">
-    <p>Read an <code>*jxs.tsv</code> file created by <code><a href='bam_to_junctions.html'>bam_to_junctions()</a></code> or manually by
-the user using Megadepth.</p>
+    <p>Read an <code>*all_jxs.tsv</code> or <code>*jxs.tsv</code> file created by <code><a href='bam_to_junctions.html'>bam_to_junctions()</a></code> or
+manually by the user using Megadepth. <code>*jxs.tsv</code> rows can have either 7 or 14
+columns, which can lead to warnings when reading in - these are safe to
+ignore. For details on the format of the input TSV file, check
+<a href='https://github.com/ChristopherWilks/megadepth#junctions'>https://github.com/ChristopherWilks/megadepth#junctions</a>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read_junction_table</span><span class='op'>(</span><span class='va'>tsv_file</span><span class='op'>)</span></pre>
@@ -141,14 +147,13 @@ the user using Megadepth.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> with the junction data that follows the format
-specified at
-<a href='https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions'>https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions</a>.</p>
+specified at <a href='https://github.com/ChristopherWilks/megadepth#junctions'>https://github.com/ChristopherWilks/megadepth#junctions</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## Install if necessary</span>
 <span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.0.9</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.1.0b</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
 <span class='co'>## Find the example BAM file</span>
 <span class='va'>example_bam</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"test.bam"</span>,
     package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span>
@@ -157,10 +162,24 @@ specified at
 <span class='co'>## Run bam_to_junctions()</span>
 <span class='va'>example_jxs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bam_to_junctions.html'>bam_to_junctions</a></span><span class='op'>(</span><span class='va'>example_bam</span>, overwrite <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='co'># ## Read the data as a tibble using the format specified at</span>
-<span class='co'># ## https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions</span>
-<span class='co'># read_junction_table(example_jxs)</span>
-</div></pre>
+<span class='co'>## Read the data as a tibble using the format</span>
+<span class='va'>all_jxs</span> <span class='op'>&lt;-</span> <span class='fu'>read_junction_table</span><span class='op'>(</span><span class='va'>example_jxs</span><span class='op'>[[</span><span class='st'>"all_jxs.tsv"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+
+<span class='va'>all_jxs</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 35 x 7</span><span>
+#&gt;    read_name chr     start     end mapping_strand cigar         unique
+#&gt;        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>  26</span><span style='text-decoration: underline;'>573</span><span>693 chr10 4</span><span style='text-decoration: underline;'>358</span><span>579 4</span><span style='text-decoration: underline;'>581</span><span>019 -              61M222441N11M      0
+#&gt; </span><span style='color: #555555;'> 2</span><span>  59</span><span style='text-decoration: underline;'>413</span><span>733 chr10 8</span><span style='text-decoration: underline;'>458</span><span>623 8</span><span style='text-decoration: underline;'>778</span><span>558 +              13M319936N59M      0
+#&gt; </span><span style='color: #555555;'> 3</span><span>  63</span><span style='text-decoration: underline;'>502</span><span>504 chr10 8</span><span style='text-decoration: underline;'>722</span><span>315 8</span><span style='text-decoration: underline;'>848</span><span>720 -              50M126406N22M      1
+#&gt; </span><span style='color: #555555;'> 4</span><span>  15</span><span style='text-decoration: underline;'>130</span><span>473 chr10 8</span><span style='text-decoration: underline;'>722</span><span>508 8</span><span style='text-decoration: underline;'>870</span><span>679 -              61M148172N11M      1
+#&gt; </span><span style='color: #555555;'> 5</span><span>  22</span><span style='text-decoration: underline;'>331</span><span>161 chr10 8</span><span style='text-decoration: underline;'>756</span><span>762 8</span><span style='text-decoration: underline;'>780</span><span>518 -              62M23757N10M       1
+#&gt; </span><span style='color: #555555;'> 6</span><span>  37</span><span style='text-decoration: underline;'>510</span><span>913 chr10 8</span><span style='text-decoration: underline;'>756</span><span>762 8</span><span style='text-decoration: underline;'>780</span><span>518 -              62M23757N10M       1
+#&gt; </span><span style='color: #555555;'> 7</span><span>  38</span><span style='text-decoration: underline;'>798</span><span>461 chr10 8</span><span style='text-decoration: underline;'>756</span><span>762 8</span><span style='text-decoration: underline;'>780</span><span>518 -              62M23757N10M       1
+#&gt; </span><span style='color: #555555;'> 8</span><span>  62</span><span style='text-decoration: underline;'>329</span><span>988 chr10 8</span><span style='text-decoration: underline;'>756</span><span>762 8</span><span style='text-decoration: underline;'>780</span><span>518 -              62M23757N10M       1
+#&gt; </span><span style='color: #555555;'> 9</span><span>  66</span><span style='text-decoration: underline;'>789</span><span>502 chr10 8</span><span style='text-decoration: underline;'>756</span><span>762 8</span><span style='text-decoration: underline;'>780</span><span>518 -              62M23757N10M       1
+#&gt; </span><span style='color: #555555;'>10</span><span>  78</span><span style='text-decoration: underline;'>396</span><span>176 chr10 8</span><span style='text-decoration: underline;'>756</span><span>762 8</span><span style='text-decoration: underline;'>780</span><span>518 -              62M23757N10M       1
+#&gt; </span><span style='color: #555555;'># … with 25 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
