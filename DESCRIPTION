@@ -54,3 +54,4 @@ Imports:
     GenomicRanges,
     readr,
     cmdfun
+Config/testthat/edition: 3
