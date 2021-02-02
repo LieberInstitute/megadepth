@@ -41,9 +41,9 @@
 
 <meta property="og:title" content="Read a junction TSV file created by Megadepth as a table — read_junction_table" />
 <meta property="og:description" content="Read an *all_jxs.tsv or *jxs.tsv file created by bam_to_junctions() or
-manually by the user using Megadepth. *jxs.tsv rows can have either 7 or 14
-columns, which can lead to warnings when reading in - these are safe to
-ignore. For details on the format of the input TSV file, check
+manually by the user using Megadepth. The rows of a *jxs.tsv can have
+either 7 or 14 columns, which can lead to warnings when reading in - these
+are safe to ignore. For details on the format of the input TSV file, check
 https://github.com/ChristopherWilks/megadepth#junctions." />
 
 
@@ -125,9 +125,9 @@ https://github.com/ChristopherWilks/megadepth#junctions." />
 
     <div class="ref-description">
     <p>Read an <code>*all_jxs.tsv</code> or <code>*jxs.tsv</code> file created by <code><a href='bam_to_junctions.html'>bam_to_junctions()</a></code> or
-manually by the user using Megadepth. <code>*jxs.tsv</code> rows can have either 7 or 14
-columns, which can lead to warnings when reading in - these are safe to
-ignore. For details on the format of the input TSV file, check
+manually by the user using Megadepth. The rows of a <code>*jxs.tsv</code> can have
+either 7 or 14 columns, which can lead to warnings when reading in - these
+are safe to ignore. For details on the format of the input TSV file, check
 <a href='https://github.com/ChristopherWilks/megadepth#junctions'>https://github.com/ChristopherWilks/megadepth#junctions</a>.</p>
     </div>
 
@@ -162,7 +162,7 @@ specified at <a href='https://github.com/ChristopherWilks/megadepth#junctions'>h
 <span class='co'>## Run bam_to_junctions()</span>
 <span class='va'>example_jxs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bam_to_junctions.html'>bam_to_junctions</a></span><span class='op'>(</span><span class='va'>example_bam</span>, overwrite <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='co'>## Read the data as a tibble using the format</span>
+<span class='co'>## Read the junctions in as a tibble</span>
 <span class='va'>all_jxs</span> <span class='op'>&lt;-</span> <span class='fu'>read_junction_table</span><span class='op'>(</span><span class='va'>example_jxs</span><span class='op'>[[</span><span class='st'>"all_jxs.tsv"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
 
 <span class='va'>all_jxs</span>
