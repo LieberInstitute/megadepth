@@ -3,7 +3,7 @@
 #' Given a BAM file, extract junction information including co-ordinates,
 #' strand, anchor length for each junction read. For details on the format of
 #' the output TSV file, check
-#' <https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions>.
+#' <https://github.com/ChristopherWilks/megadepth#junctions>.
 #'
 #' @inheritParams bam_to_bigwig
 #'
@@ -11,6 +11,10 @@
 #'   function creates a file called `prefix.jxs.tsv`. By default, the prefix is
 #'   the BAM file name and the file is created in the `tempdir()` and will be
 #'   deleted after you close your R session.
+#' @param all_junctions A `logical(1)` indicating whether to obtain all
+#'   junctions.
+#' @param junctions A `logical(1)` indicating whether to obtain co-occurring jx
+#'   coordinates.
 #' @param long_reads A `logical(1)` indicating whether to increase the buffer
 #'   size to accommodate for long-read RNA-sequencing.
 #'
@@ -35,16 +39,19 @@
 #' example_jxs
 bam_to_junctions <- function(bam_file,
     prefix = file.path(tempdir(), basename(bam_file)),
+    all_junctions = TRUE,
+    junctions = FALSE,
     long_reads = FALSE,
     overwrite = FALSE) {
-    expected_ext <- c("jxs.tsv")
+    expected_ext <- c("all_jxs.tsv", "jxs.tsv")
     if (!overwrite) prefix_exists(prefix, expected_ext)
 
     megadepth_shell2(
         bam_file,
         list(
             "prefix" = prefix,
-            "junctions" = TRUE,
+            "junctions" = junctions,
+            "all-junctions" = all_junctions,
             "long-reads" = long_reads
         )
     )

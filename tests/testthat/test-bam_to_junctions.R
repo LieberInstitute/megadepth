@@ -1,6 +1,10 @@
 ## Run test to obtain junctions from a BAM file
-test_that("test long reads support for junctions", {
-    bam_to_junctions(pkg_file("tests", "test2.bam"), overwrite = TRUE)
+test_that("test bam_to_junctions has correct output", {
+    bam_to_junctions(pkg_file("tests", "test2.bam"),
+        overwrite = TRUE,
+        all_junctions = TRUE,
+        junctions = TRUE
+    )
 
     expect_equal(
         readLines(file.path(tempdir(), "test2.bam.jxs.tsv")),
@@ -8,6 +12,14 @@ test_that("test long reads support for junctions", {
             "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/test2.bam.jxs.tsv"
         )
     )
+
+    expect_equal(
+        readLines(file.path(tempdir(), "test2.bam.all_jxs.tsv")),
+        readLines(
+            "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/tests/test2.bam.all_jxs.tsv"
+        )
+    )
+
     expect_error(
         bam_to_junctions(pkg_file("tests", "test2.bam")),
         "The following files already exist"
@@ -19,13 +31,17 @@ test_that("test long reads support for junctions", {
     megadepth_shell(
         pkg_file("tests", "long_reads.bam"),
         "junctions" = TRUE,
+        "all_junctions" = FALSE,
         "prefix" = file.path(tempdir(), "long_reads.bam"),
         "long-reads" = TRUE
     )
 
     bam_to_junctions(
         pkg_file("tests", "long_reads.bam"),
-        "prefix" = file.path(tempdir(), "long_reads.bam.r"),
+        overwrite = TRUE,
+        junctions = TRUE,
+        all_junctions = FALSE,
+        prefix = file.path(tempdir(), "long_reads.bam.r"),
         long_reads = TRUE
     )
 
