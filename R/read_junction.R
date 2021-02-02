@@ -1,9 +1,9 @@
 #' Read a junction TSV file created by Megadepth as a table
 #'
 #' Read an `*all_jxs.tsv` or `*jxs.tsv` file created by `bam_to_junctions()` or
-#' manually by the user using Megadepth. `*jxs.tsv` rows can have either 7 or 14
-#' columns, which can lead to warnings when reading in - these are safe to
-#' ignore. For details on the format of the input TSV file, check
+#' manually by the user using Megadepth. The rows of a `*jxs.tsv` can have
+#' either 7 or 14 columns, which can lead to warnings when reading in - these
+#' are safe to ignore. For details on the format of the input TSV file, check
 #' <https://github.com/ChristopherWilks/megadepth#junctions>.
 #'
 #' @param tsv_file A `character(1)` specifying the path to the tab-separated
@@ -28,7 +28,7 @@
 #' ## Run bam_to_junctions()
 #' example_jxs <- bam_to_junctions(example_bam, overwrite = TRUE)
 #'
-#' ## Read the data as a tibble using the format
+#' ## Read the junctions in as a tibble
 #' all_jxs <- read_junction_table(example_jxs[["all_jxs.tsv"]])
 #'
 #' all_jxs
