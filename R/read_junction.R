@@ -71,7 +71,7 @@ read_junction_table <- function(tsv_file) {
     }
 
     # load in the junctions
-    jxs <- read_delim(
+    jxs <- readr::read_delim(
         tsv_file,
         delim = "\t",
         progress = FALSE,

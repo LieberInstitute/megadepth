@@ -18,16 +18,18 @@ c(
         doi = '10.18129/B9.bioc.megadepth'
     ),
     bibentry(bibtype="article",
-        title = "megadepth: BigWig and BAM related utilities",
+        title = "Megadepth: efficient coverage quantification for BigWigs and BAMs",
         author = personList(
             as.person("Christopher Wilks"),
+            as.person("Omar Ahmed"), 
+            as.person("Daniel N. Baker"), 
             as.person("David Zhang"),
             as.person("Leonardo Collado-Torres"),
             as.person("Ben Langmead")
         ),
         year = 2020,
         journal = "bioRxiv",
-        doi = "10.1101/TODO",
-        url = "https://www.biorxiv.org/content/10.1101/TODO"
+        doi = "https://doi.org/10.1101/2020.12.17.423317",
+        url = "https://www.biorxiv.org/content/10.1101/2020.12.17.423317v1"
     )
 )
