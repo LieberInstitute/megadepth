@@ -9,7 +9,7 @@ output:
 
 library(magrittr)
 
-knitr::opts_chunk$set(echo = T, message = F, warning = T)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = TRUE)
 
 ```
 
