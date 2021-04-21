@@ -131,7 +131,7 @@ the number of genomic regions queried will affect the speed comparisons.
 ## R-like interface
 ## that captures the standard output into R
 head(megadepth_shell(help = TRUE))
-#> [1] "megadepth 1.1.0b"                 ""                                
+#> [1] "megadepth 1.1.0c"                 ""                                
 #> [3] "BAM and BigWig utility."          ""                                
 #> [5] "Usage:"                           "  megadepth <bam|bw|-> [options]"
 
@@ -139,7 +139,7 @@ head(megadepth_shell(help = TRUE))
 megadepth_cmd("--help")
 ```
 
-    #> megadepth 1.1.0b
+    #> megadepth 1.1.0c
     #>  
     #>  BAM and BigWig utility.
     #>  
@@ -250,7 +250,7 @@ print(citation("megadepth"), bibtex = TRUE)
 #> Zhang D, Collado-Torres L (2021). _megadepth: BigWig and BAM related
 #> utilities_. doi: 10.18129/B9.bioc.megadepth (URL:
 #> https://doi.org/10.18129/B9.bioc.megadepth),
-#> https://github.com/LieberInstitute/megadepth - R package version 1.1.4,
+#> https://github.com/LieberInstitute/megadepth - R package version 1.1.5,
 #> <URL: http://www.bioconductor.org/packages/megadepth>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -260,7 +260,7 @@ print(citation("megadepth"), bibtex = TRUE)
 #>     author = {David Zhang and Leonardo Collado-Torres},
 #>     year = {2021},
 #>     url = {http://www.bioconductor.org/packages/megadepth},
-#>     note = {https://github.com/LieberInstitute/megadepth - R package version 1.1.4},
+#>     note = {https://github.com/LieberInstitute/megadepth - R package version 1.1.5},
 #>     doi = {10.18129/B9.bioc.megadepth},
 #>   }
 #> 

@@ -1,3 +1,11 @@
+#  megadepth 1.1.5
+
+NEW FEATURES
+
+* Added `process_junction_table` (an R-implementation of 
+<https://github.com/ChristopherWilks/megadepth#junctions>) which parses the
+output of `read_junction_table` into a STAR-compatible format.
+
 # megadepth 0.99.0
 
 NEW FEATURES
