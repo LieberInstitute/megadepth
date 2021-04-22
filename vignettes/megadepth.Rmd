@@ -263,7 +263,7 @@ testthat::expect_equivalent(
 
 [Megadepth](https://github.com/ChristopherWilks/megadepth) provides utilities that might be of use for future work or that were developed for building `r Biocpkg('recount3')`. One of these features is the possibility to extract locally co-ocurring junctions from a BAM file as described in the [Megadepth documentation](https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions). This feature works only for junctions for which a read or (read pair) has 2 or more junctions.
 
-To illustrate this functionality, we will use an example BAM file and generate the locally co-occurring junction table with `bam_to_junctions()`. We'll then read in the data using `read_junction_table()` ^[The `strand` columns have been switched from 0s and 1s to `+` and `-` for the forard and reverse strands, to match frequently used Bioconductor packages.].
+To illustrate this functionality, we will use an example BAM file and generate the locally co-occurring junction table with `bam_to_junctions()`. We'll then read in the data using `read_junction_table()` ^[The `strand` columns have been switched from 0s and 1s to `+` and `-` for the forward and reverse strands, to match frequently used Bioconductor packages.]. `process_junction_table()` can then be used to convert the junctions into a STAR-compatible format. 
 
 ```{r "bam_to_junctions"}
 ## Find the example BAM file
@@ -279,7 +279,11 @@ example_jxs
 
 ## Read the data as a tibble using the format specified at
 ## https://github.com/ChristopherWilks/megadepth#megadepth-pathtobamfile---junctions
-read_junction_table(example_jxs)
+example_jxs <- read_junction_table(example_jxs)
+
+example_jxs
+
+process_junction_table(example_jxs)
 ```
 
 
