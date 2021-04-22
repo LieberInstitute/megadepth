@@ -39,65 +39,70 @@ test_that("read_junction_table catches user input errors", {
     )
 })
 
-##### process_junctions #####
-
-# download Chris' script for testing
-process_jx_script_path <- file.path(tempdir(), "process_jx_output.sh")
-
-download.file(
-    "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/junctions/process_jx_output.sh",
-    process_jx_script_path
-)
-
-# wrap using process_jx_output.sh in function
-process_jx_output_shell <- function(all_jxs, process_jx_script_path) {
-
-    # process using process_jx_output.sh
-    all_jxs %>% readr::write_delim(file.path(tempdir(), "tmp_jxs.tsv"),
-        delim = "\t"
-    )
-
-    system(paste(
-        "source",
-        file.path(tempdir(), "process_jx_output.sh"),
-        file.path(tempdir(), "tmp_jxs.tsv")
-    ))
-
-    # processed junctions
-    processed_jxs <- readr::read_delim(
-        file.path(tempdir(), "tmp_jxs.tsv.sjout"),
-        delim = "\t",
-        col_names = c(
-            "chr",
-            "start",
-            "end",
-            "strand",
-            "intron_motif",
-            "annotated",
-            "uniquely_mapping_reads",
-            "multimapping_reads"
-        ),
-        skip = 1
-    ) # skipp the colnames, replaced with above
-
-    return(processed_jxs)
-}
-
 ##### process_junction_table ######
 
-test_that("process_junction_table has correct output", {
-    suppressWarnings(expr = {
-        processed_jxs_shell <- process_jx_output_shell(
-            all_jxs,
-            process_jx_script_path
+# Don't test on windows as needs to download and run .sh script
+if (!xfun::is_windows()) {
+
+    # download Chris' script for testing
+    process_jx_script_path <- file.path(tempdir(), "process_jx_output.sh")
+
+    download.file(
+        "https://raw.githubusercontent.com/ChristopherWilks/megadepth/master/junctions/process_jx_output.sh",
+        process_jx_script_path
+    )
+
+    Sys.chmod(process_jx_script_path, "0755")
+
+    # wrap using process_jx_output.sh in function
+    process_jx_output_shell <- function(all_jxs, process_jx_script_path) {
+
+        # process using process_jx_output.sh
+        all_jxs %>% readr::write_delim(file.path(tempdir(), "tmp_jxs.tsv"),
+            delim = "\t"
+        )
+
+        system(paste(
+            file.path(tempdir(), "process_jx_output.sh"),
+            file.path(tempdir(), "tmp_jxs.tsv")
+        ))
+
+        # processed junctions
+        processed_jxs <- readr::read_delim(
+            file.path(tempdir(), "tmp_jxs.tsv.sjout"),
+            delim = "\t",
+            col_names = c(
+                "chr",
+                "start",
+                "end",
+                "strand",
+                "intron_motif",
+                "annotated",
+                "uniquely_mapping_reads",
+                "multimapping_reads"
+            ),
+            skip = 1
+        ) # skip the colnames, replaced with above
+
+        return(processed_jxs)
+    }
+
+    test_that("process_junction_table has correct output", {
+        suppressWarnings(expr = {
+            processed_jxs_shell <- process_jx_output_shell(
+                all_jxs,
+                process_jx_script_path
+            )
+        })
+
+        # ignore_attr = TRUE is needed as there are "spec" and "problems"
+        # attributes that are created on the tibble through read_delim()
+        expect_equal(process_junction_table(all_jxs),
+            processed_jxs_shell,
+            ignore_attr = TRUE
         )
     })
-
-    expect_equal(process_junction_table(all_jxs),
-        processed_jxs_shell,
-        ignore_attr = TRUE
-    )
-})
+}
 
 test_that("process_junction_table catches user input errors", {
     suppressWarnings(expr = {
