@@ -1,4 +1,5 @@
 # Solve "no visible binding for global variable 'chr'... etc" issue
+# https://www.r-bloggers.com/2019/08/no-visible-binding-for-global-variable/
 utils::globalVariables(c(
     "chr",
     "start",
