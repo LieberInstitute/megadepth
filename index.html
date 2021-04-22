@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">megadepth</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.6</span>
       </span>
     </div>
 
@@ -144,110 +144,110 @@
 <code class="sourceCode R"><span class="co">## R-like interface</span>
 <span class="co">## that captures the standard output into R</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="reference/megadepth_cmd.html">megadepth_shell</a></span><span class="op">(</span>help <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "megadepth 1.1.0b"                 ""                                </span>
+<span class="co">#&gt; [1] "megadepth 1.1.0c"                 ""                                </span>
 <span class="co">#&gt; [3] "BAM and BigWig utility."          ""                                </span>
 <span class="co">#&gt; [5] "Usage:"                           "  megadepth &lt;bam|bw|-&gt; [options]"</span>
 
 <span class="co">## Command-like interface</span>
 <span class="fu"><a href="reference/megadepth_cmd.html">megadepth_cmd</a></span><span class="op">(</span><span class="st">"--help"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#&gt; megadepth 1.1.0b</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt;  </span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt;  BAM and BigWig utility.</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt;  </span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt;  Usage:</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt;    megadepth &lt;bam|bw|-&gt; [options]</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt;  </span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt;  Options:</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt;    -h --help                Show this screen.</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt;    --version                Show version.</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt;    --threads                # of threads to do: BAM decompression OR compute sums over multiple BigWigs in parallel</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt;                              if the 2nd is intended then a TXT file listing the paths to the BigWigs to process in parallel</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt;                              should be passed in as the main input file instead of a single BigWig file (EXPERIMENTAL).</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt;    --prefix                 String to use to prefix all output files.</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt;    --no-auc-stdout          Force all AUC(s) to be written to &lt;prefix&gt;.auc.tsv rather than STDOUT</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt;    --no-annotation-stdout   Force summarized annotation regions to be written to &lt;prefix&gt;.annotation.tsv rather than STDOUT</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt;    --no-coverage-stdout     Force covered regions to be written to &lt;prefix&gt;.coverage.tsv rather than STDOUT</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt;    --keep-order             Output annotation coverage in the order chromosomes appear in the BAM/BigWig file</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt;                             The default is to output annotation coverage in the order chromosomes appear in the annotation BED file.</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="co">#&gt;                             This is only applicable if --annotation is used for either BAM or BigWig input.</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="co">#&gt;  </span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="co">#&gt;  BigWig Input:</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="co">#&gt;  Extract regions and their counts from a BigWig outputting BED format if a BigWig file is detected as input (exclusive of the other BAM modes):</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co">#&gt;                                            Extracts all reads from the passed in BigWig and output as BED format.</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="co">#&gt;                                             This will also report the AUC over the annotated regions to STDOUT.</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a><span class="co">#&gt;                                             If only the name of the BigWig file is passed in with no other args, it will *only* report total AUC to STDOUT.</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a><span class="co">#&gt;    --annotation &lt;bed&gt;                      Only output the regions in this BED applying the argument to --op to them.</span></span>
-<span id="cb5-28"><a href="#cb5-28"></a><span class="co">#&gt;    --op &lt;sum[default], mean, min, max&gt;     Statistic to run on the intervals provided by --annotation</span></span>
-<span id="cb5-29"><a href="#cb5-29"></a><span class="co">#&gt;    --sums-only                             Discard coordinates from output of summarized regions</span></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="co">#&gt;    --bwbuffer &lt;1GB[default]&gt;               Size of buffer for reading BigWig files, critical to use a large value (~1GB) for remote BigWigs.</span></span>
-<span id="cb5-31"><a href="#cb5-31"></a><span class="co">#&gt;                                             Default setting should be fine for most uses, but raise if very slow on a remote BigWig.</span></span>
-<span id="cb5-32"><a href="#cb5-32"></a><span class="co">#&gt;  </span></span>
-<span id="cb5-33"><a href="#cb5-33"></a><span class="co">#&gt;  </span></span>
-<span id="cb5-34"><a href="#cb5-34"></a><span class="co">#&gt;  BAM Input:</span></span>
-<span id="cb5-35"><a href="#cb5-35"></a><span class="co">#&gt;  Extract basic junction information from the BAM, including co-occurrence</span></span>
-<span id="cb5-36"><a href="#cb5-36"></a><span class="co">#&gt;  If only the name of the BAM file is passed in with no other args, it will *only* report total AUC to STDOUT.</span></span>
-<span id="cb5-37"><a href="#cb5-37"></a><span class="co">#&gt;    --fasta              Path to the reference FASTA file if a CRAM file is passed as the input file (ignored otherwise)</span></span>
-<span id="cb5-38"><a href="#cb5-38"></a><span class="co">#&gt;                         If not passed, references will be downloaded using the CRAM header.</span></span>
-<span id="cb5-39"><a href="#cb5-39"></a><span class="co">#&gt;    --junctions          Extract co-occurring jx coordinates, strand, and anchor length, per read</span></span>
-<span id="cb5-40"><a href="#cb5-40"></a><span class="co">#&gt;                         writes to a TSV file &lt;prefix&gt;.jxs.tsv</span></span>
-<span id="cb5-41"><a href="#cb5-41"></a><span class="co">#&gt;    --all-junctions      Extract all jx coordinates, strand, and anchor length, per read for any jx</span></span>
-<span id="cb5-42"><a href="#cb5-42"></a><span class="co">#&gt;                         writes to a TSV file &lt;prefix&gt;.all_jxs.tsv</span></span>
-<span id="cb5-43"><a href="#cb5-43"></a><span class="co">#&gt;    --longreads          Modifies certain buffer sizes to accommodate longer reads such as PB/Oxford.</span></span>
-<span id="cb5-44"><a href="#cb5-44"></a><span class="co">#&gt;    --filter-in          Integer bitmask, any bits of which alignments need to have to be kept (similar to samtools view -f).</span></span>
-<span id="cb5-45"><a href="#cb5-45"></a><span class="co">#&gt;    --filter-out         Integer bitmask, any bits of which alignments need to have to be skipped (similar to samtools view -F).</span></span>
-<span id="cb5-46"><a href="#cb5-46"></a><span class="co">#&gt;    --add-chr-prefix     Adds "chr" prefix to relevant chromosomes for BAMs w/o it, pass "human" or "mouse".</span></span>
-<span id="cb5-47"><a href="#cb5-47"></a><span class="co">#&gt;                         Only works for human/mouse references (default: off).</span></span>
-<span id="cb5-48"><a href="#cb5-48"></a><span class="co">#&gt;  </span></span>
-<span id="cb5-49"><a href="#cb5-49"></a><span class="co">#&gt;  Non-reference summaries:</span></span>
-<span id="cb5-50"><a href="#cb5-50"></a><span class="co">#&gt;    --alts                       Print differing from ref per-base coverages</span></span>
-<span id="cb5-51"><a href="#cb5-51"></a><span class="co">#&gt;                                 Writes to a CSV file &lt;prefix&gt;.alts.tsv</span></span>
-<span id="cb5-52"><a href="#cb5-52"></a><span class="co">#&gt;    --include-softclip           Print a record to the alts CSV for soft-clipped bases</span></span>
-<span id="cb5-53"><a href="#cb5-53"></a><span class="co">#&gt;                                 Writes total counts to a separate TSV file &lt;prefix&gt;.softclip.tsv</span></span>
-<span id="cb5-54"><a href="#cb5-54"></a><span class="co">#&gt;    --only-polya                 If --include-softclip, only print softclips which are mostly A's or T's</span></span>
-<span id="cb5-55"><a href="#cb5-55"></a><span class="co">#&gt;    --include-n                  Print mismatch records when mismatched read base is N</span></span>
-<span id="cb5-56"><a href="#cb5-56"></a><span class="co">#&gt;    --print-qual                 Print quality values for mismatched bases</span></span>
-<span id="cb5-57"><a href="#cb5-57"></a><span class="co">#&gt;    --delta                      Print POS field as +/- delta from previous</span></span>
-<span id="cb5-58"><a href="#cb5-58"></a><span class="co">#&gt;    --require-mdz                Quit with error unless MD:Z field exists everywhere it's</span></span>
-<span id="cb5-59"><a href="#cb5-59"></a><span class="co">#&gt;                                 expected</span></span>
-<span id="cb5-60"><a href="#cb5-60"></a><span class="co">#&gt;    --head                       Print sequence names and lengths in SAM/BAM header</span></span>
-<span id="cb5-61"><a href="#cb5-61"></a><span class="co">#&gt;  </span></span>
-<span id="cb5-62"><a href="#cb5-62"></a><span class="co">#&gt;  Coverage and quantification:</span></span>
-<span id="cb5-63"><a href="#cb5-63"></a><span class="co">#&gt;    --coverage           Print per-base coverage (slow but totally worth it)</span></span>
-<span id="cb5-64"><a href="#cb5-64"></a><span class="co">#&gt;    --auc                Print per-base area-under-coverage, will generate it for the genome</span></span>
-<span id="cb5-65"><a href="#cb5-65"></a><span class="co">#&gt;                         and for the annotation if --annotation is also passed in</span></span>
-<span id="cb5-66"><a href="#cb5-66"></a><span class="co">#&gt;                         Defaults to STDOUT, unless other params are passed in as well, then</span></span>
-<span id="cb5-67"><a href="#cb5-67"></a><span class="co">#&gt;                         if writes to a TSV file &lt;prefix&gt;.auc.tsv</span></span>
-<span id="cb5-68"><a href="#cb5-68"></a><span class="co">#&gt;    --bigwig             Output coverage as BigWig file(s).  Writes to &lt;prefix&gt;.bw</span></span>
-<span id="cb5-69"><a href="#cb5-69"></a><span class="co">#&gt;                         (also &lt;prefix&gt;.unique.bw when --min-unique-qual is specified).</span></span>
-<span id="cb5-70"><a href="#cb5-70"></a><span class="co">#&gt;                         Requires libBigWig.</span></span>
-<span id="cb5-71"><a href="#cb5-71"></a><span class="co">#&gt;    --annotation &lt;BED|window_size&gt;   Path to BED file containing list of regions to sum coverage over</span></span>
-<span id="cb5-72"><a href="#cb5-72"></a><span class="co">#&gt;                         (tab-delimited: chrm,start,end). Or this can specify a contiguous region size in bp.</span></span>
-<span id="cb5-73"><a href="#cb5-73"></a><span class="co">#&gt;    --op &lt;sum[default], mean&gt;     Statistic to run on the intervals provided by --annotation</span></span>
-<span id="cb5-74"><a href="#cb5-74"></a><span class="co">#&gt;    --no-index           If using --annotation, skip the use of the BAM index (BAI) for pulling out regions.</span></span>
-<span id="cb5-75"><a href="#cb5-75"></a><span class="co">#&gt;                         Setting this can be faster if doing windows across the whole genome.</span></span>
-<span id="cb5-76"><a href="#cb5-76"></a><span class="co">#&gt;                         This will be turned on automatically if a window size is passed to --annotation.</span></span>
-<span id="cb5-77"><a href="#cb5-77"></a><span class="co">#&gt;    --min-unique-qual &lt;int&gt;</span></span>
-<span id="cb5-78"><a href="#cb5-78"></a><span class="co">#&gt;                         Output second bigWig consisting built only from alignments</span></span>
-<span id="cb5-79"><a href="#cb5-79"></a><span class="co">#&gt;                         with at least this mapping quality.  --bigwig must be specified.</span></span>
-<span id="cb5-80"><a href="#cb5-80"></a><span class="co">#&gt;                         Also produces second set of annotation sums based on this coverage</span></span>
-<span id="cb5-81"><a href="#cb5-81"></a><span class="co">#&gt;                         if --annotation is enabled</span></span>
-<span id="cb5-82"><a href="#cb5-82"></a><span class="co">#&gt;    --double-count       Allow overlapping ends of PE read to count twice toward</span></span>
-<span id="cb5-83"><a href="#cb5-83"></a><span class="co">#&gt;                         coverage</span></span>
-<span id="cb5-84"><a href="#cb5-84"></a><span class="co">#&gt;    --num-bases          Report total sum of bases in alignments processed (that pass filters)</span></span>
-<span id="cb5-85"><a href="#cb5-85"></a><span class="co">#&gt;    --gzip               Turns on gzipping of coverage output (no effect if --bigwig is passsed),</span></span>
-<span id="cb5-86"><a href="#cb5-86"></a><span class="co">#&gt;                         this will also enable --no-coverage-stdout.</span></span>
-<span id="cb5-87"><a href="#cb5-87"></a><span class="co">#&gt;  </span></span>
-<span id="cb5-88"><a href="#cb5-88"></a><span class="co">#&gt;  Other outputs:</span></span>
-<span id="cb5-89"><a href="#cb5-89"></a><span class="co">#&gt;    --read-ends          Print counts of read starts/ends, if --min-unique-qual is set</span></span>
-<span id="cb5-90"><a href="#cb5-90"></a><span class="co">#&gt;                         then only the alignments that pass that filter will be counted here</span></span>
-<span id="cb5-91"><a href="#cb5-91"></a><span class="co">#&gt;                         Writes to 2 TSV files: &lt;prefix&gt;.starts.tsv, &lt;prefix&gt;.ends.tsv</span></span>
-<span id="cb5-92"><a href="#cb5-92"></a><span class="co">#&gt;    --frag-dist          Print fragment length distribution across the genome</span></span>
-<span id="cb5-93"><a href="#cb5-93"></a><span class="co">#&gt;                         Writes to a TSV file &lt;prefix&gt;.frags.tsv</span></span>
-<span id="cb5-94"><a href="#cb5-94"></a><span class="co">#&gt;    --echo-sam           Print a SAM record for each aligned read</span></span>
-<span id="cb5-95"><a href="#cb5-95"></a><span class="co">#&gt;    --ends               Report end coordinate for each read (useful for debugging)</span></span>
-<span id="cb5-96"><a href="#cb5-96"></a><span class="co">#&gt;    --test-polya         Lower Poly-A filter minimums for testing (only useful for debugging/testing)</span></span>
-<span id="cb5-97"><a href="#cb5-97"></a><span class="co">#&gt;  </span></span>
-<span id="cb5-98"><a href="#cb5-98"></a><span class="co">#&gt; </span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; megadepth 1.1.0c</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  BAM and BigWig utility.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Usage:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    megadepth &lt;bam|bw|-&gt; [options]</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Options:</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    -h --help                Show this screen.</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --version                Show version.</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --threads                # of threads to do: BAM decompression OR compute sums over multiple BigWigs in parallel</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              if the 2nd is intended then a TXT file listing the paths to the BigWigs to process in parallel</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              should be passed in as the main input file instead of a single BigWig file (EXPERIMENTAL).</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --prefix                 String to use to prefix all output files.</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --no-auc-stdout          Force all AUC(s) to be written to &lt;prefix&gt;.auc.tsv rather than STDOUT</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --no-annotation-stdout   Force summarized annotation regions to be written to &lt;prefix&gt;.annotation.tsv rather than STDOUT</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --no-coverage-stdout     Force covered regions to be written to &lt;prefix&gt;.coverage.tsv rather than STDOUT</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --keep-order             Output annotation coverage in the order chromosomes appear in the BAM/BigWig file</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                             The default is to output annotation coverage in the order chromosomes appear in the annotation BED file.</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                             This is only applicable if --annotation is used for either BAM or BigWig input.</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  BigWig Input:</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Extract regions and their counts from a BigWig outputting BED format if a BigWig file is detected as input (exclusive of the other BAM modes):</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                            Extracts all reads from the passed in BigWig and output as BED format.</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                             This will also report the AUC over the annotated regions to STDOUT.</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                             If only the name of the BigWig file is passed in with no other args, it will *only* report total AUC to STDOUT.</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --annotation &lt;bed&gt;                      Only output the regions in this BED applying the argument to --op to them.</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --op &lt;sum[default], mean, min, max&gt;     Statistic to run on the intervals provided by --annotation</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --sums-only                             Discard coordinates from output of summarized regions</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --bwbuffer &lt;1GB[default]&gt;               Size of buffer for reading BigWig files, critical to use a large value (~1GB) for remote BigWigs.</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                             Default setting should be fine for most uses, but raise if very slow on a remote BigWig.</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  BAM Input:</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Extract basic junction information from the BAM, including co-occurrence</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  If only the name of the BAM file is passed in with no other args, it will *only* report total AUC to STDOUT.</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --fasta              Path to the reference FASTA file if a CRAM file is passed as the input file (ignored otherwise)</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         If not passed, references will be downloaded using the CRAM header.</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --junctions          Extract co-occurring jx coordinates, strand, and anchor length, per read</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         writes to a TSV file &lt;prefix&gt;.jxs.tsv</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --all-junctions      Extract all jx coordinates, strand, and anchor length, per read for any jx</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         writes to a TSV file &lt;prefix&gt;.all_jxs.tsv</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --longreads          Modifies certain buffer sizes to accommodate longer reads such as PB/Oxford.</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --filter-in          Integer bitmask, any bits of which alignments need to have to be kept (similar to samtools view -f).</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --filter-out         Integer bitmask, any bits of which alignments need to have to be skipped (similar to samtools view -F).</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --add-chr-prefix     Adds "chr" prefix to relevant chromosomes for BAMs w/o it, pass "human" or "mouse".</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Only works for human/mouse references (default: off).</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Non-reference summaries:</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --alts                       Print differing from ref per-base coverages</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                 Writes to a CSV file &lt;prefix&gt;.alts.tsv</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --include-softclip           Print a record to the alts CSV for soft-clipped bases</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                 Writes total counts to a separate TSV file &lt;prefix&gt;.softclip.tsv</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --only-polya                 If --include-softclip, only print softclips which are mostly A's or T's</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --include-n                  Print mismatch records when mismatched read base is N</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --print-qual                 Print quality values for mismatched bases</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --delta                      Print POS field as +/- delta from previous</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --require-mdz                Quit with error unless MD:Z field exists everywhere it's</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                 expected</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --head                       Print sequence names and lengths in SAM/BAM header</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Coverage and quantification:</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --coverage           Print per-base coverage (slow but totally worth it)</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --auc                Print per-base area-under-coverage, will generate it for the genome</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         and for the annotation if --annotation is also passed in</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Defaults to STDOUT, unless other params are passed in as well, then</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         if writes to a TSV file &lt;prefix&gt;.auc.tsv</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --bigwig             Output coverage as BigWig file(s).  Writes to &lt;prefix&gt;.bw</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         (also &lt;prefix&gt;.unique.bw when --min-unique-qual is specified).</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Requires libBigWig.</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --annotation &lt;BED|window_size&gt;   Path to BED file containing list of regions to sum coverage over</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         (tab-delimited: chrm,start,end). Or this can specify a contiguous region size in bp.</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --op &lt;sum[default], mean&gt;     Statistic to run on the intervals provided by --annotation</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --no-index           If using --annotation, skip the use of the BAM index (BAI) for pulling out regions.</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Setting this can be faster if doing windows across the whole genome.</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         This will be turned on automatically if a window size is passed to --annotation.</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --min-unique-qual &lt;int&gt;</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Output second bigWig consisting built only from alignments</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         with at least this mapping quality.  --bigwig must be specified.</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Also produces second set of annotation sums based on this coverage</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         if --annotation is enabled</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --double-count       Allow overlapping ends of PE read to count twice toward</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         coverage</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --num-bases          Report total sum of bases in alignments processed (that pass filters)</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --gzip               Turns on gzipping of coverage output (no effect if --bigwig is passsed),</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         this will also enable --no-coverage-stdout.</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Other outputs:</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --read-ends          Print counts of read starts/ends, if --min-unique-qual is set</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         then only the alignments that pass that filter will be counted here</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Writes to 2 TSV files: &lt;prefix&gt;.starts.tsv, &lt;prefix&gt;.ends.tsv</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --frag-dist          Print fragment length distribution across the genome</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Writes to a TSV file &lt;prefix&gt;.frags.tsv</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --echo-sam           Print a SAM record for each aligned read</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --ends               Report end coordinate for each read (useful for debugging)</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    --test-polya         Lower Poly-A filter minimums for testing (only useful for debugging/testing)</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span></code></pre></div>
 </div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
@@ -259,7 +259,7 @@
 <span class="co">#&gt; Zhang D, Collado-Torres L (2021). _megadepth: BigWig and BAM related</span>
 <span class="co">#&gt; utilities_. doi: 10.18129/B9.bioc.megadepth (URL:</span>
 <span class="co">#&gt; https://doi.org/10.18129/B9.bioc.megadepth),</span>
-<span class="co">#&gt; https://github.com/LieberInstitute/megadepth - R package version 1.1.4,</span>
+<span class="co">#&gt; https://github.com/LieberInstitute/megadepth - R package version 1.1.6,</span>
 <span class="co">#&gt; &lt;URL: http://www.bioconductor.org/packages/megadepth&gt;.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
@@ -269,7 +269,7 @@
 <span class="co">#&gt;     author = {David Zhang and Leonardo Collado-Torres},</span>
 <span class="co">#&gt;     year = {2021},</span>
 <span class="co">#&gt;     url = {http://www.bioconductor.org/packages/megadepth},</span>
-<span class="co">#&gt;     note = {https://github.com/LieberInstitute/megadepth - R package version 1.1.4},</span>
+<span class="co">#&gt;     note = {https://github.com/LieberInstitute/megadepth - R package version 1.1.6},</span>
 <span class="co">#&gt;     doi = {10.18129/B9.bioc.megadepth},</span>
 <span class="co">#&gt;   }</span>
 <span class="co">#&gt; </span>
