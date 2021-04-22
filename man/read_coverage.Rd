@@ -21,7 +21,7 @@ reading the data.}
 A \link[GenomicRanges:GRanges-class]{GRanges-class} object with the
 coverage summarization across the annotation ranges.
 
-A \code{tibble::tible()} with columns \code{chr}, \code{start}, \code{end} and \code{score}.
+A \code{tibble::tibble()} with columns \code{chr}, \code{start}, \code{end} and \code{score}.
 }
 \description{
 Read an \verb{*annotation.tsv} file created by \code{get_coverage()} or manually by

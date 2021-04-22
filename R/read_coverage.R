@@ -63,7 +63,7 @@ read_coverage <- function(tsv_file, verbose = TRUE) {
 #' @describeIn read_coverage Read a coverage TSV file created by Megadepth as
 #' a table
 #'
-#' @return A `tibble::tible()` with columns `chr`, `start`, `end` and `score`.
+#' @return A `tibble::tibble()` with columns `chr`, `start`, `end` and `score`.
 #' @export
 read_coverage_table <- function(tsv_file) {
     coverage <- readr::read_delim(
