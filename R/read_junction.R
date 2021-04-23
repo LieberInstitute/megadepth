@@ -46,7 +46,7 @@ read_junction_table <- function(tsv_file) {
             "unique"
         )
 
-        col_types <- c("dcddici")
+        col_types <- c("ccddici")
     } else if (grepl("jxs.tsv", tsv_file)) {
         col_names <- c(
             "chr_id",
@@ -76,7 +76,7 @@ read_junction_table <- function(tsv_file) {
         delim = "\t",
         progress = FALSE,
         col_names = col_names,
-        col_types = col_types,
+        col_types = col_types
     )
 
     ## Translate the strand into the format used in Bioconductor
