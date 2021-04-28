@@ -55,21 +55,15 @@ if (!xfun::is_windows()) {
     Sys.chmod(process_jx_script_path, "0755")
 
     # wrap using process_jx_output.sh in function
-    process_jx_output_shell <- function(all_jxs, process_jx_script_path) {
-
-        # process using process_jx_output.sh
-        all_jxs %>% readr::write_delim(file.path(tempdir(), "tmp_jxs.tsv"),
-            delim = "\t"
-        )
-
+    process_jx_output_shell <- function(all_jxs_path, process_jx_script_path) {
         system(paste(
-            file.path(tempdir(), "process_jx_output.sh"),
-            file.path(tempdir(), "tmp_jxs.tsv")
+            process_jx_script_path,
+            all_jxs_path
         ))
 
         # processed junctions
         processed_jxs <- readr::read_delim(
-            file.path(tempdir(), "tmp_jxs.tsv.sjout"),
+            paste0(all_jxs_path, ".sjout"),
             delim = "\t",
             col_names = c(
                 "chr",
@@ -81,16 +75,37 @@ if (!xfun::is_windows()) {
                 "uniquely_mapping_reads",
                 "multimapping_reads"
             ),
-            skip = 1
-        ) # skip the colnames, replaced with above
+            col_types = cols("chr" = "c")
+        )
 
         return(processed_jxs)
     }
 
     test_that("process_junction_table has correct output", {
+
+        # also read/test junctions from test.bam (as well as test2.bam above)
+        example_bam2 <- system.file("tests",
+            "test.bam",
+            package = "megadepth",
+            mustWork = TRUE
+        )
+
+        example_jxs2 <- bam_to_junctions(example_bam2,
+            all_junctions = TRUE,
+            junctions = TRUE,
+            overwrite = TRUE
+        )
+
+        suppressWarnings(expr = {
+            processed_jxs2_shell <- process_jx_output_shell(
+                all_jxs_path = example_jxs2[["all_jxs.tsv"]],
+                process_jx_script_path
+            )
+        })
+
         suppressWarnings(expr = {
             processed_jxs_shell <- process_jx_output_shell(
-                all_jxs,
+                all_jxs_path = example_jxs[["all_jxs.tsv"]],
                 process_jx_script_path
             )
         })
@@ -100,6 +115,13 @@ if (!xfun::is_windows()) {
         expect_equal(process_junction_table(all_jxs),
             processed_jxs_shell,
             ignore_attr = TRUE
+        )
+
+        expect_equal(example_jxs2[["all_jxs.tsv"]] %>%
+            read_junction_table() %>%
+            process_junction_table(),
+        processed_jxs2_shell,
+        ignore_attr = TRUE
         )
     })
 }
@@ -114,3 +136,49 @@ test_that("process_junction_table catches user input errors", {
         "all_jxs argument should have colnames"
     )
 })
+
+# use local full-size bam for testing
+# avoid testing when local bam is not available, to avoid large test times
+# in which case, unit testing relies on using test.bam/test2.bam above
+bam_path <- "/data/RNA_seq_diag/niccolo_X_linked_dystonia/180420-140039/STAR/NIAA_Aligned.sortedBysamtools.out.bam"
+
+if (file.exists(bam_path)) {
+    local_bam_jxs <- bam_to_junctions(bam_path,
+        all_junctions = TRUE,
+        overwrite = TRUE
+    )
+
+    # take first n_rows_to_test rows
+    n_rows_to_test <- 1000000
+    local_bam_jxs_head <- local_bam_jxs[["all_jxs.tsv"]] %>%
+        gsub(".all_jxs", "_head.all_jxs", .)
+
+    local_bam_jxs[["all_jxs.tsv"]] %>%
+        readr::read_delim(
+            n_max = n_rows_to_test,
+            col_names = FALSE,
+            delim = "\t"
+        ) %>%
+        readr::write_delim(local_bam_jxs_head,
+            col_names = FALSE,
+            delim = "\t"
+        )
+
+    local_bam_jxs_processed <- read_junction_table(local_bam_jxs_head) %>%
+        process_junction_table()
+
+    suppressWarnings(
+        local_bam_jxs_processed_shell <-
+            process_jx_output_shell(
+                local_bam_jxs_head,
+                process_jx_script_path
+            )
+    )
+
+    test_that("process_junction_table works on a larger set of jxs", {
+        expect_equal(local_bam_jxs_processed,
+            local_bam_jxs_processed_shell,
+            ignore_attr = TRUE
+        )
+    })
+}
