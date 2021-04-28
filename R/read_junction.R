@@ -153,6 +153,7 @@ process_junction_table <- function(all_jxs) {
 
     processed_jxs <- all_jxs %>%
         dplyr::arrange(chr, start, end, read_name) %>%
+        dplyr::distinct(chr, start, end, read_name, .keep_all = TRUE) %>%
         dplyr::group_by(chr, start, end) %>%
         dplyr::summarise(
             uniquely_mapping_reads = sum(unique),
