@@ -77,7 +77,8 @@ library("megadepth")
 
 ## Install Megadepth's pre-compiled binary on your system
 install_megadepth()
-#> It seems megadepth has been installed. Use force = TRUE to reinstall or upgrade.
+#> The latest megadepth version is 1.1.0c
+#> megadepth has been installed to /home/rstudio/bin
 
 ## Next, we locate the example BigWig and annotation files
 example_bw <- system.file("tests", "test.bam.all.bw",

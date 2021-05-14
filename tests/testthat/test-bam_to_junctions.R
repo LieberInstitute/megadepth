@@ -24,6 +24,31 @@ test_that("test bam_to_junctions has correct output", {
         bam_to_junctions(pkg_file("tests", "test2.bam")),
         "The following files already exist"
     )
+
+    # test changing filter_in/filter_out will remove junctions
+    bam_to_junctions(pkg_file("tests", "test2.bam"),
+        overwrite = TRUE,
+        all_junctions = TRUE,
+        junctions = TRUE,
+        filter_in = 65536
+    )
+
+    expect_equal(
+        length(readLines(file.path(tempdir(), "test2.bam.jxs.tsv"))),
+        0
+    )
+
+    bam_to_junctions(pkg_file("tests", "test2.bam"),
+        overwrite = TRUE,
+        all_junctions = TRUE,
+        junctions = TRUE,
+        filter_out = 261
+    )
+
+    expect_equal(
+        length(readLines(file.path(tempdir(), "test2.bam.jxs.tsv"))),
+        0
+    )
 })
 
 ## test long reads support for junctions

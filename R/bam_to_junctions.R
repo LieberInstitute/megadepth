@@ -8,15 +8,23 @@
 #' @inheritParams bam_to_bigwig
 #'
 #' @param prefix A `character(1)` specifying the output file prefix. This
-#'   function creates a file called `prefix.jxs.tsv`. By default, the prefix is
-#'   the BAM file name and the file is created in the `tempdir()` and will be
-#'   deleted after you close your R session.
+#' function creates a file called `prefix.jxs.tsv`. By default, the prefix is
+#' the BAM file name and the file is created in the `tempdir()` and will be
+#' deleted after you close your R session.
 #' @param all_junctions A `logical(1)` indicating whether to obtain all
 #'   junctions.
 #' @param junctions A `logical(1)` indicating whether to obtain co-occurring jx
 #'   coordinates.
 #' @param long_reads A `logical(1)` indicating whether to increase the buffer
 #'   size to accommodate for long-read RNA-sequencing.
+#' @param filter_in A `integer(1)` used to filter in read alignments. See
+#'   https://github.com/ChristopherWilks/megadepth#bamcram-processing and
+#'   https://samtools.github.io/hts-specs/SAMv1.pdf for further documentation on
+#'   how to apply this parameter.
+#' @param filter_out A `integer(1)` used to filter out read alignments. See
+#'   https://github.com/ChristopherWilks/megadepth#bamcram-processing and
+#'   https://samtools.github.io/hts-specs/SAMv1.pdf for further documentation on
+#'   how to apply this parameter.
 #'
 #' @return A `character(1)` with the path to the output junction tsv file.
 #'
@@ -42,6 +50,8 @@ bam_to_junctions <- function(bam_file,
     all_junctions = TRUE,
     junctions = FALSE,
     long_reads = FALSE,
+    filter_in = 65535,
+    filter_out = 260,
     overwrite = FALSE) {
     expected_ext <- c("all_jxs.tsv", "jxs.tsv")
     if (!overwrite) prefix_exists(prefix, expected_ext)
@@ -52,7 +62,9 @@ bam_to_junctions <- function(bam_file,
             "prefix" = prefix,
             "junctions" = junctions,
             "all-junctions" = all_junctions,
-            "long-reads" = long_reads
+            "long-reads" = long_reads,
+            "filter-in" = filter_in,
+            "filter-out" = filter_out
         )
     )
 

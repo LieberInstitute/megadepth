@@ -5,7 +5,7 @@ test_that("read_junction_table has correct output", {
         mustWork = TRUE
     )
 
-    example_jxs <- bam_to_junctions(example_bam, overwrite = TRUE)
+    example_jxs <- bam_to_junctions(example_bam, overwrite = TRUE, junctions = TRUE)
     all_jxs <- read_junction_table(example_jxs[["all_jxs.tsv"]])
 
     expect_equal(

@@ -10,6 +10,8 @@ bam_to_junctions(
   all_junctions = TRUE,
   junctions = FALSE,
   long_reads = FALSE,
+  filter_in = 65535,
+  filter_out = 260,
   overwrite = FALSE
 )
 }
@@ -29,6 +31,16 @@ coordinates.}
 
 \item{long_reads}{A \code{logical(1)} indicating whether to increase the buffer
 size to accommodate for long-read RNA-sequencing.}
+
+\item{filter_in}{A \code{integer(1)} used to filter in read alignments. See
+https://github.com/ChristopherWilks/megadepth#bamcram-processing and
+https://samtools.github.io/hts-specs/SAMv1.pdf for further documentation on
+how to apply this parameter.}
+
+\item{filter_out}{A \code{integer(1)} used to filter out read alignments. See
+https://github.com/ChristopherWilks/megadepth#bamcram-processing and
+https://samtools.github.io/hts-specs/SAMv1.pdf for further documentation on
+how to apply this parameter.}
 
 \item{overwrite}{A \code{logical(1)} specifying whether to overwrite the output
 file(s), if they exist already.}
