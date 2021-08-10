@@ -48,6 +48,8 @@ https://github.com/ChristopherWilks/megadepth#junctions." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -59,9 +61,15 @@ https://github.com/ChristopherWilks/megadepth#junctions." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -75,19 +83,13 @@ https://github.com/ChristopherWilks/megadepth#junctions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">megadepth</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/megadepth.html">Get started</a>
 </li>
 <li>
@@ -129,7 +131,7 @@ the output TSV file, check
 <a href='https://github.com/ChristopherWilks/megadepth#junctions'>https://github.com/ChristopherWilks/megadepth#junctions</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bam_to_junctions</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>bam_to_junctions</span><span class='op'>(</span>
   <span class='va'>bam_file</span>,
   prefix <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>bam_file</span><span class='op'>)</span><span class='op'>)</span>,
   all_junctions <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -138,79 +140,82 @@ the output TSV file, check
   filter_in <span class='op'>=</span> <span class='fl'>65535</span>,
   filter_out <span class='op'>=</span> <span class='fl'>260</span>,
   overwrite <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>bam_file</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the input BAM file.</p></td>
+      <td><p>A <code>character(1)</code> with the path to the input BAM file.</p></td>
     </tr>
     <tr>
       <th>prefix</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> specifying the output file prefix. This
+      <td><p>A <code>character(1)</code> specifying the output file prefix. This
 function creates a file called <code>prefix.jxs.tsv</code>. By default, the prefix is
 the BAM file name and the file is created in the <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code> and will be
 deleted after you close your R session.</p></td>
     </tr>
     <tr>
       <th>all_junctions</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> indicating whether to obtain all
+      <td><p>A <code>logical(1)</code> indicating whether to obtain all
 junctions.</p></td>
     </tr>
     <tr>
       <th>junctions</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> indicating whether to obtain co-occurring jx
+      <td><p>A <code>logical(1)</code> indicating whether to obtain co-occurring jx
 coordinates.</p></td>
     </tr>
     <tr>
       <th>long_reads</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> indicating whether to increase the buffer
+      <td><p>A <code>logical(1)</code> indicating whether to increase the buffer
 size to accommodate for long-read RNA-sequencing.</p></td>
     </tr>
     <tr>
       <th>filter_in</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code> used to filter in read alignments. See
+      <td><p>A <code>integer(1)</code> used to filter in read alignments. See
 https://github.com/ChristopherWilks/megadepth#bamcram-processing and
 https://samtools.github.io/hts-specs/SAMv1.pdf for further documentation on
 how to apply this parameter.</p></td>
     </tr>
     <tr>
       <th>filter_out</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code> used to filter out read alignments. See
+      <td><p>A <code>integer(1)</code> used to filter out read alignments. See
 https://github.com/ChristopherWilks/megadepth#bamcram-processing and
 https://samtools.github.io/hts-specs/SAMv1.pdf for further documentation on
 how to apply this parameter.</p></td>
     </tr>
     <tr>
       <th>overwrite</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> specifying whether to overwrite the output
+      <td><p>A <code>logical(1)</code> specifying whether to overwrite the output
 file(s), if they exist already.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the path to the output junction tsv file.</p>
+    <p>A <code>character(1)</code> with the path to the output junction tsv file.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'>## Install if necessary</span>
-<span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.1.0c</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
-<span class='co'>## Find the example BAM file</span>
-<span class='va'>example_bam</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"test.bam"</span>,
-    package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-
-<span class='co'>## Run bam_to_junctions()</span>
-<span class='va'>example_jxs</span> <span class='op'>&lt;-</span> <span class='fu'>bam_to_junctions</span><span class='op'>(</span><span class='va'>example_bam</span>, overwrite <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='co'>## Path to the output file generated by bam_to_junctions()</span>
-<span class='va'>example_jxs</span>
-</div><div class='output co'>#&gt;                            all_jxs.tsv 
-#&gt; "/tmp/Rtmp0VTOfy/test.bam.all_jxs.tsv" </div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'></span>
+<span class='r-in'><span class='co'>## Install if necessary</span></span>
+<span class='r-in'><span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The latest megadepth version is 1.1.0c</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> megadepth has been installed to /github/home/bin</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Find the example BAM file</span></span>
+<span class='r-in'><span class='va'>example_bam</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"test.bam"</span>,</span>
+<span class='r-in'>    package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Run bam_to_junctions()</span></span>
+<span class='r-in'><span class='va'>example_jxs</span> <span class='op'>&lt;-</span> <span class='fu'>bam_to_junctions</span><span class='op'>(</span><span class='va'>example_bam</span>, overwrite <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Path to the output file generated by bam_to_junctions()</span></span>
+<span class='r-in'><span class='va'>example_jxs</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                            all_jxs.tsv </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> "/tmp/RtmpbX9cfC/test.bam.all_jxs.tsv" </span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -222,11 +227,11 @@ file(s), if they exist already.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Leonardo Collado-Torres, David Zhang.</p>
+  <p><p>Developed by Leonardo Collado-Torres, David Zhang.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -234,6 +239,8 @@ file(s), if they exist already.</p></td>
 
   
 
+
+  
 
   </body>
 </html>

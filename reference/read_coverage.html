@@ -46,6 +46,8 @@ the user using Megadepth." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -57,9 +59,15 @@ the user using Megadepth." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,19 +81,13 @@ the user using Megadepth." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">megadepth</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/megadepth.html">Get started</a>
 </li>
 <li>
@@ -125,22 +127,22 @@ the user using Megadepth." />
 the user using Megadepth.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_coverage</span><span class='op'>(</span><span class='va'>tsv_file</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>read_coverage</span><span class='op'>(</span><span class='va'>tsv_file</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='fu'>read_coverage_table</span><span class='op'>(</span><span class='va'>tsv_file</span><span class='op'>)</span></pre>
+<span class='fu'>read_coverage_table</span><span class='op'>(</span><span class='va'>tsv_file</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tsv_file</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> specifying the path to the tab-separated
+      <td><p>A <code>character(1)</code> specifying the path to the tab-separated
 (TSV) file created manually using <code><a href='megadepth_cmd.html'>megadepth_shell()</a></code> or on a previous
 <code><a href='get_coverage.html'>get_coverage()</a></code> run.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> controlling whether to suppress messages when
+      <td><p>A <code>logical(1)</code> controlling whether to suppress messages when
 reading the data.</p></td>
     </tr>
     </table>
@@ -163,60 +165,65 @@ a table</p></li>
 <code><a href='get_coverage.html'>get_coverage</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'>## Install if necessary</span>
-<span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>The latest megadepth version is 1.1.0c</span></div><div class='output co'>#&gt; <span class='message'>megadepth has been installed to /github/home/bin</span></div><div class='input'>
-<span class='co'>## Locate example BigWig and annotation files</span>
-<span class='va'>example_bw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"test.bam.all.bw"</span>,
-    package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-<span class='va'>annotation_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"testbw2.bed"</span>,
-    package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-
-<span class='co'>## Compute the coverage</span>
-<span class='va'>bw_cov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='get_coverage.html'>get_coverage</a></span><span class='op'>(</span><span class='va'>example_bw</span>, op <span class='op'>=</span> <span class='st'>"mean"</span>, annotation <span class='op'>=</span> <span class='va'>annotation_file</span><span class='op'>)</span>
-<span class='va'>bw_cov</span>
-</div><div class='output co'>#&gt; GRanges object with 4 ranges and 1 metadata column:
-#&gt;         seqnames          ranges strand |     score
-#&gt;            &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt;
-#&gt;   [1]      chr10            0-10      * |      0.00
-#&gt;   [2]      chr10 8756697-8756762      * |     15.85
-#&gt;   [3]      chr10 4359156-4359188      * |      3.00
-#&gt;   [4] GL000219.1   168500-168620      * |      1.26
-#&gt;   -------
-#&gt;   seqinfo: 2 sequences from an unspecified genome; no seqlengths</div><div class='input'>
-<span class='co'>## Read in the coverage file again, using read_coverage()</span>
-<span class='co'>## First, lets locate the tsv file that was generated by get_coverage()</span>
-<span class='va'>tsv_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"bw.mean.annotation.tsv"</span><span class='op'>)</span>
-<span class='va'>bw_cov_manual</span> <span class='op'>&lt;-</span> <span class='fu'>read_coverage</span><span class='op'>(</span><span class='va'>tsv_file</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='va'>bw_cov</span>, <span class='va'>bw_cov_manual</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'>## To get an RleList object, just like the one you would get</span>
-<span class='co'>## from using rtracklayer::import.bw(as = "RleList") directly on the</span>
-<span class='co'>## BigWig file, use:</span>
-<span class='fu'>GenomicRanges</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/GenomicRanges/man/coverage-methods.html'>coverage</a></span><span class='op'>(</span><span class='va'>bw_cov_manual</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; RleList of length 2
-#&gt; $chr10
-#&gt; integer-Rle of length 8756762 with 5 runs
-#&gt;   Lengths:      10 4359145      33 4397508      66
-#&gt;   Values :       1       0       1       0       1
-#&gt; 
-#&gt; $GL000219.1
-#&gt; integer-Rle of length 168620 with 2 runs
-#&gt;   Lengths: 168499    121
-#&gt;   Values :      0      1
-#&gt; </div><div class='input'>
-<span class='co'>## The coverage data can also be read as a `tibble::tibble()`</span>
-<span class='fu'>read_coverage_table</span><span class='op'>(</span><span class='va'>tsv_file</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 4</span><span>
-#&gt;   chr          start     end score
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> chr10            0      10  0   
-#&gt; </span><span style='color: #555555;'>2</span><span> chr10      8</span><span style='text-decoration: underline;'>756</span><span>697 8</span><span style='text-decoration: underline;'>756</span><span>762 15.8 
-#&gt; </span><span style='color: #555555;'>3</span><span> chr10      4</span><span style='text-decoration: underline;'>359</span><span>156 4</span><span style='text-decoration: underline;'>359</span><span>188  3   
-#&gt; </span><span style='color: #555555;'>4</span><span> GL000219.1  </span><span style='text-decoration: underline;'>168</span><span>500  </span><span style='text-decoration: underline;'>168</span><span>620  1.26</div></span></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'></span>
+<span class='r-in'><span class='co'>## Install if necessary</span></span>
+<span class='r-in'><span class='fu'><a href='install_megadepth.html'>install_megadepth</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The latest megadepth version is 1.1.0c</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> megadepth has been installed to /github/home/bin</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Locate example BigWig and annotation files</span></span>
+<span class='r-in'><span class='va'>example_bw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"test.bam.all.bw"</span>,</span>
+<span class='r-in'>    package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>annotation_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"testbw2.bed"</span>,</span>
+<span class='r-in'>    package <span class='op'>=</span> <span class='st'>"megadepth"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Compute the coverage</span></span>
+<span class='r-in'><span class='va'>bw_cov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='get_coverage.html'>get_coverage</a></span><span class='op'>(</span><span class='va'>example_bw</span>, op <span class='op'>=</span> <span class='st'>"mean"</span>, annotation <span class='op'>=</span> <span class='va'>annotation_file</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>bw_cov</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> GRanges object with 4 ranges and 1 metadata column:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         seqnames          ranges strand |     score</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>            &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [1]      chr10            0-10      * |      0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [2]      chr10 8756697-8756762      * |     15.85</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [3]      chr10 4359156-4359188      * |      3.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [4] GL000219.1   168500-168620      * |      1.26</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   -------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   seqinfo: 2 sequences from an unspecified genome; no seqlengths</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Read in the coverage file again, using read_coverage()</span></span>
+<span class='r-in'><span class='co'>## First, lets locate the tsv file that was generated by get_coverage()</span></span>
+<span class='r-in'><span class='va'>tsv_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"bw.mean.annotation.tsv"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>bw_cov_manual</span> <span class='op'>&lt;-</span> <span class='fu'>read_coverage</span><span class='op'>(</span><span class='va'>tsv_file</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='va'>bw_cov</span>, <span class='va'>bw_cov_manual</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## To get an RleList object, just like the one you would get</span></span>
+<span class='r-in'><span class='co'>## from using rtracklayer::import.bw(as = "RleList") directly on the</span></span>
+<span class='r-in'><span class='co'>## BigWig file, use:</span></span>
+<span class='r-in'><span class='fu'>GenomicRanges</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/GenomicRanges/man/coverage-methods.html'>coverage</a></span><span class='op'>(</span><span class='va'>bw_cov_manual</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> RleList of length 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $chr10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> integer-Rle of length 8756762 with 5 runs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Lengths:      10 4359145      33 4397508      66</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Values :       1       0       1       0       1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $GL000219.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> integer-Rle of length 168620 with 2 runs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Lengths: 168499    121</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Values :      0      1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## The coverage data can also be read as a `tibble::tibble()`</span></span>
+<span class='r-in'><span class='fu'>read_coverage_table</span><span class='op'>(</span><span class='va'>tsv_file</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 × 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   chr          start     end score</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> chr10            0      10  0   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> chr10      8<span style='text-decoration: underline;'>756</span>697 8<span style='text-decoration: underline;'>756</span>762 15.8 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> chr10      4<span style='text-decoration: underline;'>359</span>156 4<span style='text-decoration: underline;'>359</span>188  3   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> GL000219.1  <span style='text-decoration: underline;'>168</span>500  <span style='text-decoration: underline;'>168</span>620  1.26</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -228,11 +235,11 @@ a table</p></li>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Leonardo Collado-Torres, David Zhang.</p>
+  <p><p>Developed by Leonardo Collado-Torres, David Zhang.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -240,6 +247,8 @@ a table</p></li>
 
   
 
+
+  
 
   </body>
 </html>
