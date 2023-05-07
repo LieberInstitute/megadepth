@@ -1,7 +1,7 @@
-pandoc: 2.14.0.3
-pkgdown: 1.6.1
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   megadepth: megadepth.html
-last_built: 2021-11-23T14:04Z
+last_built: 2023-05-07T03:15Z
 
