@@ -61,7 +61,7 @@ bib <- c(
         journaltitle = "Nat Methods"
     ),
     RefManageR = citation("RefManageR")[1],
-    rtracklayer = citation("rtracklayer")
+    rtracklayer = citation("rtracklayer")[1]
 )
 ```
 
